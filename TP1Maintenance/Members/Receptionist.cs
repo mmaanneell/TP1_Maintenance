@@ -40,7 +40,7 @@ namespace SchoolManager
 
         public void Pay()
         {
-            Util.NetworkDelay.PayEntity("Receptionist", Name, ref balance, income);
+            Util.NetworkDelay.ProcessPayment("Receptionist", Name, ref balance, income);
         }
 
         public void HandleComplaint()
