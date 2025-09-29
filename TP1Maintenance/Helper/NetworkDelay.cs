@@ -18,13 +18,13 @@ namespace Util
             get { return maxDelay; }
         }
 
-        static public void SimulateNetworkDelay()
+        public static void SimulateNetworkDelay()
         {
             Random rnd = new Random();
             Thread.Sleep(rnd.Next(minDelay, maxDelay));
         }
 
-        static public int PayEntity(string entity, string name, int balance, int income)
+        public static int PayEntity(string entity, string name, int balance, int income)
         {
             SimulateNetworkDelay();
 
