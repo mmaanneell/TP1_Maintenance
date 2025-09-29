@@ -1,31 +1,37 @@
-﻿using System;
+using System;
 
 namespace SchoolManager
 {
     public class Teacher : SchoolMember, IPayroll
     {
-        public string Subject;
-        private int income;
-        private int balance;
+        public string Subject { get; set; }
+        private int Income { get; }
 
-        public Teacher(string name, string address, int phoneNum, string subject = "", int income = 25000)
+        // La propriété Balance a été faite ainsi pour permettre d'appeler "_balance" en ref dans la méthode Pay
+        private int _balance;
+        public int Balance  
+        {
+            get { return _balance; }
+            private set { _balance = value; }
+        }
+
+        public Teacher(string name, string address, int phoneNumber, string subject = "", int income = 25000)
         {
             Name = name;
             Address = address;
-            Phone = phoneNum;
+            Phone = phoneNumber;
             Subject = subject;
-            this.income = income;
-            balance = 0;
+            Income = income;
+            Balance = 0;
         }
 
-        public void display()
+        public void Display()
         {
-            Console.WriteLine("Name: {0}, Address: {1}, Phone: {2}, Subject: {3}", Name, Address, Phone, Subject);
+            Console.WriteLine($"Name: {Name}, Address: {Address}, Phone: {Phone}, Subject: {Subject}");
         }
 
         public void Pay()
         {
-
             List<Task> payments = new List<Task>();
 
             foreach (Teacher teacher in Program.Teachers)
@@ -39,8 +45,7 @@ namespace SchoolManager
 
             Task.WaitAll(payments.ToArray());
 
-
-
+            Util.NetworkDelay.ProcessPayment("Teacher", Name, ref _balance, Income);
         }
     }
 }

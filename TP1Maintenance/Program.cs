@@ -91,7 +91,7 @@ namespace SchoolManager
                 case 2:
                     Console.WriteLine("\nThe teachers are:");
                     foreach (Teacher teacher in Teachers)
-                        teacher.display();
+                        teacher.Display();
                     break;
                 case 3:
                     Console.WriteLine("\nThe students are:");
