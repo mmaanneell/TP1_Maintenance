@@ -5,26 +5,17 @@ namespace Util
 {
     public class NetworkDelay
     {
-        private const int minDelay = 1000;
-        private const int maxDelay = 5000;
+        private const int MinDelayMilliseconds = 1000;
+        private const int MaxDelayMilliseconds = 5000;
 
-        public static int MinDelay
-        {
-            get { return minDelay; }
-        }
-
-        public static int MaxDelay
-        {
-            get { return maxDelay; }
-        }
+        private static Random _random = new Random();
 
         static public void SimulateNetworkDelay()
         {
-            Random rnd = new Random();
-            Thread.Sleep(rnd.Next(minDelay, maxDelay));
+            Thread.Sleep(_random.Next(MinDelayMilliseconds, MaxDelayMilliseconds));
         }
 
-        static public void PayEntity(string entity, string name, ref int balance, int income)
+        static public void ProcessPayment(string entity, string name, ref int balance, int income)
         {
             SimulateNetworkDelay();
 

@@ -32,7 +32,7 @@ namespace SchoolManager
 
         public void Pay()
         {
-            Util.NetworkDelay.PayEntity("Teacher", Name, ref _balance, Income);
+            Util.NetworkDelay.ProcessPayment("Teacher", Name, ref _balance, income);
         }
     }
 }
