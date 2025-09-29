@@ -15,11 +15,11 @@ namespace SchoolManager
             private set { _balance = value; }
         }
 
-        public Teacher(string name, string address, int phoneNum, string subject = "", int income = 25000)
+        public Teacher(string name, string address, int phoneNumber, string subject = "", int income = 25000)
         {
             Name = name;
             Address = address;
-            Phone = phoneNum;
+            Phone = phoneNumber;
             Subject = subject;
             Income = income;
             Balance = 0;
