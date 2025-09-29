@@ -22,21 +22,21 @@ namespace SchoolManager
         public static SchoolMember AcceptAttributes()
         {
             SchoolMember member = new SchoolMember();
-            member.Name = Util.Console.AskQuestion("Enter name: ");
-            member.Address = Util.Console.AskQuestion("Enter address: ");
-            member.Phone = Util.Console.AskQuestionInt("Enter phone number: ");
+            member.Name = Util.ConsoleHelper.AskInfoInput("Enter name: ");
+            member.Address = Util.ConsoleHelper.AskInfoInput("Enter address: ");
+            member.Phone = Util.ConsoleHelper.AskNumberInput("Enter phone number: ");
 
             return member;
         }
 
         private static int acceptChoices()
         {
-            return Util.Console.AskQuestionInt("\n1. Add\n2. Display\n3. Pay\n4. Raise Complaint\n5. Student Performance\nPlease enter the member type: ");
+            return Util.ConsoleHelper.AskNumberInput("\n1. Add\n2. Display\n3. Pay\n4. Raise Complaint\n5. Student Performance\nPlease enter the member type: ");
         }
 
         private static int acceptMemberType()
         {
-            int x = Util.Console.AskQuestionInt("\n1. Principal\n2. Teacher\n3. Student\n4. Receptionist\nPlease enter the member type: ");
+            int x = Util.ConsoleHelper.AskNumberInput("\n1. Principal\n2. Teacher\n3. Student\n4. Receptionist\nPlease enter the member type: ");
             return Enum.IsDefined(typeof(SchoolMemberType), x) ? x : -1;
         }
 
@@ -52,7 +52,7 @@ namespace SchoolManager
         {
             SchoolMember member = AcceptAttributes();
             Student newStudent = new Student(member.Name, member.Address, member.Phone);
-            newStudent.Grade = Util.Console.AskQuestionInt("Enter grade: ");
+            newStudent.Grade = Util.ConsoleHelper.AskNumberInput("Enter grade: ");
 
             Students.Add(newStudent);
         }
@@ -61,7 +61,7 @@ namespace SchoolManager
         {
             SchoolMember member = AcceptAttributes();
             Teacher newTeacher = new Teacher(member.Name, member.Address, member.Phone);
-            newTeacher.Subject = Util.Console.AskQuestion("Enter subject: ");
+            newTeacher.Subject = Util.ConsoleHelper.AskInfoInput("Enter subject: ");
 
             Teachers.Add(newTeacher);
         }
