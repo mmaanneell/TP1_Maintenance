@@ -6,41 +6,35 @@ using System.Threading.Tasks;
 
 namespace SchoolManager
 {
-    public class Complaint : EventArgs
-    {
-        public DateTime ComplaintTime { get; set; }
-        public string ComplaintRaised { get; set; }
-    }
-
     public class Receptionist : SchoolMember, IPayroll
     {
-        private int income;
-        private int balance;
+        private int _income;
+        private int _balance;
         public event EventHandler<Complaint> ComplaintRaised;
 
         public Receptionist(int income = 10000) 
         {
-            this.income = income;
-            balance = 0;
+            _income = income;
+            _balance = 0;
         }
 
-        public Receptionist(string name, string address, int phoneNum, int income = 10000)
+        public Receptionist(string name, string address, int phoneNumber, int income = 10000)
         {
             Name = name;
             Address = address;
-            Phone = phoneNum;
-            this.income = income;
-            balance = 0;
+            Phone = phoneNumber;
+            _income = income;
+            _balance = 0;
         }
 
         public void Display()
         {
-            Console.WriteLine("Name: {0}, Address: {1}, Phone: {2}", Name, Address, Phone);
+            Console.WriteLine($"Name: {Name}, Address: {Address}, Phone: {Phone}");
         }
 
         public void Pay()
         {
-            Util.NetworkDelay.PayEntity("Receptionist", Name, ref balance, income);
+            Util.NetworkDelay.PayEntity("Receptionist", Name, ref _balance, _income);
         }
 
         public void HandleComplaint()
