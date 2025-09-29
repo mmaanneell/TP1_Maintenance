@@ -4,32 +4,26 @@ namespace SchoolManager
 {
     public class Principal : SchoolMember, IPayroll
     {
-        private int income;
-        private int balance;
+        private const int Income = 50000;
+        private int Balance {get;}
 
-        public Principal(int income = 50000)
-        {
-            this.income = income;
-            balance = 0;
-        }
-
-        public Principal(string name, string address, int phoneNum, int income = 50000)
+        public Principal(string name, string address, int phone, int income, int balance)
         {
             Name = name;
             Address = address;
-            Phone = phoneNum;
-            this.income = income;
-            balance = 0;
+            Phone = phone;
+            this.Income = income;
+            Balance = 0;
         }
 
         public void display()
         {
-            Console.WriteLine("Name: {0}, Address: {1}, Phone: {2}", Name, Address, Phone);
+            Console.WriteLine($"Name: {Name}, Address: {Address}, Phone: {Phone}");
         }
 
         public void Pay()
         {
-            Util.NetworkDelay.PayEntity("Principal", Name, ref balance, income);
+            Util.NetworkDelay.PayEntity("Principal", Name, ref Balance, Income);
         }
     }
 }
