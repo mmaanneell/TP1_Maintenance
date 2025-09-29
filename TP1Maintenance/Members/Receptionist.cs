@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,7 +31,7 @@ namespace SchoolManager
         {
             Complaint complaint = new Complaint();
             complaint.ComplaintTime = DateTime.Now;
-            complaint.ComplaintRaised = Util.Console.AskQuestion("Please enter your Complaint: ");
+            complaint.ComplaintRaised = Util.ConsoleHelper.AskInfoInput("Please enter your Complaint: ");
 
             ComplaintRaised?.Invoke(this, complaint);
         }

@@ -22,21 +22,21 @@ namespace SchoolManager
         public static SchoolMember AcceptAttributes(string name, string address, int phoneNumber)
         {
             SchoolMember member = new SchoolMember(name, address, phoneNumber);
-            member.Name = Util.Console.AskQuestion("Enter name: ");
-            member.Address = Util.Console.AskQuestion("Enter address: ");
-            member.Phone = Util.Console.AskQuestionInt("Enter phone number: ");
+            member.Name = Util.ConsoleHelper.AskInfoInput("Enter name: ");
+            member.Address = Util.ConsoleHelper.AskInfoInput("Enter address: ");
+            member.Phone = Util.ConsoleHelper.AskNumberInput("Enter phone number: ");
 
             return member;
         }
 
-        private static int acceptChoices()
+        private static int AcceptChoices()
         {
-            return Util.Console.AskQuestionInt("\n1. Add\n2. Display\n3. Pay\n4. Raise Complaint\n5. Student Performance\nPlease enter the member type: ");
+            return Util.ConsoleHelper.AskNumberInput("\n1. Add\n2. Display\n3. Pay\n4. Raise Complaint\n5. Student Performance\nPlease enter the member type: ");
         }
 
-        private static int acceptMemberType()
+        private static int AcceptMemberType()
         {
-            int x = Util.Console.AskQuestionInt("\n1. Principal\n2. Teacher\n3. Student\n4. Receptionist\nPlease enter the member type: ");
+            int x = Util.ConsoleHelper.AskNumberInput("\n1. Principal\n2. Teacher\n3. Student\n4. Receptionist\nPlease enter the member type: ");
             return Enum.IsDefined(typeof(SchoolMemberType), x) ? x : -1;
         }
 
@@ -48,20 +48,20 @@ namespace SchoolManager
             Principal.Phone = member.Phone;
         }
 
-        private static void addStudent(string name, string address, int phoneNumber)
+        private static void AddStudent(string name, string address, int phoneNumber)
         {
             SchoolMember member = AcceptAttributes(name, address, phoneNumber);
             Student newStudent = new Student(member.Name, member.Address, member.Phone);
-            newStudent.Grade = Util.Console.AskQuestionInt("Enter grade: ");
+            newStudent.Grade = Util.ConsoleHelper.AskNumberInput("Enter grade: ");
 
             Students.Add(newStudent);
         }
 
-        private static void addTeacher(string name, string address, int phoneNumber)
+        private static void AddTeacher(string name, string address, int phoneNumber)
         {
             SchoolMember member = AcceptAttributes(name, address, phoneNumber);
             Teacher newTeacher = new Teacher(member.Name, member.Address, member.Phone);
-            newTeacher.Subject = Util.Console.AskQuestion("Enter subject: ");
+            newTeacher.Subject = Util.ConsoleHelper.AskInfoInput("Enter subject: ");
 
             Teachers.Add(newTeacher);
         }
@@ -69,15 +69,15 @@ namespace SchoolManager
         public static void Add(string name, string address, int phoneNumber)
         {
             Console.WriteLine("\nPlease note that the Principal/Receptionist details cannot be added or modified now.");
-            int memberType = acceptMemberType();
+            int memberType = AcceptMemberType();
 
             switch (memberType)
             {
                 case 2:
-                    addTeacher(name, address, phoneNumber);
+                    AddTeacher(name, address, phoneNumber);
                     break;
                 case 3:
-                    addStudent(name, address, phoneNumber);
+                    AddStudent(name, address, phoneNumber);
                     break;
                 default:
                     Console.WriteLine("Invalid input. Terminating operation.");
@@ -85,9 +85,9 @@ namespace SchoolManager
             }
         }
 
-        private static void display()
+        private static void Display()
         {
-            int memberType = acceptMemberType();
+            int memberType = AcceptMemberType();
 
             switch (memberType)
             {
@@ -98,6 +98,7 @@ namespace SchoolManager
                 case 2:
                     Console.WriteLine("\nThe teachers are:");
                     foreach (Teacher teacher in Teachers)
+                        teacher.Display();
                         teacher.Display();
                     break;
                 case 3:
@@ -118,7 +119,7 @@ namespace SchoolManager
         public static void Pay()
         {
             Console.WriteLine("\nPlease note that the students cannot be paid.");
-            int memberType = acceptMemberType();
+            int memberType = AcceptMemberType();
 
             Console.WriteLine("\nPayments in progress...");
 
@@ -156,23 +157,23 @@ namespace SchoolManager
             Receptionist.HandleComplaint();
         }
 
-        private static void handleComplaintRaised(object sender, Complaint complaint)
+        private static void HandleComplaintRaised(object sender, Complaint complaint)
         {
             Console.WriteLine("\nThis is a confirmation that we received your complaint. The details are as follows:");
             Console.WriteLine($"---------\nComplaint Time: {complaint.ComplaintTime.ToLongDateString()}, {complaint.ComplaintTime.ToLongTimeString()}");
             Console.WriteLine($"Complaint Raised: {complaint.ComplaintRaised}\n---------");
         }
 
-        private static async Task showPerformance()
+        private static async Task ShowPerformance()
         {
             double average = await Task.Run(() => Student.averageGrade(Students));
             Console.WriteLine($"The student average performance is: {average}");
         }
 
-        private static void addData()
+        private static void AddData()
         {
             Receptionist = new Receptionist("Receptionist", "address", 123);
-            Receptionist.ComplaintRaised += handleComplaintRaised;
+            Receptionist.ComplaintRaised += HandleComplaintRaised;
 
             Principal = new Principal("Principal", "address", 123);
 
@@ -186,7 +187,7 @@ namespace SchoolManager
         public static async Task Main(string[] args)
         {
             // Just for manual testing purposes.
-            addData();
+            AddData();
 
             Console.WriteLine("-------------- Welcome ---------------\n");
 
@@ -197,14 +198,14 @@ namespace SchoolManager
             while (flag)
             {
 
-                int choice = acceptChoices();
+                int choice = AcceptChoices();
                 switch (choice)
                 {
                     case 1:
                         Add(name : "name", address : "address", phoneNumber : 123456); // temporaire avant de regler les autres problemes
                         break;
                     case 2:
-                        display();
+                        Display();
                         break;
                     case 3:
                         Pay();
@@ -213,7 +214,7 @@ namespace SchoolManager
                         RaiseComplaint();
                         break;
                     case 5:
-                        await showPerformance();
+                        await ShowPerformance();
                         break;
                     default:
                         flag = false;
