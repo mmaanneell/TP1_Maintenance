@@ -25,7 +25,7 @@ namespace SchoolManager
 
         public void Pay()
         {
-            Util.NetworkDelay.PayEntity("Teacher", Name, ref balance, income);
+            Util.NetworkDelay.ProcessPayment("Teacher", Name, ref balance, income);
         }
     }
 }
