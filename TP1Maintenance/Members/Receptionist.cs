@@ -18,11 +18,11 @@ namespace SchoolManager
             _balance = 0;
         }
 
-        public Receptionist(string name, string address, int phoneNum, int income = 10000)
+        public Receptionist(string name, string address, int phoneNumber, int income = 10000)
         {
             Name = name;
             Address = address;
-            Phone = phoneNum;
+            Phone = phoneNumber;
             _income = income;
             _balance = 0;
         }
@@ -41,7 +41,7 @@ namespace SchoolManager
         {
             Complaint complaint = new Complaint();
             complaint.ComplaintTime = DateTime.Now;
-            complaint.ComplaintRaised = Util.Console.AskQuestion($"Please enter your Complaint: ");
+            complaint.ComplaintRaised = Util.Console.AskQuestion("Please enter your Complaint: ");
 
             ComplaintRaised?.Invoke(this, complaint);
         }
