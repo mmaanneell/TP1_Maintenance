@@ -5,35 +5,35 @@ namespace SchoolManager
 {
     public class Student : SchoolMember
     {
-        private int grade;
+        private int _grade;
         public int Grade
         {
-            get { return grade; }
-            set { grade = value; }
+            get { return _grade; }
+            set { _grade = value; }
         }
 
-        public Student(string name = "", string address = "", int phoneNum = 0, int grade = 0)
+        public Student(string name, string address, int phoneNumber, int grade)
         {
             Name = name;
             Address = address;
-            Phone = phoneNum;
-            this.grade = grade;
+            Phone = phoneNumber;
+            this.Grade = grade;
         }
 
         public void display()
         {
-            Console.WriteLine("Name: {0}, Address: {1}, Phone: {2}, Grade: {3}", Name, Address, Phone, Grade);
+            Console.WriteLine($"Name: {Name}, Address: {Address}, Phone: {Phone}, Grade: {Grade}");
         }
 
         public static double averageGrade(List<Student> students)
         {
-            double avg = 0;
+            double totalGradeSum = 0;
             foreach (Student student in students)
             {
-                avg += student.Grade;
+                totalGradeSum += student.Grade;
             }
 
-            return avg / students.Count;
+            return totalGradeSum / students.Count;
         }
     }
 }
