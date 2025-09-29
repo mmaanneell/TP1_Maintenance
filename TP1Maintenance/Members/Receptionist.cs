@@ -27,11 +27,6 @@ namespace SchoolManager
             Console.WriteLine("Name: {0}, Address: {1}, Phone: {2}", Name, Address, Phone);
         }
 
-        public override void Pay()
-        {
-            Balance = Util.NetworkDelay.PayEntity("Receptionist", Name, Balance, Income);
-        }
-
         public void HandleComplaint()
         {
             Complaint complaint = new Complaint();

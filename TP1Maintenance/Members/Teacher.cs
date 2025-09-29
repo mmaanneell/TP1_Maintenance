@@ -17,9 +17,5 @@ namespace SchoolManager
             Console.WriteLine($"Name: {Name}, Address: {Address}, Phone: {Phone}, Subject: {Subject}");
         }
 
-        public override void Pay()
-        {
-            Balance = Util.NetworkDelay.PayEntity("Teacher", Name, Balance, Income);
-        }
     }
 }
