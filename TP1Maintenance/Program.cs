@@ -8,8 +8,8 @@ namespace SchoolManager
     {
         static public List<Student> Students = new List<Student>();
         static public List<Teacher> Teachers = new List<Teacher>();
-        static public Principal Principal = new Principal();
-        static public Receptionist Receptionist = new Receptionist();
+        static public Principal Principal = new Principal(name: "", address:"", phoneNum: 0);  // temporaire avant de regler les autres problemes
+        static public Receptionist Receptionist = new Receptionist(name: "", address:"", phoneNum: 0);  // temporaire avant de regler les autres problemes
 
         enum SchoolMemberType
         {
@@ -19,9 +19,9 @@ namespace SchoolManager
             typeReceptionist
         }
 
-        public static SchoolMember AcceptAttributes()
+        public static SchoolMember AcceptAttributes(string name, string address, int phoneNumber)
         {
-            SchoolMember member = new SchoolMember();
+            SchoolMember member = new SchoolMember(name, address, phoneNumber);
             member.Name = Util.Console.AskQuestion("Enter name: ");
             member.Address = Util.Console.AskQuestion("Enter address: ");
             member.Phone = Util.Console.AskQuestionInt("Enter phone number: ");
@@ -40,33 +40,33 @@ namespace SchoolManager
             return Enum.IsDefined(typeof(SchoolMemberType), x) ? x : -1;
         }
 
-        public static void AddPrincpal()
+        public static void AddPrincpal(string name, string address, int phoneNumber)
         {
-            SchoolMember member = AcceptAttributes();
+            SchoolMember member = AcceptAttributes(name, address, phoneNumber);
             Principal.Name = member.Name;
             Principal.Address = member.Address;
             Principal.Phone = member.Phone;
         }
 
-        private static void addStudent()
+        private static void addStudent(string name, string address, int phoneNumber)
         {
-            SchoolMember member = AcceptAttributes();
+            SchoolMember member = AcceptAttributes(name, address, phoneNumber);
             Student newStudent = new Student(member.Name, member.Address, member.Phone);
             newStudent.Grade = Util.Console.AskQuestionInt("Enter grade: ");
 
             Students.Add(newStudent);
         }
 
-        private static void addTeacher()
+        private static void addTeacher(string name, string address, int phoneNumber)
         {
-            SchoolMember member = AcceptAttributes();
+            SchoolMember member = AcceptAttributes(name, address, phoneNumber);
             Teacher newTeacher = new Teacher(member.Name, member.Address, member.Phone);
             newTeacher.Subject = Util.Console.AskQuestion("Enter subject: ");
 
             Teachers.Add(newTeacher);
         }
 
-        public static void Add()
+        public static void Add(string name, string address, int phoneNumber)
         {
             Console.WriteLine("\nPlease note that the Principal/Receptionist details cannot be added or modified now.");
             int memberType = acceptMemberType();
@@ -74,10 +74,10 @@ namespace SchoolManager
             switch (memberType)
             {
                 case 2:
-                    addTeacher();
+                    addTeacher(name, address, phoneNumber);
                     break;
                 case 3:
-                    addStudent();
+                    addStudent(name, address, phoneNumber);
                     break;
                 default:
                     Console.WriteLine("Invalid input. Terminating operation.");
@@ -93,17 +93,17 @@ namespace SchoolManager
             {
                 case 1:
                     Console.WriteLine("\nThe Principal's details are:");
-                    Principal.display();
+                    Principal.Display();
                     break;
                 case 2:
                     Console.WriteLine("\nThe teachers are:");
                     foreach (Teacher teacher in Teachers)
-                        teacher.display();
+                        teacher.Display();
                     break;
                 case 3:
                     Console.WriteLine("\nThe students are:");
                     foreach (Student student in Students)
-                        student.display();
+                        student.Display();
                     break;
                 case 4:
                     Console.WriteLine("\nThe Receptionist's details are:");
@@ -201,7 +201,7 @@ namespace SchoolManager
                 switch (choice)
                 {
                     case 1:
-                        Add();
+                        Add(name : "name", address : "address", phoneNumber : 123456); // temporaire avant de regler les autres problemes
                         break;
                     case 2:
                         display();
