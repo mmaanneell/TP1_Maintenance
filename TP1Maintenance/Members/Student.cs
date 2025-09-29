@@ -6,7 +6,7 @@ namespace SchoolManager
     public class Student : SchoolMember
     {
         private int _grade;
-        public int Grade
+        private int Grade
         {
             get { return _grade; }
             set { _grade = value; }
@@ -17,15 +17,15 @@ namespace SchoolManager
             Name = name;
             Address = address;
             Phone = phoneNumber;
-            this.Grade = grade;
+            Grade = grade;
         }
 
-        public void display()
+        public void Display()
         {
             Console.WriteLine($"Name: {Name}, Address: {Address}, Phone: {Phone}, Grade: {Grade}");
         }
 
-        public static double averageGrade(List<Student> students)
+        public static double AverageGrade(List<Student> students)
         {
             double totalGradeSum = 0;
             foreach (Student student in students)
