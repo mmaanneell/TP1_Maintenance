@@ -2,37 +2,20 @@
 
 namespace SchoolManager
 {
-    public class Teacher : SchoolMember, IPayroll
+    public class Teacher : Employee
     {
-        public string Subject { get; set; }
-        private int Income { get; }
+        public string Subject;
 
-        // La propriété Balance a été faite ainsi pour permettre d'appeler "_balance" en ref dans la méthode Pay
-        private int _balance;
-        public int Balance  
+        public Teacher(string name, string address, int phoneNum, int income = 25000, string subject ="")
+        : base(name, address, phoneNum, income)
         {
-            get { return _balance; }
-            private set { _balance = value; }
-        }
-
-        public Teacher(string name, string address, int phoneNumber, string subject = "", int income = 25000)
-        {
-            Name = name;
-            Address = address;
-            Phone = phoneNumber;
             Subject = subject;
-            Income = income;
-            Balance = 0;
         }
 
-        public void Display()
+        public override void Display()
         {
             Console.WriteLine($"Name: {Name}, Address: {Address}, Phone: {Phone}, Subject: {Subject}");
         }
 
-        public void Pay()
-        {
-            Util.NetworkDelay.ProcessPayment("Teacher", Name, ref _balance, Income);
-        }
     }
 }

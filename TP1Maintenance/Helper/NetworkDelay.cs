@@ -15,12 +15,13 @@ namespace Util
             Thread.Sleep(_random.Next(MinDelayMilliseconds, MaxDelayMilliseconds));
         }
 
-        public static void ProcessPayment(string entity, string name, ref int balance, int income)
+        public static int PayEntity(string entity, string name, int balance, int income)
         {
             SimulateNetworkDelay();
 
             balance += income;
             System.Console.WriteLine($"Paid {entity}: {name}. Total balance: {balance}");
+            return balance; // solution temporaire pour enlever le ref
         }
     }
 }
