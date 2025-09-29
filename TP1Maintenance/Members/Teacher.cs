@@ -25,7 +25,22 @@ namespace SchoolManager
 
         public void Pay()
         {
-            Util.NetworkDelay.PayEntity("Teacher", Name, ref balance, income);
+
+            List<Task> payments = new List<Task>();
+
+            foreach (Teacher teacher in Program.Teachers)
+            {
+                Task payment = new Task(()=>
+                    Util.NetworkDelay.PayEntity("Teacher", teacher.Name, ref teacher.balance, teacher.income));
+                payments.Add(payment);
+                payment.Start();  
+
+            }
+
+            Task.WaitAll(payments.ToArray());
+
+
+
         }
     }
 }

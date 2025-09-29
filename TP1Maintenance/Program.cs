@@ -11,14 +11,7 @@ namespace SchoolManager
         static public Principal Principal = new Principal();
         static public Receptionist Receptionist = new Receptionist();
 
-        enum SchoolMemberType
-        {
-            typePrincipal = 1,
-            typeTeacher,
-            typeStudent,
-            typeReceptionist
-        }
-
+      
         public static SchoolMember AcceptAttributes()
         {
             SchoolMember member = new SchoolMember();
@@ -122,32 +115,17 @@ namespace SchoolManager
 
             Console.WriteLine("\nPayments in progress...");
 
-            switch (memberType)
+
+            if (memberType > 0 && memberType < 5)
             {
-                case 1:
-                    Principal.Pay();
-                    break;
-                case 2:
-                    List<Task> payments = new List<Task>();
-
-                    foreach (Teacher teacher in Teachers)
-                    {
-                        Task payment = new Task(teacher.Pay);
-                        payments.Add(payment);
-                        payment.Start();
-                    }
-
-                    Task.WaitAll(payments.ToArray());
-
-                    break;
-                case 4:
-                    Receptionist.Pay();
-                    break;
-                default:
-                    Console.WriteLine("Invalid input. Terminating operation.");
-                    break;
+                PayEntities.PayEntity((SchoolMemberType)memberType);
             }
+            else
+            {
+                Console.WriteLine("Invalid input. Terminating operation.");
 
+            }
+                 
             Console.WriteLine("Payments completed.\n");
         }
 
