@@ -1,14 +1,14 @@
 ﻿namespace Util
 {
-    public class Console
+    static public class ConsoleHelper
     {
-        static public string AskQuestion(string question)
+        static public string AskInfoInput(string question)
         {
             System.Console.Write(question);
             return System.Console.ReadLine();
         }
 
-        static public int AskQuestionInt(string question)
+        static public int AskNumberInput(string question)
         {
             System.Console.Write(question);
             bool state = int.TryParse(System.Console.ReadLine(), out int result);
