@@ -13,14 +13,12 @@ namespace SchoolManager
         }
 
         public Student(string name = "", string address = "", int phoneNum = 0, int grade = 0)
+        : base(name, address, phoneNum)
         {
-            Name = name;
-            Address = address;
-            Phone = phoneNum;
             this.grade = grade;
         }
 
-        public void display()
+        public override void Display()
         {
             Console.WriteLine("Name: {0}, Address: {1}, Phone: {2}, Grade: {3}", Name, Address, Phone, Grade);
         }

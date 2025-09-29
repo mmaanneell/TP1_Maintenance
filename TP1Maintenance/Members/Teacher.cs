@@ -9,18 +9,16 @@ namespace SchoolManager
         private int balance;
 
         public Teacher(string name, string address, int phoneNum, string subject = "", int income = 25000)
+        : base(name, address, phoneNum)
         {
-            Name = name;
-            Address = address;
-            Phone = phoneNum;
             Subject = subject;
             this.income = income;
             balance = 0;
         }
 
-        public void display()
+        public override void Display()
         {
-            Console.WriteLine("Name: {0}, Address: {1}, Phone: {2}, Subject: {3}", Name, Address, Phone, Subject);
+            Console.WriteLine($"Name: {Name}, Address: {Address}, Phone: {Phone}, Subject: {Subject}");
         }
 
         public void Pay()

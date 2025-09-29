@@ -18,22 +18,14 @@ namespace SchoolManager
         private int balance;
         public event EventHandler<Complaint> ComplaintRaised;
 
-        public Receptionist(int income = 10000) 
-        {
-            this.income = income;
-            balance = 0;
-        }
-
         public Receptionist(string name, string address, int phoneNum, int income = 10000)
+        : base(name, address, phoneNum)
         {
-            Name = name;
-            Address = address;
-            Phone = phoneNum;
             this.income = income;
             balance = 0;
         }
 
-        public void Display()
+        public override void Display()
         {
             Console.WriteLine("Name: {0}, Address: {1}, Phone: {2}", Name, Address, Phone);
         }
