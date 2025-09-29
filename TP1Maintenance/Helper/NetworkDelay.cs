@@ -24,12 +24,13 @@ namespace Util
             Thread.Sleep(rnd.Next(minDelay, maxDelay));
         }
 
-        static public void PayEntity(string entity, string name, ref int balance, int income)
+        static public int PayEntity(string entity, string name, int balance, int income)
         {
             SimulateNetworkDelay();
 
             balance += income;
             System.Console.WriteLine($"Paid {entity}: {name}. Total balance: {balance}");
+            return balance; // solution temporaire pour enlever le ref
         }
     }
 }

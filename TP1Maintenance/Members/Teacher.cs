@@ -2,18 +2,14 @@
 
 namespace SchoolManager
 {
-    public class Teacher : SchoolMember, IPayroll
+    public class Teacher : Employee
     {
         public string Subject;
-        private int income;
-        private int balance;
 
-        public Teacher(string name, string address, int phoneNum, string subject = "", int income = 25000)
-        : base(name, address, phoneNum)
+        public Teacher(string name, string address, int phoneNum, int income = 25000, string subject ="")
+        : base(name, address, phoneNum, income)
         {
             Subject = subject;
-            this.income = income;
-            balance = 0;
         }
 
         public override void Display()
@@ -21,9 +17,9 @@ namespace SchoolManager
             Console.WriteLine($"Name: {Name}, Address: {Address}, Phone: {Phone}, Subject: {Subject}");
         }
 
-        public void Pay()
+        public override void Pay()
         {
-            Util.NetworkDelay.PayEntity("Teacher", Name, ref balance, income);
+            Balance = Util.NetworkDelay.PayEntity("Teacher", Name, Balance, Income);
         }
     }
 }

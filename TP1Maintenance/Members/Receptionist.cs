@@ -12,17 +12,14 @@ namespace SchoolManager
         public string ComplaintRaised { get; set; }
     }
 
-    public class Receptionist : SchoolMember, IPayroll
+    public class Receptionist : Employee
     {
-        private int income;
-        private int balance;
         public event EventHandler<Complaint> ComplaintRaised;
 
         public Receptionist(string name, string address, int phoneNum, int income = 10000)
-        : base(name, address, phoneNum)
+        : base(name, address, phoneNum, income)
         {
-            this.income = income;
-            balance = 0;
+
         }
 
         public override void Display()
@@ -30,9 +27,9 @@ namespace SchoolManager
             Console.WriteLine("Name: {0}, Address: {1}, Phone: {2}", Name, Address, Phone);
         }
 
-        public void Pay()
+        public override void Pay()
         {
-            Util.NetworkDelay.PayEntity("Receptionist", Name, ref balance, income);
+            Balance = Util.NetworkDelay.PayEntity("Receptionist", Name, Balance, Income);
         }
 
         public void HandleComplaint()
