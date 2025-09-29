@@ -10,12 +10,12 @@ namespace Util
 
         private static Random _random = new Random();
 
-        static public void SimulateNetworkDelay()
+        public static void SimulateNetworkDelay()
         {
             Thread.Sleep(_random.Next(MinDelayMilliseconds, MaxDelayMilliseconds));
         }
 
-        static public void ProcessPayment(string entity, string name, ref int balance, int income)
+        public static void ProcessPayment(string entity, string name, ref int balance, int income)
         {
             SimulateNetworkDelay();
 
