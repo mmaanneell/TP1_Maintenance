@@ -7,7 +7,7 @@ namespace Members
     {
         private int _grade;
         
-        private int Grade
+        public int Grade
         {
             get { return _grade; }
             set { _grade = value; }
