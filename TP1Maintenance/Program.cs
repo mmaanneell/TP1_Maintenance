@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Members;
 using Helper;
 
-
 public class Program
 {
     static public List<Student> Students = new List<Student>();
@@ -157,7 +156,7 @@ public class Program
         Receptionist.HandleComplaint();
     }
 
-    private static void HandleComplaintRaised(object? sender, Complaint complaint)
+    private static void HandleComplaintRaised(object sender, Complaint complaint)
     {
         Console.WriteLine("\nThis is a confirmation that we received your complaint. The details are as follows:");
         Console.WriteLine($"---------\nComplaint Time: {complaint.ComplaintTime.ToLongDateString()}, {complaint.ComplaintTime.ToLongTimeString()}");
@@ -225,3 +224,4 @@ public class Program
         Console.WriteLine("\n-------------- Bye --------------");
     }
 }
+
