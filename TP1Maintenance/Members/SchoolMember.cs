@@ -1,5 +1,6 @@
 ﻿using System;
 
+//teste 3 
 namespace Members
 {
     public class SchoolMember
