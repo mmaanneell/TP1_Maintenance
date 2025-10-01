@@ -1,7 +1,4 @@
-using System;
-using Helper;
-
-namespace Members
+namespace SchoolManager
 {
     public class Employee : SchoolMember, IPayroll
     {
@@ -23,7 +20,7 @@ namespace Members
 
         public virtual void Pay()
         {
-            Balance = Helper.NetworkDelay.PayEntity("Employee", Name, Balance, Income);
+            Balance = Util.NetworkDelay.PayEntity("Employee", Name, Balance, Income);
         }
     }
 }
