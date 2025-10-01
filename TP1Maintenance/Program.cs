@@ -8,8 +8,8 @@ public class Program
 {
     static public List<Student> Students = new List<Student>();
     static public List<Teacher> Teachers = new List<Teacher>();
-    static public Principal Principal = new Principal(name: "", address: "", phoneNum: 0);  // temporaire avant de regler les autres problemes
-    static public Receptionist Receptionist = new Receptionist(name: "", address: "", phoneNum: 0);  // temporaire avant de regler les autres problemes
+    static public Principal Principal = new Principal(name: "", address: "", phoneNumber: 0);  // temporaire avant de regler les autres problemes
+    static public Receptionist Receptionist = new Receptionist(name: "", address: "", phoneNumber: 0);  // temporaire avant de regler les autres problemes
 
     enum SchoolMemberType
     {
@@ -19,12 +19,12 @@ public class Program
         typeReceptionist
     }
 
-    public static SchoolMember AcceptAttributes(string name, string address, int phoneNumber)
+    public static SchoolMember AcceptAttributes(string name, string address, int phoneNumberber)
     {
-        SchoolMember member = new SchoolMember(name, address, phoneNumber);
+        SchoolMember member = new SchoolMember(name, address, phoneNumberber);
         member.Name = ConsoleHelper.AskInfoInput("Enter name: ");
         member.Address = ConsoleHelper.AskInfoInput("Enter address: ");
-        member.PhoneNumber = ConsoleHelper.AskNumberInput("Enter phone number: ");
+        member.phoneNumberber = ConsoleHelper.AskNumberInput("Enter phone number: ");
 
         return member;
     }
@@ -40,33 +40,33 @@ public class Program
         return Enum.IsDefined(typeof(SchoolMemberType), x) ? x : -1;
     }
 
-    public static void AddPrincpal(string name, string address, int phoneNumber)
+    public static void AddPrincpal(string name, string address, int phoneNumberber)
     {
-        SchoolMember member = AcceptAttributes(name, address, phoneNumber);
+        SchoolMember member = AcceptAttributes(name, address, phoneNumberber);
         Principal.Name = member.Name;
         Principal.Address = member.Address;
-        Principal.PhoneNumber = member.PhoneNumber;
+        Principal.phoneNumberber = member.phoneNumberber;
     }
 
-    private static void AddStudent(string name, string address, int phoneNumber)
+    private static void AddStudent(string name, string address, int phoneNumberber)
     {
-        SchoolMember member = AcceptAttributes(name, address, phoneNumber);
-        Student newStudent = new Student(member.Name, member.Address, member.PhoneNumber);
+        SchoolMember member = AcceptAttributes(name, address, phoneNumberber);
+        Student newStudent = new Student(member.Name, member.Address, member.phoneNumberber);
         newStudent.Grade = ConsoleHelper.AskNumberInput("Enter grade: ");
 
         Students.Add(newStudent);
     }
 
-    private static void AddTeacher(string name, string address, int phoneNumber)
+    private static void AddTeacher(string name, string address, int phoneNumberber)
     {
-        SchoolMember member = AcceptAttributes(name, address, phoneNumber);
-        Teacher newTeacher = new Teacher(member.Name, member.Address, member.PhoneNumber);
+        SchoolMember member = AcceptAttributes(name, address, phoneNumberber);
+        Teacher newTeacher = new Teacher(member.Name, member.Address, member.phoneNumberber);
         newTeacher.Subject = ConsoleHelper.AskInfoInput("Enter subject: ");
 
         Teachers.Add(newTeacher);
     }
 
-    public static void Add(string name, string address, int phoneNumber)
+    public static void Add(string name, string address, int phoneNumberber)
     {
         Console.WriteLine("\nPlease note that the Principal/Receptionist details cannot be added or modified now.");
         int memberType = AcceptMemberType();
@@ -74,10 +74,10 @@ public class Program
         switch (memberType)
         {
             case 2:
-                AddTeacher(name, address, phoneNumber);
+                AddTeacher(name, address, phoneNumberber);
                 break;
             case 3:
-                AddStudent(name, address, phoneNumber);
+                AddStudent(name, address, phoneNumberber);
                 break;
             default:
                 Console.WriteLine("Invalid input. Terminating operation.");
@@ -165,7 +165,7 @@ public class Program
 
     private static async Task ShowPerformance()
     {
-        double average = await Task.Run(() => Student.averageGrade(Students));
+        double average = await Task.Run(() => Student.CalculateAverageGrade(Students));
         Console.WriteLine($"The student average performance is: {average}");
     }
 
@@ -201,7 +201,7 @@ public class Program
             switch (choice)
             {
                 case 1:
-                    Add(name: "name", address: "address", phoneNumber: 123456); // temporaire avant de regler les autres problemes
+                    Add(name: "name", address: "address", phoneNumberber: 123456); // temporaire avant de regler les autres problemes
                     break;
                 case 2:
                     Display();
