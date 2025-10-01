@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Members;
+using Helper;
 
 namespace SchoolManager
 {
@@ -22,21 +24,21 @@ namespace SchoolManager
         public static SchoolMember AcceptAttributes(string name, string address, int phoneNumber)
         {
             SchoolMember member = new SchoolMember(name, address, phoneNumber);
-            member.Name = Util.ConsoleHelper.AskInfoInput("Enter name: ");
-            member.Address = Util.ConsoleHelper.AskInfoInput("Enter address: ");
-            member.PhoneNumber = Util.ConsoleHelper.AskNumberInput("Enter phone number: ");
+            member.Name = ConsoleHelper.AskInfoInput("Enter name: ");
+            member.Address = ConsoleHelper.AskInfoInput("Enter address: ");
+            member.PhoneNumber = ConsoleHelper.AskNumberInput("Enter phone number: ");
 
             return member;
         }
 
         private static int AcceptChoices()
         {
-            return Util.ConsoleHelper.AskNumberInput("\n1. Add\n2. Display\n3. Pay\n4. Raise Complaint\n5. Student Performance\nPlease enter the member type: ");
+            return ConsoleHelper.AskNumberInput("\n1. Add\n2. Display\n3. Pay\n4. Raise Complaint\n5. Student Performance\nPlease enter the member type: ");
         }
 
         private static int AcceptMemberType()
         {
-            int x = Util.ConsoleHelper.AskNumberInput("\n1. Principal\n2. Teacher\n3. Student\n4. Receptionist\nPlease enter the member type: ");
+            int x = ConsoleHelper.AskNumberInput("\n1. Principal\n2. Teacher\n3. Student\n4. Receptionist\nPlease enter the member type: ");
             return Enum.IsDefined(typeof(SchoolMemberType), x) ? x : -1;
         }
 
@@ -52,7 +54,7 @@ namespace SchoolManager
         {
             SchoolMember member = AcceptAttributes(name, address, phoneNumber);
             Student newStudent = new Student(member.Name, member.Address, member.PhoneNumber);
-            newStudent.Grade = Util.ConsoleHelper.AskNumberInput("Enter grade: ");
+            newStudent.Grade = ConsoleHelper.AskNumberInput("Enter grade: ");
 
             Students.Add(newStudent);
         }
@@ -61,7 +63,7 @@ namespace SchoolManager
         {
             SchoolMember member = AcceptAttributes(name, address, phoneNumber);
             Teacher newTeacher = new Teacher(member.Name, member.Address, member.PhoneNumber);
-            newTeacher.Subject = Util.ConsoleHelper.AskInfoInput("Enter subject: ");
+            newTeacher.Subject = ConsoleHelper.AskInfoInput("Enter subject: ");
 
             Teachers.Add(newTeacher);
         }
@@ -156,7 +158,7 @@ namespace SchoolManager
             Receptionist.HandleComplaint();
         }
 
-        private static void HandleComplaintRaised(object sender, Complaint complaint)
+        private static void HandleComplaintRaised(object? sender, Complaint complaint)
         {
             Console.WriteLine("\nThis is a confirmation that we received your complaint. The details are as follows:");
             Console.WriteLine($"---------\nComplaint Time: {complaint.ComplaintTime.ToLongDateString()}, {complaint.ComplaintTime.ToLongTimeString()}");

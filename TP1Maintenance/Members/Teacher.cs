@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SchoolManager
+namespace Members
 {
     public class Teacher : Employee
     {
@@ -16,6 +16,5 @@ namespace SchoolManager
         {
             Console.WriteLine($"Name: {Name}, Address: {Address}, PhoneNumber: {PhoneNumber}, Subject: {Subject}");
         }
-
     }
 }

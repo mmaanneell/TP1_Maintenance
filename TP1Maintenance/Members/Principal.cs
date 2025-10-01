@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SchoolManager
+namespace Members
 {
     public class Principal : Employee
     {
@@ -8,14 +8,11 @@ namespace SchoolManager
         public Principal(string name, string address, int phoneNum, int income = 50000)
         : base(name, address, phoneNum, income)
         {
-
         }
 
         public override void Display()
         {
             Console.WriteLine("Name: {0}, Address: {1}, PhoneNumber: {2}", Name, Address, PhoneNumber);
         }
-
-
     }
 }
