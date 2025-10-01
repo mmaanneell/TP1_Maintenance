@@ -1,4 +1,4 @@
-﻿namespace Helper
+﻿namespace Util
 {
     public static class ConsoleHelper
     {
@@ -11,11 +11,11 @@
         public static int AskNumberInput(string question)
         {
             Console.WriteLine(question);
-            bool state = int.TryParse(Console.ReadLine(), out int result);
+            bool state = int.TryParse(System.Console.ReadLine(), out int result);
             while (!state)
             {
                 Console.WriteLine("Invalid input. Please try again: ");
-                state = int.TryParse(Console.ReadLine(), out result);
+                state = int.TryParse(System.Console.ReadLine(), out result);
             }
 
             return result;

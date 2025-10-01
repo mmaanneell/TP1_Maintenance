@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Members
+namespace SchoolManager
 {
     public class Student : SchoolMember
     {
         private int grade;
-        
         public int Grade
         {
             get { return grade; }
@@ -31,6 +30,7 @@ namespace Members
             {
                 avg += student.Grade;
             }
+
             return avg / students.Count;
         }
     }

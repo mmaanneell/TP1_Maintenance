@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Helper;
 
-namespace Members
+namespace SchoolManager
 {
-   
+    public class Complaint : EventArgs
+    {
+        public DateTime ComplaintTime { get; set; }
+        public string ComplaintRaised { get; set; }
+    }
 
     public class Receptionist : Employee
     {
-        public event EventHandler<Complaint>? ComplaintRaised;
+        public event EventHandler<Complaint> ComplaintRaised;
 
         public Receptionist(string name, string address, int phoneNum, int income = 10000)
         : base(name, address, phoneNum, income)
@@ -28,7 +31,7 @@ namespace Members
         {
             Complaint complaint = new Complaint();
             complaint.ComplaintTime = DateTime.Now;
-            complaint.ComplaintRaised = ConsoleHelper.AskInfoInput("Please enter your Complaint: ");
+            complaint.ComplaintRaised = Util.ConsoleHelper.AskInfoInput("Please enter your Complaint: ");
 
             ComplaintRaised?.Invoke(this, complaint);
         }
