@@ -1,4 +1,6 @@
-﻿namespace SchoolManager
+﻿using System;
+
+namespace Members
 {
     interface IPayroll
     {

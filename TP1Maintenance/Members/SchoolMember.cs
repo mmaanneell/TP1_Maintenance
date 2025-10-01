@@ -1,4 +1,6 @@
-﻿namespace SchoolManager
+﻿using System;
+
+namespace Members
 {
     public class SchoolMember
     {
