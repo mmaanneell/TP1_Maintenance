@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Helper;
 
-namespace Members //teste 3 
+namespace Members  
 {
     public class Receptionist : Employee
     {

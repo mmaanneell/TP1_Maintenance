@@ -1,4 +1,4 @@
-﻿namespace Helper //teste 3 
+namespace Helper 
 {
     public static class ConsoleHelper
     {

@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.Threading;
 
-namespace Helper //teste 3 
+namespace Helper 
 { 
     public class NetworkDelay
     {

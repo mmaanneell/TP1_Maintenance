@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace Members //teste 3
+namespace Members 
 {
     interface IPayroll
     {

@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace Members //teste 3 
+namespace Members  
 {
     public class Student : SchoolMember
     {
