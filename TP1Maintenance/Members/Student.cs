@@ -1,39 +1,37 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace SchoolManager
+namespace Members  
 {
     public class Student : SchoolMember
     {
-        private int _grade;
-        private int Grade
+        private int grade;
+        
+        public int Grade
         {
-            get { return _grade; }
-            set { _grade = value; }
+            get { return grade; }
+            set { grade = value; }
         }
 
-        public Student(string name, string address, int phoneNumber, int grade)
+        public Student(string name = "", string address = "", int phoneNum = 0, int grade = 0)
+        : base(name, address, phoneNum)
         {
-            Name = name;
-            Address = address;
-            Phone = phoneNumber;
-            Grade = grade;
+            this.grade = grade;
         }
 
-        public void Display()
+        public override void Display()
         {
-            Console.WriteLine($"Name: {Name}, Address: {Address}, Phone: {Phone}, Grade: {Grade}");
+            Console.WriteLine("Name: {0}, Address: {1}, PhoneNumber: {2}, Grade: {3}", Name, Address, PhoneNumber, Grade);
         }
 
-        public static double AverageGrade(List<Student> students)
+        public static double averageGrade(List<Student> students)
         {
-            double totalGradeSum = 0;
+            double avg = 0;
             foreach (Student student in students)
             {
-                totalGradeSum += student.Grade;
+                avg += student.Grade;
             }
-
-            return totalGradeSum / students.Count;
+            return avg / students.Count;
         }
     }
 }

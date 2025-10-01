@@ -1,47 +1,32 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Helper;
 
-namespace SchoolManager
+namespace Members  
 {
-    public class Receptionist : SchoolMember, IPayroll
+    public class Receptionist : Employee
     {
-        private int _income;
-        private int _balance;
-        public event EventHandler<Complaint> ComplaintRaised;
+        public event EventHandler<Complaint>? ComplaintRaised;
 
-        public Receptionist(int income = 10000) 
+        public Receptionist(string name, string address, int phoneNum, int income = 10000)
+        : base(name, address, phoneNum, income)
         {
-            _income = income;
-            _balance = 0;
+
         }
 
-        public Receptionist(string name, string address, int phoneNumber, int income = 10000)
+        public override void Display()
         {
-            Name = name;
-            Address = address;
-            Phone = phoneNumber;
-            _income = income;
-            _balance = 0;
-        }
-
-        public void Display()
-        {
-            Console.WriteLine($"Name: {Name}, Address: {Address}, Phone: {Phone}");
-        }
-
-        public void Pay()
-        {
-            Util.NetworkDelay.PayEntity("Receptionist", Name, ref _balance, _income);
+            Console.WriteLine("Name: {0}, Address: {1}, PhoneNumber: {2}", Name, Address, PhoneNumber);
         }
 
         public void HandleComplaint()
         {
             Complaint complaint = new Complaint();
             complaint.ComplaintTime = DateTime.Now;
-            complaint.ComplaintRaised = Util.Console.AskQuestion("Please enter your Complaint: ");
+            complaint.ComplaintRaised = ConsoleHelper.AskInfoInput("Please enter your Complaint: ");
 
             ComplaintRaised?.Invoke(this, complaint);
         }

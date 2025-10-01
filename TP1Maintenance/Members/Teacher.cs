@@ -1,31 +1,20 @@
-﻿using System;
+using System;
 
-namespace SchoolManager
+namespace Members 
 {
-    public class Teacher : SchoolMember, IPayroll
+    public class Teacher : Employee
     {
         public string Subject;
-        private int income;
-        private int balance;
 
-        public Teacher(string name, string address, int phoneNum, string subject = "", int income = 25000)
+        public Teacher(string name, string address, int phoneNum, int income = 25000, string subject ="")
+        : base(name, address, phoneNum, income)
         {
-            Name = name;
-            Address = address;
-            Phone = phoneNum;
             Subject = subject;
-            this.income = income;
-            balance = 0;
         }
 
-        public void display()
+        public override void Display()
         {
-            Console.WriteLine("Name: {0}, Address: {1}, Phone: {2}, Subject: {3}", Name, Address, Phone, Subject);
-        }
-
-        public void Pay()
-        {
-            Util.NetworkDelay.PayEntity("Teacher", Name, ref balance, income);
+            Console.WriteLine($"Name: {Name}, Address: {Address}, PhoneNumber: {PhoneNumber}, Subject: {Subject}");
         }
     }
 }

@@ -1,21 +1,21 @@
-﻿namespace Util
+namespace Helper 
 {
-    public class Console
+    public static class ConsoleHelper
     {
-        static public string AskQuestion(string question)
+        public static string AskInfoInput(string question)
         {
-            System.Console.Write(question);
-            return System.Console.ReadLine();
+            Console.WriteLine(question);
+            return Console.ReadLine();
         }
 
-        static public int AskQuestionInt(string question)
+        public static int AskNumberInput(string question)
         {
-            System.Console.Write(question);
-            bool state = int.TryParse(System.Console.ReadLine(), out int result);
+            Console.WriteLine(question);
+            bool state = int.TryParse(Console.ReadLine(), out int result);
             while (!state)
             {
-                System.Console.Write("Invalid input. Please try again: ");
-                state = int.TryParse(System.Console.ReadLine(), out result);
+                Console.WriteLine("Invalid input. Please try again: ");
+                state = int.TryParse(Console.ReadLine(), out result);
             }
 
             return result;
