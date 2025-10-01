@@ -1,7 +1,7 @@
 using System;
 using Helper;
 
-namespace Members
+namespace Members //teste 3
 {
     public class Employee : SchoolMember, IPayroll
     {

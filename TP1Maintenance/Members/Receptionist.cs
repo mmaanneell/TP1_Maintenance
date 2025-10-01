@@ -5,10 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Helper;
 
-namespace Members
+namespace Members //teste 3 
 {
-   
-
     public class Receptionist : Employee
     {
         public event EventHandler<Complaint>? ComplaintRaised;

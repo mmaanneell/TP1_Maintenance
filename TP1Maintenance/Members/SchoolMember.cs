@@ -1,6 +1,6 @@
 ﻿using System;
 
-//teste 3 
+//teste 3 s
 namespace Members
 {
     public class SchoolMember
