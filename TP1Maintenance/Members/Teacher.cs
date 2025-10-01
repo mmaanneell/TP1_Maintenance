@@ -1,12 +1,12 @@
-using System;
+﻿using System;
 
 namespace Members 
 {
     public class Teacher : Employee
     {
-        public string Subject;
-
-        public Teacher(string name, string address, int phoneNum, int income = 25000, string subject ="")
+        public string Subject { get; set;}
+        private const int DefaultIncome = 25000;
+        public Teacher(string name, string address, int phoneNum, int income = DefaultIncome, string subject ="")
         : base(name, address, phoneNum, income)
         {
             Subject = subject;
