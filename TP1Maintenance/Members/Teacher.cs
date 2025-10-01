@@ -14,7 +14,7 @@ namespace SchoolManager
 
         public override void Display()
         {
-            Console.WriteLine($"Name: {Name}, Address: {Address}, Phone: {PhoneNumber}, Subject: {Subject}");
+            Console.WriteLine($"Name: {Name}, Address: {Address}, PhoneNumber: {PhoneNumber}, Subject: {Subject}");
         }
 
     }

@@ -15,7 +15,7 @@
 
         public virtual void Display()
         {
-            Console.WriteLine($"Name: {Name}, Address: {Address}, Phone: {PhoneNumber}");
+            Console.WriteLine($"Name: {Name}, Address: {Address}, PhoneNumber: {PhoneNumber}");
         }
     }
 }

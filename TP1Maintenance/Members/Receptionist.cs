@@ -24,7 +24,7 @@ namespace SchoolManager
 
         public override void Display()
         {
-            Console.WriteLine("Name: {0}, Address: {1}, Phone: {2}", Name, Address, Phone);
+            Console.WriteLine("Name: {0}, Address: {1}, PhoneNumber: {2}", Name, Address, PhoneNumber);
         }
 
         public void HandleComplaint()
