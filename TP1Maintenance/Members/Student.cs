@@ -20,7 +20,7 @@ namespace SchoolManager
 
         public override void Display()
         {
-            Console.WriteLine("Name: {0}, Address: {1}, Phone: {2}, Grade: {3}", Name, Address, Phone, Grade);
+            Console.WriteLine("Name: {0}, Address: {1}, PhoneNumber: {2}, Grade: {3}", Name, Address, PhoneNumber, Grade);
         }
 
         public static double averageGrade(List<Student> students)

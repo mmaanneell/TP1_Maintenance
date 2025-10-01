@@ -24,7 +24,7 @@ namespace SchoolManager
             SchoolMember member = new SchoolMember(name, address, phoneNumber);
             member.Name = Util.ConsoleHelper.AskInfoInput("Enter name: ");
             member.Address = Util.ConsoleHelper.AskInfoInput("Enter address: ");
-            member.Phone = Util.ConsoleHelper.AskNumberInput("Enter phone number: ");
+            member.PhoneNumber = Util.ConsoleHelper.AskNumberInput("Enter phone number: ");
 
             return member;
         }
@@ -45,13 +45,13 @@ namespace SchoolManager
             SchoolMember member = AcceptAttributes(name, address, phoneNumber);
             Principal.Name = member.Name;
             Principal.Address = member.Address;
-            Principal.Phone = member.Phone;
+            Principal.PhoneNumber = member.PhoneNumber;
         }
 
         private static void AddStudent(string name, string address, int phoneNumber)
         {
             SchoolMember member = AcceptAttributes(name, address, phoneNumber);
-            Student newStudent = new Student(member.Name, member.Address, member.Phone);
+            Student newStudent = new Student(member.Name, member.Address, member.PhoneNumber);
             newStudent.Grade = Util.ConsoleHelper.AskNumberInput("Enter grade: ");
 
             Students.Add(newStudent);
@@ -60,7 +60,7 @@ namespace SchoolManager
         private static void AddTeacher(string name, string address, int phoneNumber)
         {
             SchoolMember member = AcceptAttributes(name, address, phoneNumber);
-            Teacher newTeacher = new Teacher(member.Name, member.Address, member.Phone);
+            Teacher newTeacher = new Teacher(member.Name, member.Address, member.PhoneNumber);
             newTeacher.Subject = Util.ConsoleHelper.AskInfoInput("Enter subject: ");
 
             Teachers.Add(newTeacher);
