@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Threading;
 
-namespace Util
-{
+namespace Helper 
+{ 
     public class NetworkDelay
     {
         private const int MinDelayMilliseconds = 1000;

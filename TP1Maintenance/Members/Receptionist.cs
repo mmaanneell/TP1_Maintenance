@@ -3,18 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Helper;
 
-namespace SchoolManager
+namespace Members  
 {
-    public class Complaint : EventArgs
-    {
-        public DateTime ComplaintTime { get; set; }
-        public string ComplaintRaised { get; set; }
-    }
-
     public class Receptionist : Employee
     {
-        public event EventHandler<Complaint> ComplaintRaised;
+        public event EventHandler<Complaint>? ComplaintRaised;
 
         public Receptionist(string name, string address, int phoneNum, int income = 10000)
         : base(name, address, phoneNum, income)
@@ -24,14 +19,14 @@ namespace SchoolManager
 
         public override void Display()
         {
-            Console.WriteLine("Name: {0}, Address: {1}, Phone: {2}", Name, Address, Phone);
+            Console.WriteLine("Name: {0}, Address: {1}, PhoneNumber: {2}", Name, Address, PhoneNumber);
         }
 
         public void HandleComplaint()
         {
             Complaint complaint = new Complaint();
             complaint.ComplaintTime = DateTime.Now;
-            complaint.ComplaintRaised = Util.ConsoleHelper.AskInfoInput("Please enter your Complaint: ");
+            complaint.ComplaintRaised = ConsoleHelper.AskInfoInput("Please enter your Complaint: ");
 
             ComplaintRaised?.Invoke(this, complaint);
         }

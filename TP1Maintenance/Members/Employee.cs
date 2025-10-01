@@ -1,4 +1,7 @@
-namespace SchoolManager
+using System;
+using Helper;
+
+namespace Members
 {
     public class Employee : SchoolMember, IPayroll
     {
@@ -15,12 +18,12 @@ namespace SchoolManager
 
         public override void Display()
         {
-            Console.WriteLine($"Name: {Name}, Address: {Address}, Phone: {Phone}");
+            Console.WriteLine($"Name: {Name}, Address: {Address}, PhoneNumber: {PhoneNumber}");
         }
 
         public virtual void Pay()
         {
-            Balance = Util.NetworkDelay.PayEntity("Employee", Name, Balance, Income);
+            Balance = Helper.NetworkDelay.PayEntity("Employee", Name, Balance, Income);
         }
     }
 }

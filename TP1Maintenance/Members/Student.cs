@@ -1,11 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace SchoolManager
+namespace Members  
 {
     public class Student : SchoolMember
     {
         private int grade;
+        
         public int Grade
         {
             get { return grade; }
@@ -20,7 +21,7 @@ namespace SchoolManager
 
         public override void Display()
         {
-            Console.WriteLine("Name: {0}, Address: {1}, Phone: {2}, Grade: {3}", Name, Address, Phone, Grade);
+            Console.WriteLine("Name: {0}, Address: {1}, PhoneNumber: {2}, Grade: {3}", Name, Address, PhoneNumber, Grade);
         }
 
         public static double averageGrade(List<Student> students)
@@ -30,7 +31,6 @@ namespace SchoolManager
             {
                 avg += student.Grade;
             }
-
             return avg / students.Count;
         }
     }
