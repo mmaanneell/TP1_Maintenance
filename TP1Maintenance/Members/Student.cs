@@ -5,14 +5,7 @@ namespace Members
 {
     public class Student : SchoolMember
     {
-        private int _grade;
-        
-        public int Grade
-        {
-            get { return _grade; }
-            set { _grade = value; }
-        }
-
+        private int Grade { get; set; }
         public Student(string name = "", string address = "", int phoneNumber = 0, int grade = 0)
         : base(name, address, phoneNumber)
         {
@@ -21,7 +14,7 @@ namespace Members
 
         public override void Display()
         {
-            Console.WriteLine("Name: {0}, Address: {1}, phoneNumber: {2}, Grade: {3}", Name, Address, phoneNumber, Grade);
+            Console.WriteLine($"Name: {Name}, Address: {Address}, PhoneNumber: {PhoneNumber}, Grade: {Grade}");
         }
 
         public static double CalculateAverageGrade(List<Student> students)

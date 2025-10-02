@@ -19,7 +19,7 @@ namespace Members
 
         public override void Display()
         {
-            Console.WriteLine("Name: {0}, Address: {1}, phoneNumber: {2}", Name, Address, phoneNumber);
+            Console.WriteLine("Name: {0}, Address: {1}, PhoneNumber: {2}", Name, Address, PhoneNumber);
         }
 
         public void HandleComplaint()

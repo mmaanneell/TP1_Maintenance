@@ -14,7 +14,7 @@ namespace Members
 
         public override void Display()
         {
-            Console.WriteLine($"Name: {Name}, Address: {Address}, phoneNumber: {phoneNumber}, Subject: {Subject}");
+            Console.WriteLine($"Name: {Name}, Address: {Address}, PhoneNumber: {PhoneNumber}, Subject: {Subject}");
         }
     }
 }

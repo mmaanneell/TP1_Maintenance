@@ -18,7 +18,7 @@ namespace Members
 
         public override void Display()
         {
-            Console.WriteLine($"Name: {Name}, Address: {Address}, phoneNumber: {phoneNumber}");
+            Console.WriteLine($"Name: {Name}, Address: {Address}, PhoneNumber: {phoneNumber}");
         }
 
         public virtual void Pay()
