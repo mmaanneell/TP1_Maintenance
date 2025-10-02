@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,15 +11,15 @@ namespace Members
     {
         public event EventHandler<Complaint>? ComplaintRaised;
 
-        public Receptionist(string name, string address, int phoneNum, int income = 10000)
-        : base(name, address, phoneNum, income)
+        public Receptionist(string name, string address, int phoneNumber, int income = 10000)
+        : base(name, address, phoneNumber, income)
         {
 
         }
 
         public override void Display()
         {
-            Console.WriteLine("Name: {0}, Address: {1}, PhoneNumber: {2}", Name, Address, PhoneNumber);
+            Console.WriteLine($"Name: {Name}, Address: {Address}, PhoneNumber: {PhoneNumber}");
         }
 
         public void HandleComplaint()

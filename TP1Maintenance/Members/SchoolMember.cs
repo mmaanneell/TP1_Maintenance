@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace Members
 {
@@ -8,11 +8,11 @@ namespace Members
         public string Address { get; set; }
         public int PhoneNumber { get; set; }
 
-        public SchoolMember(string name, string address, int phone)
+        public SchoolMember(string name, string address, int phoneNumber)
         {
             Name = name;
             Address = address;
-            PhoneNumber = phone;
+            PhoneNumber = phoneNumber;
         }
 
         public virtual void Display()

@@ -8,8 +8,8 @@ public class Program
 {
     static public List<Student> Students = new List<Student>();
     static public List<Teacher> Teachers = new List<Teacher>();
-    static public Principal Principal = new Principal(name: "", address: "", phoneNum: 0);  // temporaire avant de regler les autres problemes
-    static public Receptionist Receptionist = new Receptionist(name: "", address: "", phoneNum: 0);  // temporaire avant de regler les autres problemes
+    static public Principal Principal = new Principal(name: "", address: "", phoneNumber: 0);  // temporaire avant de regler les autres problemes
+    static public Receptionist Receptionist = new Receptionist(name: "", address: "", phoneNumber: 0);  // temporaire avant de regler les autres problemes
 
     enum SchoolMemberType
     {

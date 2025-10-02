@@ -1,18 +1,18 @@
-using System;
+﻿using System;
 
 namespace Members 
 {
     public class Principal : Employee
     {
 
-        public Principal(string name, string address, int phoneNum, int income = 50000)
-        : base(name, address, phoneNum, income)
+        public Principal(string name, string address, int phoneNumber, int income = 50000)
+        : base(name, address, phoneNumber, income)
         {
         }
 
         public override void Display()
         {
-            Console.WriteLine("Name: {0}, Address: {1}, PhoneNumber: {2}", Name, Address, PhoneNumber);
+            Console.WriteLine($"Name: {Name}, Address: {Address}, PhoneNumber: {PhoneNumber}");
         }
     }
 }

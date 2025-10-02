@@ -1,27 +1,21 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Members  
 {
     public class Student : SchoolMember
     {
-        private int grade;
+        public int Grade { get; set; }
         
-        public int Grade
+        public Student(string name = "", string address = "", int phoneNumber = 0, int grade = 0)
+        : base(name, address, phoneNumber)
         {
-            get { return grade; }
-            set { grade = value; }
-        }
-
-        public Student(string name = "", string address = "", int phoneNum = 0, int grade = 0)
-        : base(name, address, phoneNum)
-        {
-            this.grade = grade;
+            Grade = grade;
         }
 
         public override void Display()
         {
-            Console.WriteLine("Name: {0}, Address: {1}, PhoneNumber: {2}, Grade: {3}", Name, Address, PhoneNumber, Grade);
+            Console.WriteLine($"Name: {Name}, Address: {Address}, PhoneNumber: {PhoneNumber}, Grade: {Grade}");
         }
 
         public static double averageGrade(List<Student> students)
