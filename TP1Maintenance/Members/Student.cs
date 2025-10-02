@@ -13,15 +13,15 @@ namespace Members
             set { grade = value; }
         }
 
-        public Student(string name = "", string address = "", int phoneNum = 0, int grade = 0)
-        : base(name, address, phoneNum)
+        public Student(string name = "", string address = "", int phoneNumber = 0, int grade = 0)
+        : base(name, address, phoneNumber)
         {
             this.grade = grade;
         }
 
         public override void Display()
         {
-            Console.WriteLine("Name: {0}, Address: {1}, PhoneNumber: {2}, Grade: {3}", Name, Address, PhoneNumber, Grade);
+            Console.WriteLine("Name: {0}, Address: {1}, phoneNumber: {2}, Grade: {3}", Name, Address, phoneNumber, Grade);
         }
 
         public static double averageGrade(List<Student> students)

@@ -9,8 +9,8 @@ namespace Members
         
         public int Balance { get; set; }
 
-        public Employee(string name, string address, int phoneNum, int income)
-        : base(name, address, phoneNum)
+        public Employee(string name, string address, int phoneNumber, int income)
+        : base(name, address, phoneNumber)
         {
             Income = income;
             Balance = 0;
@@ -18,7 +18,7 @@ namespace Members
 
         public override void Display()
         {
-            Console.WriteLine($"Name: {Name}, Address: {Address}, PhoneNumber: {PhoneNumber}");
+            Console.WriteLine($"Name: {Name}, Address: {Address}, phoneNumber: {phoneNumber}");
         }
 
         public virtual void Pay()
