@@ -36,14 +36,14 @@ namespace Members
             switch ((SchoolMemberType)memberType)
             {
                 case SchoolMemberType.Principal:
-                    Principal.Pay();
+                    Program.Principal.Pay();
                     break;
                 case SchoolMemberType.Teacher:
                     
 
                     break;
                 case SchoolMemberType.Receptionist:
-                    Receptionist.Pay();
+                    Program.Receptionist.Pay();
                     break;
                 default:
                     Console.WriteLine("Invalid input. Terminating operation.");

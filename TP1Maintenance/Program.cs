@@ -25,7 +25,7 @@ public class Program
         return ConsoleHelper.AskNumberInput("\n1. Add\n2. Display\n3. Pay\n4. Raise Complaint\n5. Student Performance\nPlease enter the member type: ");
     }
 
-    private static int AcceptMemberType()
+    public static int AcceptMemberType()
     {
         int x = ConsoleHelper.AskNumberInput("\n0. Principal\n1. Teacher\n2. Student\n3. Receptionist\nPlease enter the member type: ");
         return Enum.IsDefined(typeof(SchoolMemberType), x) ? x : -1;
@@ -88,7 +88,7 @@ public class Program
                 break;
             case SchoolMemberType.Teacher:
                 Console.WriteLine("\nThe teachers are:");
-                foreach (Teacher teacher in Teachers)
+                foreach (Teacher teacher in Teacher.Teachers)
                     teacher.Display();
                 break;
             case SchoolMemberType.Student:
