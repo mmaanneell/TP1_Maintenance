@@ -12,7 +12,7 @@ namespace Members
 
         public override void Display()
         {
-            Console.WriteLine($"Name: {Name}, Address: {Address}, PhoneNumber: {PhoneNumber}");
+            Console.WriteLine($"Name: {Name}, Address: {Address}, phoneNumber: {PhoneNumber}");
         }
     }
 }
