@@ -11,14 +11,6 @@ public class Program
     static public Principal Principal = new Principal(name: "", address: "", phoneNumber: 0);  // temporaire avant de regler les autres problemes
     static public Receptionist Receptionist = new Receptionist(name: "", address: "", phoneNumber: 0);  // temporaire avant de regler les autres problemes
 
-    enum SchoolMemberType
-    {
-        typePrincipal = 1,
-        typeTeacher,
-        typeStudent,
-        typeReceptionist
-    }
-
     public static SchoolMember AcceptAttributes(string name, string address, int phoneNumber)
     {
         SchoolMember member = new SchoolMember(name, address, phoneNumber);
@@ -36,7 +28,7 @@ public class Program
 
     private static int AcceptMemberType()
     {
-        int x = ConsoleHelper.AskNumberInput("\n1. Principal\n2. Teacher\n3. Student\n4. Receptionist\nPlease enter the member type: ");
+        int x = ConsoleHelper.AskNumberInput("\n0. Principal\n1. Teacher\n2. Student\n3. Receptionist\nPlease enter the member type: ");
         return Enum.IsDefined(typeof(SchoolMemberType), x) ? x : -1;
     }
 
@@ -71,12 +63,12 @@ public class Program
         Console.WriteLine("\nPlease note that the Principal/Receptionist details cannot be added or modified now.");
         int memberType = AcceptMemberType();
 
-        switch (memberType)
+        switch ((SchoolMemberType)memberType)
         {
-            case 2:
+            case SchoolMemberType.Teacher:
                 AddTeacher(name, address, phoneNumber);
                 break;
-            case 3:
+            case SchoolMemberType.Student:
                 AddStudent(name, address, phoneNumber);
                 break;
             default:
@@ -89,23 +81,23 @@ public class Program
     {
         int memberType = AcceptMemberType();
 
-        switch (memberType)
+        switch ((SchoolMemberType)memberType)
         {
-            case 1:
+            case SchoolMemberType.Principal:
                 Console.WriteLine("\nThe Principal's details are:");
                 Principal.Display();
                 break;
-            case 2:
+            case SchoolMemberType.Teacher:
                 Console.WriteLine("\nThe teachers are:");
                 foreach (Teacher teacher in Teachers)
                     teacher.Display();
                 break;
-            case 3:
+            case SchoolMemberType.Student:
                 Console.WriteLine("\nThe students are:");
                 foreach (Student student in Students)
                     student.Display();
                 break;
-            case 4:
+            case SchoolMemberType.Receptionist:
                 Console.WriteLine("\nThe Receptionist's details are:");
                 Receptionist.Display();
                 break;
@@ -122,12 +114,12 @@ public class Program
 
         Console.WriteLine("\nPayments in progress...");
 
-        switch (memberType)
+        switch ((SchoolMemberType)memberType)
         {
-            case 1:
+            case SchoolMemberType.Principal:
                 Principal.Pay();
                 break;
-            case 2:
+            case SchoolMemberType.Teacher:
                 List<Task> payments = new List<Task>();
 
                 foreach (Teacher teacher in Teachers)
@@ -140,7 +132,7 @@ public class Program
                 Task.WaitAll(payments.ToArray());
 
                 break;
-            case 4:
+            case SchoolMemberType.Receptionist:
                 Receptionist.Pay();
                 break;
             default:
