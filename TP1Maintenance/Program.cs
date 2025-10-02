@@ -7,7 +7,6 @@ using Helper;
 public class Program
 {
     static public List<Student> Students = new List<Student>();
-    static public List<Teacher> Teachers = new List<Teacher>();
     static public Principal Principal = new Principal(name: "", address: "", phoneNumber: 0);  // temporaire avant de regler les autres problemes
     static public Receptionist Receptionist = new Receptionist(name: "", address: "", phoneNumber: 0);  // temporaire avant de regler les autres problemes
 
@@ -55,7 +54,7 @@ public class Program
         Teacher newTeacher = new Teacher(member.Name, member.Address, member.PhoneNumber);
         newTeacher.Subject = ConsoleHelper.AskInfoInput("Enter subject: ");
 
-        Teachers.Add(newTeacher);
+        Teacher.Teachers.Add(newTeacher);
     }
 
     public static void Add(string name, string address, int phoneNumber)
@@ -107,41 +106,7 @@ public class Program
         }
     }
 
-    public static void Pay()
-    {
-        Console.WriteLine("\nPlease note that the students cannot be paid.");
-        int memberType = AcceptMemberType();
 
-        Console.WriteLine("\nPayments in progress...");
-
-        switch ((SchoolMemberType)memberType)
-        {
-            case SchoolMemberType.Principal:
-                Principal.Pay();
-                break;
-            case SchoolMemberType.Teacher:
-                List<Task> payments = new List<Task>();
-
-                foreach (Teacher teacher in Teachers)
-                {
-                    Task payment = new Task(teacher.Pay);
-                    payments.Add(payment);
-                    payment.Start();
-                }
-
-                Task.WaitAll(payments.ToArray());
-
-                break;
-            case SchoolMemberType.Receptionist:
-                Receptionist.Pay();
-                break;
-            default:
-                Console.WriteLine("Invalid input. Terminating operation.");
-                break;
-        }
-
-        Console.WriteLine("Payments completed.\n");
-    }
 
     public static void RaiseComplaint()
     {
@@ -171,7 +136,7 @@ public class Program
         for (int i = 0; i < 10; i++)
         {
             Students.Add(new Student(i.ToString(), i.ToString(), i, i));
-            Teachers.Add(new Teacher(i.ToString(), i.ToString(), i));
+            Teacher.Teachers.Add(new Teacher(i.ToString(), i.ToString(), i));
         }
     }
 
@@ -199,7 +164,7 @@ public class Program
                     Display();
                     break;
                 case 3:
-                    Pay();
+                    //Pay();
                     break;
                 case 4:
                     RaiseComplaint();

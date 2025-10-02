@@ -5,8 +5,8 @@ namespace Members
 {
     public class Employee : SchoolMember, IPayroll
     {
-        public int Income {get; set;}
-        
+        public int Income { get; set; }
+
         public int Balance { get; set; }
 
         public Employee(string name, string address, int phoneNumber, int income)
@@ -25,5 +25,33 @@ namespace Members
         {
             Balance = Helper.NetworkDelay.PayEntity("Employee", Name, Balance, Income);
         }
+
+        public static void PaySomeone()
+        {
+            Console.WriteLine("\nPlease note that the students cannot be paid.");
+            int memberType = Program.AcceptMemberType();
+
+            Console.WriteLine("\nPayments in progress...");
+
+            switch ((SchoolMemberType)memberType)
+            {
+                case SchoolMemberType.Principal:
+                    Principal.Pay();
+                    break;
+                case SchoolMemberType.Teacher:
+                    
+
+                    break;
+                case SchoolMemberType.Receptionist:
+                    Receptionist.Pay();
+                    break;
+                default:
+                    Console.WriteLine("Invalid input. Terminating operation.");
+                    break;
+            }
+
+            Console.WriteLine("Payments completed.\n");
+        }
+    
     }
 }
