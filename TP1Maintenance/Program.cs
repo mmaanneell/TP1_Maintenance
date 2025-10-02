@@ -11,15 +11,14 @@ public class Program
     static public Principal Principal = new Principal(name: "", address: "", phoneNumber: 0);  // temporaire avant de regler les autres problemes
     static public Receptionist Receptionist = new Receptionist(name: "", address: "", phoneNumber: 0);  // temporaire avant de regler les autres problemes
 
-    public static SchoolMember AcceptAttributes(string name, string address, int phoneNumber)
+    enum SchoolMemberType
     {
-        SchoolMember member = new SchoolMember(name, address, phoneNumber);
-        member.Name = ConsoleHelper.AskInfoInput("Enter name: ");
-        member.Address = ConsoleHelper.AskInfoInput("Enter address: ");
-        member.PhoneNumber = ConsoleHelper.AskNumberInput("Enter phone number: ");
-
-        return member;
+        typePrincipal = 1,
+        typeTeacher,
+        typeStudent,
+        typeReceptionist
     }
+
 
     private static int AcceptChoices()
     {
@@ -28,7 +27,7 @@ public class Program
 
     private static int AcceptMemberType()
     {
-        int x = ConsoleHelper.AskNumberInput("\n0. Principal\n1. Teacher\n2. Student\n3. Receptionist\nPlease enter the member type: ");
+        int x = ConsoleHelper.AskNumberInput("\n1. Principal\n2. Teacher\n3. Student\n4. Receptionist\nPlease enter the member type: ");
         return Enum.IsDefined(typeof(SchoolMemberType), x) ? x : -1;
     }
 
@@ -40,113 +39,6 @@ public class Program
         Principal.PhoneNumber = member.PhoneNumber;
     }
 
-    private static void AddStudent(string name, string address, int phoneNumber)
-    {
-        SchoolMember member = AcceptAttributes(name, address, phoneNumber);
-        Student newStudent = new Student(member.Name, member.Address, member.PhoneNumber);
-        newStudent.Grade = ConsoleHelper.AskNumberInput("Enter grade: ");
-
-        Students.Add(newStudent);
-    }
-
-    private static void AddTeacher(string name, string address, int phoneNumber)
-    {
-        SchoolMember member = AcceptAttributes(name, address, phoneNumber);
-        Teacher newTeacher = new Teacher(member.Name, member.Address, member.PhoneNumber);
-        newTeacher.Subject = ConsoleHelper.AskInfoInput("Enter subject: ");
-
-        Teachers.Add(newTeacher);
-    }
-
-    public static void Add(string name, string address, int phoneNumber)
-    {
-        Console.WriteLine("\nPlease note that the Principal/Receptionist details cannot be added or modified now.");
-        int memberType = AcceptMemberType();
-
-        switch ((SchoolMemberType)memberType)
-        {
-            case SchoolMemberType.Teacher:
-                AddTeacher(name, address, phoneNumber);
-                break;
-            case SchoolMemberType.Student:
-                AddStudent(name, address, phoneNumber);
-                break;
-            default:
-                Console.WriteLine("Invalid input. Terminating operation.");
-                break;
-        }
-    }
-
-    private static void Display()
-    {
-        int memberType = AcceptMemberType();
-
-        switch ((SchoolMemberType)memberType)
-        {
-            case SchoolMemberType.Principal:
-                Console.WriteLine("\nThe Principal's details are:");
-                Principal.Display();
-                break;
-            case SchoolMemberType.Teacher:
-                Console.WriteLine("\nThe teachers are:");
-                foreach (Teacher teacher in Teachers)
-                    teacher.Display();
-                break;
-            case SchoolMemberType.Student:
-                Console.WriteLine("\nThe students are:");
-                foreach (Student student in Students)
-                    student.Display();
-                break;
-            case SchoolMemberType.Receptionist:
-                Console.WriteLine("\nThe Receptionist's details are:");
-                Receptionist.Display();
-                break;
-            default:
-                Console.WriteLine("Invalid input. Terminating operation.");
-                break;
-        }
-    }
-
-    public static void Pay()
-    {
-        Console.WriteLine("\nPlease note that the students cannot be paid.");
-        int memberType = AcceptMemberType();
-
-        Console.WriteLine("\nPayments in progress...");
-
-        switch ((SchoolMemberType)memberType)
-        {
-            case SchoolMemberType.Principal:
-                Principal.Pay();
-                break;
-            case SchoolMemberType.Teacher:
-                List<Task> payments = new List<Task>();
-
-                foreach (Teacher teacher in Teachers)
-                {
-                    Task payment = new Task(teacher.Pay);
-                    payments.Add(payment);
-                    payment.Start();
-                }
-
-                Task.WaitAll(payments.ToArray());
-
-                break;
-            case SchoolMemberType.Receptionist:
-                Receptionist.Pay();
-                break;
-            default:
-                Console.WriteLine("Invalid input. Terminating operation.");
-                break;
-        }
-
-        Console.WriteLine("Payments completed.\n");
-    }
-
-    public static void RaiseComplaint()
-    {
-        Receptionist.HandleComplaint();
-    }
 
     private static void HandleComplaintRaised(object sender, Complaint complaint)
     {
@@ -155,11 +47,6 @@ public class Program
         Console.WriteLine($"Complaint Raised: {complaint.ComplaintRaised}\n---------");
     }
 
-    private static async Task ShowPerformance()
-    {
-        double average = await Task.Run(() => Student.CalculateAverageGrade(Students));
-        Console.WriteLine($"The student average performance is: {average}");
-    }
 
     private static void AddData()
     {
@@ -188,29 +75,18 @@ public class Program
         bool flag = true;
         while (flag)
         {
-
             int choice = AcceptChoices();
-            switch (choice)
+
+            if (choice > 1 || choice < TypeChoix.lenght) 
             {
-                case 1:
-                    Add(name: "name", address: "address", phoneNumber: 123456); // temporaire avant de regler les autres problemes
-                    break;
-                case 2:
-                    Display();
-                    break;
-                case 3:
-                    Pay();
-                    break;
-                case 4:
-                    RaiseComplaint();
-                    break;
-                case 5:
-                    await ShowPerformance();
-                    break;
-                default:
-                    flag = false;
-                    break;
+                ActionService.SelectAction();
             }
+            else
+            {
+                Console.WriteLine("Invalid input. Terminating operation.");
+                break;
+            }
+            
         }
 
         Console.WriteLine("\n-------------- Bye --------------");
