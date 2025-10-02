@@ -5,7 +5,7 @@ namespace Members
 {
     public class Student : SchoolMember
     {
-        public int Grade { get; private set;}
+        public int Grade { get; set;}
 
         public Student(string name = "", string address = "", int phoneNumber = 0, int grade = 0)
         : base(name, address, phoneNumber)
