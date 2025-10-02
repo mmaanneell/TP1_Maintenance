@@ -5,33 +5,33 @@ namespace Members
 {
     public class Student : SchoolMember
     {
-        private int grade;
+        private int _grade;
         
         public int Grade
         {
-            get { return grade; }
-            set { grade = value; }
+            get { return _grade; }
+            set { _grade = value; }
         }
 
-        public Student(string name = "", string address = "", int phoneNum = 0, int grade = 0)
-        : base(name, address, phoneNum)
+        public Student(string name = "", string address = "", int phoneNumber = 0, int grade = 0)
+        : base(name, address, phoneNumber)
         {
-            this.grade = grade;
+            _grade = grade;
         }
 
         public override void Display()
         {
-            Console.WriteLine("Name: {0}, Address: {1}, PhoneNumber: {2}, Grade: {3}", Name, Address, PhoneNumber, Grade);
+            Console.WriteLine("Name: {0}, Address: {1}, phoneNumber: {2}, Grade: {3}", Name, Address, phoneNumber, Grade);
         }
 
-        public static double averageGrade(List<Student> students)
+        public static double CalculateAverageGrade(List<Student> students)
         {
-            double avg = 0;
+            double averageSum = 0;
             foreach (Student student in students)
             {
-                avg += student.Grade;
+                averageSum += student.Grade;
             }
-            return avg / students.Count;
+            return averageSum / students.Count;
         }
     }
 }

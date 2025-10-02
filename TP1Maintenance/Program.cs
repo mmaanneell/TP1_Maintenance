@@ -8,8 +8,8 @@ public class Program
 {
     static public List<Student> Students = new List<Student>();
     static public List<Teacher> Teachers = new List<Teacher>();
-    static public Principal Principal = new Principal(name: "", address: "", phoneNum: 0);  // temporaire avant de regler les autres problemes
-    static public Receptionist Receptionist = new Receptionist(name: "", address: "", phoneNum: 0);  // temporaire avant de regler les autres problemes
+    static public Principal Principal = new Principal(name: "", address: "", phoneNumber: 0);  // temporaire avant de regler les autres problemes
+    static public Receptionist Receptionist = new Receptionist(name: "", address: "", phoneNumber: 0);  // temporaire avant de regler les autres problemes
 
     enum SchoolMemberType
     {
@@ -24,7 +24,7 @@ public class Program
         SchoolMember member = new SchoolMember(name, address, phoneNumber);
         member.Name = ConsoleHelper.AskInfoInput("Enter name: ");
         member.Address = ConsoleHelper.AskInfoInput("Enter address: ");
-        member.PhoneNumber = ConsoleHelper.AskNumberInput("Enter phone number: ");
+        member.phoneNumber = ConsoleHelper.AskNumberInput("Enter phone number: ");
 
         return member;
     }
@@ -45,13 +45,13 @@ public class Program
         SchoolMember member = AcceptAttributes(name, address, phoneNumber);
         Principal.Name = member.Name;
         Principal.Address = member.Address;
-        Principal.PhoneNumber = member.PhoneNumber;
+        Principal.phoneNumber = member.phoneNumber;
     }
 
     private static void AddStudent(string name, string address, int phoneNumber)
     {
         SchoolMember member = AcceptAttributes(name, address, phoneNumber);
-        Student newStudent = new Student(member.Name, member.Address, member.PhoneNumber);
+        Student newStudent = new Student(member.Name, member.Address, member.phoneNumber);
         newStudent.Grade = ConsoleHelper.AskNumberInput("Enter grade: ");
 
         Students.Add(newStudent);
@@ -60,7 +60,7 @@ public class Program
     private static void AddTeacher(string name, string address, int phoneNumber)
     {
         SchoolMember member = AcceptAttributes(name, address, phoneNumber);
-        Teacher newTeacher = new Teacher(member.Name, member.Address, member.PhoneNumber);
+        Teacher newTeacher = new Teacher(member.Name, member.Address, member.phoneNumber);
         newTeacher.Subject = ConsoleHelper.AskInfoInput("Enter subject: ");
 
         Teachers.Add(newTeacher);
@@ -165,7 +165,7 @@ public class Program
 
     private static async Task ShowPerformance()
     {
-        double average = await Task.Run(() => Student.averageGrade(Students));
+        double average = await Task.Run(() => Student.CalculateAverageGrade(Students));
         Console.WriteLine($"The student average performance is: {average}");
     }
 
