@@ -1,12 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Members  
 {
     public class Student : SchoolMember
     {
-        public int Grade { get; set; }
-        
+        public int Grade { get; set;}
+
         public Student(string name = "", string address = "", int phoneNumber = 0, int grade = 0)
         : base(name, address, phoneNumber)
         {
@@ -18,14 +18,14 @@ namespace Members
             Console.WriteLine($"Name: {Name}, Address: {Address}, PhoneNumber: {PhoneNumber}, Grade: {Grade}");
         }
 
-        public static double averageGrade(List<Student> students)
+        public static double CalculateAverageGrade(List<Student> students)
         {
-            double avg = 0;
+            double averageSum = 0;
             foreach (Student student in students)
             {
-                avg += student.Grade;
+                averageSum += student.Grade;
             }
-            return avg / students.Count;
+            return averageSum / students.Count;
         }
     }
 }
