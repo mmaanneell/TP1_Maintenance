@@ -13,21 +13,10 @@ public class Program
     static public Receptionist Receptionist = new Receptionist(name: "", address: "", phoneNumber: 0);  // temporaire avant de regler les autres problemes
 
 
-    private static int AcceptChoices()
-    {
-        return ConsoleHelper.AskNumberInput("\n1. Add\n2. Display\n3. Pay\n4. Raise Complaint\n5. Student Performance\nPlease enter the member type: ");
-    }
-
-    private static int AcceptMemberType()
-    {
-        int x = ConsoleHelper.AskNumberInput("\n0. Principal\n1. Teacher\n2. Student\n3. Receptionist\nPlease enter the member type: ");
-        return Enum.IsDefined(typeof(SchoolMemberType), x) ? x : -1;
-    }
-
     public static void Pay()
     {
-        Console.WriteLine("\nPlease note that the students cannot be paid.");
-        int memberType = AcceptMemberType();
+    Console.WriteLine("\nPlease note that the students cannot be paid.");
+    int memberType = MenuHelper.AcceptMemberType();
 
         Console.WriteLine("\nPayments in progress...");
 
@@ -94,11 +83,12 @@ public class Program
         while (flag)
         {
 
-            int choice = AcceptChoices();
+            int choice = MenuHelper.AcceptChoices();
             switch (choice)
             {
                 case 1:
-                    SchoolMemberManager.Add(Studentss, Teacherss, name: "name", address: "address", phoneNumber: 123456, AcceptMemberType); // temporaire avant de regler les autres problemes
+                    SchoolMemberManager.Add(Studentss, Teacherss, name: "name", address: "address",
+                    phoneNumber: 123456, MenuHelper.AcceptMemberType); // temporaire avant de regler les autres problemes
                     break;
                 case 2:
                     //Display();
