@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Helper;
 
 namespace Members 
 {
@@ -31,7 +33,12 @@ namespace Members
 
         public override void Pay()
         {
-            Balance = Helper.NetworkDelay.PayEntity("Employee", Name, Balance, Income);
+            Console.WriteLine("\nPayment in progress for teachers...");
+
+            foreach (Teacher teacher in Teachers)
+            {
+                teacher.Balance = NetworkDelay.PayEntity("Teacher", teacher.Name, teacher.Balance, teacher.Income);
+            }
 
         }
     }
