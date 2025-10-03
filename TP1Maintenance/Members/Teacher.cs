@@ -13,7 +13,7 @@ namespace Members
             Subject = subject;
             Teachers.Add(this);
         }
-        
+
         public override void Display()
         {
             Console.WriteLine("\nThe teachers are:");
@@ -27,6 +27,12 @@ namespace Members
         public void DisplayOneTeacher()
         {
             Console.WriteLine($"Name: {Name}, Address: {Address}, PhoneNumber: {PhoneNumber}, Subject: {Subject}");
+        }
+
+        public override void Pay()
+        {
+            Balance = Helper.NetworkDelay.PayEntity("Employee", Name, Balance, Income);
+
         }
     }
 }
