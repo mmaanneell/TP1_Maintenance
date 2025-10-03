@@ -92,7 +92,7 @@ public class Program
             switch (choice)
             {
                 case 1:
-                    SchoolMemberManager.Add(Studentss, Teacherss, name: "name", address: "address", phoneNumber: 123456, AcceptMemberType); // temporaire avant de regler les autres problemes
+                    SchoolMemberManager.Add(name: "name", address: "address", phoneNumber: 123456, AcceptMemberType); // temporaire avant de regler les autres problemes
                     break;
                 case 2:
                     //Display();
