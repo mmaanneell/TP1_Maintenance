@@ -60,11 +60,6 @@ public class Program
         Console.WriteLine("Payments completed.\n");
     }
 
-    private static void HandleComplaintRaised(object sender, Complaint complaint)
-    {
-        ComplaintManager.HandleComplaintRaised(sender, complaint);
-    }
-
     private static async Task ShowPerformance()
     {
         double average = await Task.Run(() => Student.CalculateAverageGrade(Studentss));
@@ -74,7 +69,7 @@ public class Program
     private static void AddData()
     {
         Receptionist = new Receptionist("Receptionist", "address", 123);
-        Receptionist.ComplaintRaised += HandleComplaintRaised;
+        Receptionist.ComplaintRaised += ComplaintManager.HandleComplaintRaised;
 
         Principal = new Principal("Principal", "address", 123);
 
