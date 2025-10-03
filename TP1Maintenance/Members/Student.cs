@@ -7,43 +7,60 @@ namespace Members
     {
         static public List<Student> Students = new List<Student>();
 
+        private const int MinGrade = 0;
+        private const int MaxGrade = 100;
         public int Grade { get; set; }
 
-        public Student(string name = "", string address = "", int phoneNumber = 0, int grade = 0)
+        public Student(string name, string address, int phoneNumber, int grade = 0)
         : base(name, address, phoneNumber)
         {
-            Grade = grade;
+            if (grade < MinGrade || grade > MaxGrade)
+            {
+                Console.WriteLine("Grade must be between 0 and 100. Defaulting to 0.");
+                grade = 0;
+            }
+            else
+            {
+                Grade = grade;
+            }
             Students.Add(this);
         }
 
         public override void Display()
         {
+            Console.WriteLine($"Name: {Name}, Address: {Address}, PhoneNumber: {PhoneNumber}, Grade: {Grade}");
+        }
+
+        public void DisplayAll()
+        {
             Console.WriteLine("\nThe students are:");
 
             foreach (Student student in Students)
             {
-                student.DisplayOneStudent();
+                student.Display();
             }
         }
 
-        public void DisplayOneStudent()
+        public static double CalculateAverageGrade()
         {
-            Console.WriteLine($"Name: {Name}, Address: {Address}, PhoneNumber: {PhoneNumber}, Grade: {Grade}");
-        }
+            if (Students.Count == 0)
+            {
+                Console.WriteLine("No students available to calculate average.");
+                return 0;
+            }
 
-        public static double CalculateAverageGrade(List<Student> students)
-        {
             double averageSum = 0;
-            foreach (Student student in students)
+            
+            foreach (Student student in Students)
             {
                 averageSum += student.Grade;
             }
-            return averageSum / students.Count;
+            return averageSum / Students.Count;
         }
 
         public static void DisplayAveragePerformance()
         {
-            double averagePerformance = CalculateAverageGrade(Students);
+            double averagePerformance = CalculateAverageGrade();
             Console.WriteLine($"The student average performance is: {averagePerformance}");
         }
     }

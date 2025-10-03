@@ -15,25 +15,25 @@ namespace Managers
             principal.PhoneNumber = member.PhoneNumber;
         }
 
-        public static void AddStudent(List<Student> students, string name, string address, int phoneNumber)
+        public static void AddStudent(string name, string address, int phoneNumber)
         {
             SchoolMember member = AcceptAttributes(name, address, phoneNumber);
             Student newStudent = new Student(member.Name, member.Address, member.PhoneNumber);
             newStudent.Grade = ConsoleHelper.AskNumberInput("Enter grade: ");
 
-            students.Add(newStudent);
+            Student.Students.Add(newStudent);
         }
 
-        public static void AddTeacher(List<Teacher> teachers, string name, string address, int phoneNumber)
+        public static void AddTeacher(string name, string address, int phoneNumber)
         {
             SchoolMember member = AcceptAttributes(name, address, phoneNumber);
             Teacher newTeacher = new Teacher(member.Name, member.Address, member.PhoneNumber);
             newTeacher.Subject = ConsoleHelper.AskInfoInput("Enter subject: ");
 
-            teachers.Add(newTeacher);
+            Teacher.Teachers.Add(newTeacher);
         }
 
-        public static void Add(List<Student> students, List<Teacher> teachers, string name, string address, int phoneNumber, Func<int> acceptMemberTypeFunc)
+        public static void Add(string name, string address, int phoneNumber, Func<int> acceptMemberTypeFunc)
         {
             Console.WriteLine("\nPlease note that the Principal/Receptionist details cannot be added or modified now.");
             int memberType = acceptMemberTypeFunc();
@@ -41,10 +41,10 @@ namespace Managers
             switch ((SchoolMemberType)memberType)
             {
                 case SchoolMemberType.Teacher:
-                    AddTeacher(teachers, name, address, phoneNumber);
+                    AddTeacher(name, address, phoneNumber);
                     break;
                 case SchoolMemberType.Student:
-                    AddStudent(students, name, address, phoneNumber);
+                    AddStudent(name, address, phoneNumber);
                     break;
                 default:
                     Console.WriteLine("Invalid input. Terminating operation.");
