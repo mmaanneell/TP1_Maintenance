@@ -7,8 +7,8 @@ using Managers;
 
 public class Program
 {
-    static public List<Student> Students = new List<Student>();
-    static public List<Teacher> Teachers = new List<Teacher>();
+    static public List<Student> Studentss = new List<Student>(); // nom temporaire pour éviter les conflits avec la liste dans Student.cs
+    static public List<Teacher> Teacherss = new List<Teacher>(); // nom temporaire pour éviter les conflits avec la liste dans Teacher.cs
     static public Principal Principal = new Principal(name: "", address: "", phoneNumber: 0);  // temporaire avant de regler les autres problemes
     static public Receptionist Receptionist = new Receptionist(name: "", address: "", phoneNumber: 0);  // temporaire avant de regler les autres problemes
 
@@ -22,36 +22,6 @@ public class Program
     {
         int x = ConsoleHelper.AskNumberInput("\n0. Principal\n1. Teacher\n2. Student\n3. Receptionist\nPlease enter the member type: ");
         return Enum.IsDefined(typeof(SchoolMemberType), x) ? x : -1;
-    }
-
-    private static void Display()
-    {
-        int memberType = AcceptMemberType();
-
-        switch ((SchoolMemberType)memberType)
-        {
-            case SchoolMemberType.Principal:
-                Console.WriteLine("\nThe Principal's details are:");
-                Principal.Display();
-                break;
-            case SchoolMemberType.Teacher:
-                Console.WriteLine("\nThe teachers are:");
-                foreach (Teacher teacher in Teachers)
-                    teacher.Display();
-                break;
-            case SchoolMemberType.Student:
-                Console.WriteLine("\nThe students are:");
-                foreach (Student student in Students)
-                    student.Display();
-                break;
-            case SchoolMemberType.Receptionist:
-                Console.WriteLine("\nThe Receptionist's details are:");
-                Receptionist.Display();
-                break;
-            default:
-                Console.WriteLine("Invalid input. Terminating operation.");
-                break;
-        }
     }
 
     public static void Pay()
@@ -69,7 +39,7 @@ public class Program
             case SchoolMemberType.Teacher:
                 List<Task> payments = new List<Task>();
 
-                foreach (Teacher teacher in Teachers)
+                foreach (Teacher teacher in Teacherss)
                 {
                     Task payment = new Task(teacher.Pay);
                     payments.Add(payment);
@@ -104,7 +74,7 @@ public class Program
 
     private static async Task ShowPerformance()
     {
-        double average = await Task.Run(() => Student.CalculateAverageGrade(Students));
+        double average = await Task.Run(() => Student.CalculateAverageGrade(Studentss));
         Console.WriteLine($"The student average performance is: {average}");
     }
 
@@ -117,16 +87,9 @@ public class Program
 
         for (int i = 0; i < 10; i++)
         {
-            Students.Add(new Student(i.ToString(), i.ToString(), i, i));
-            Teachers.Add(new Teacher(i.ToString(), i.ToString(), i));
+            Studentss.Add(new Student(i.ToString(), i.ToString(), i, i));
+            Teacherss.Add(new Teacher(i.ToString(), i.ToString(), i));
         }
-    }
-
-    // This method should collect additional attributes for a member, adjust as needed for your logic.
-    private static Dictionary<string, object> AcceptAttributes()
-    {
-        // Example: return an empty dictionary or prompt for additional attributes as needed.
-        return new Dictionary<string, object>();
     }
 
     public static async Task Main(string[] args)
@@ -147,10 +110,10 @@ public class Program
             switch (choice)
             {
                 case 1:
-                    SchoolMemberManager.Add(Students, Teachers, name: "name", address: "address", phoneNumber: 123456, AcceptMemberType); // temporaire avant de regler les autres problemes
+                    SchoolMemberManager.Add(Studentss, Teacherss, name: "name", address: "address", phoneNumber: 123456, AcceptMemberType); // temporaire avant de regler les autres problemes
                     break;
                 case 2:
-                    Display();
+                    //Display();
                     break;
                 case 3:
                     Pay();
