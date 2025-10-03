@@ -18,17 +18,17 @@ namespace Members
 
         public override void Display()
         {
+            Console.WriteLine($"Name: {Name}, Address: {Address}, PhoneNumber: {PhoneNumber}, Grade: {Grade}");
+        }
+
+        public void DisplayAll()
+        {
             Console.WriteLine("\nThe students are:");
 
             foreach (Student student in Students)
             {
-                student.DisplayOneStudent();
+                student.Display();
             }
-        }
-
-        public void DisplayOneStudent()
-        {
-            Console.WriteLine($"Name: {Name}, Address: {Address}, PhoneNumber: {PhoneNumber}, Grade: {Grade}");
         }
 
         public static double CalculateAverageGrade(List<Student> students)
