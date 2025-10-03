@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Members;
 using Helper;
+using Managers;
 
 public class Program
 {
@@ -11,23 +12,6 @@ public class Program
     static public Principal Principal = new Principal(name: "", address: "", phoneNumber: 0);  // temporaire avant de regler les autres problemes
     static public Receptionist Receptionist = new Receptionist(name: "", address: "", phoneNumber: 0);  // temporaire avant de regler les autres problemes
 
-    enum SchoolMemberType
-    {
-        typePrincipal = 1,
-        typeTeacher,
-        typeStudent,
-        typeReceptionist
-    }
-
-    public static SchoolMember AcceptAttributes(string name, string address, int phoneNumber)
-    {
-        SchoolMember member = new SchoolMember(name, address, phoneNumber);
-        member.Name = ConsoleHelper.AskInfoInput("Enter name: ");
-        member.Address = ConsoleHelper.AskInfoInput("Enter address: ");
-        member.PhoneNumber = ConsoleHelper.AskNumberInput("Enter phone number: ");
-
-        return member;
-    }
 
     private static int AcceptChoices()
     {
@@ -36,53 +20,8 @@ public class Program
 
     private static int AcceptMemberType()
     {
-        int x = ConsoleHelper.AskNumberInput("\n1. Principal\n2. Teacher\n3. Student\n4. Receptionist\nPlease enter the member type: ");
+        int x = ConsoleHelper.AskNumberInput("\n0. Principal\n1. Teacher\n2. Student\n3. Receptionist\nPlease enter the member type: ");
         return Enum.IsDefined(typeof(SchoolMemberType), x) ? x : -1;
-    }
-
-    public static void AddPrincpal(string name, string address, int phoneNumber)
-    {
-        SchoolMember member = AcceptAttributes(name, address, phoneNumber);
-        Principal.Name = member.Name;
-        Principal.Address = member.Address;
-        Principal.PhoneNumber = member.PhoneNumber;
-    }
-
-    private static void AddStudent(string name, string address, int phoneNumber)
-    {
-        SchoolMember member = AcceptAttributes(name, address, phoneNumber);
-        Student newStudent = new Student(member.Name, member.Address, member.PhoneNumber);
-        newStudent.Grade = ConsoleHelper.AskNumberInput("Enter grade: ");
-
-        Studentss.Add(newStudent);
-    }
-
-    private static void AddTeacher(string name, string address, int phoneNumber)
-    {
-        SchoolMember member = AcceptAttributes(name, address, phoneNumber);
-        Teacher newTeacher = new Teacher(member.Name, member.Address, member.PhoneNumber);
-        newTeacher.Subject = ConsoleHelper.AskInfoInput("Enter subject: ");
-
-        Teacherss.Add(newTeacher);
-    }
-
-    public static void Add(string name, string address, int phoneNumber)
-    {
-        Console.WriteLine("\nPlease note that the Principal/Receptionist details cannot be added or modified now.");
-        int memberType = AcceptMemberType();
-
-        switch (memberType)
-        {
-            case 2:
-                AddTeacher(name, address, phoneNumber);
-                break;
-            case 3:
-                AddStudent(name, address, phoneNumber);
-                break;
-            default:
-                Console.WriteLine("Invalid input. Terminating operation.");
-                break;
-        }
     }
 
     public static void Pay()
@@ -92,12 +31,12 @@ public class Program
 
         Console.WriteLine("\nPayments in progress...");
 
-        switch (memberType)
+        switch ((SchoolMemberType)memberType)
         {
-            case 1:
+            case SchoolMemberType.Principal:
                 Principal.Pay();
                 break;
-            case 2:
+            case SchoolMemberType.Teacher:
                 List<Task> payments = new List<Task>();
 
                 foreach (Teacher teacher in Teacherss)
@@ -110,7 +49,7 @@ public class Program
                 Task.WaitAll(payments.ToArray());
 
                 break;
-            case 4:
+            case SchoolMemberType.Receptionist:
                 Receptionist.Pay();
                 break;
             default:
@@ -171,7 +110,7 @@ public class Program
             switch (choice)
             {
                 case 1:
-                    Add(name: "name", address: "address", phoneNumber: 123456); // temporaire avant de regler les autres problemes
+                    SchoolMemberManager.Add(Studentss, Teacherss, name: "name", address: "address", phoneNumber: 123456, AcceptMemberType); // temporaire avant de regler les autres problemes
                     break;
                 case 2:
                     //Display();
