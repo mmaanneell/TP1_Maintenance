@@ -8,10 +8,10 @@ namespace Managers
     public static class PayrollManager
     {
         
-        public static void PayMembers(Principal principal, Receptionist receptionist, List<Teacher> teachers, Func<int> acceptMemberTypeFunc)
+        public static void PayMembers(Principal principal, Receptionist receptionist, List<Teacher> teachers)
         {
             Console.WriteLine("\nPlease note that the students cannot be paid.");
-            int memberType = acceptMemberTypeFunc();
+            int memberType = Program.AcceptMemberType();
             Console.WriteLine("\nPayments in progress...");
 
             switch ((SchoolMemberType)memberType)

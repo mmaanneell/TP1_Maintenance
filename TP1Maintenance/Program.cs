@@ -81,7 +81,7 @@ public class Program
                     //Display();
                     break;
                 case 3:
-                    Managers.PayrollManager.PayMembers(Principal, Receptionist, Teacherss, AcceptMemberType);
+                    Managers.PayrollManager.PayMembers(Principal, Receptionist, Teacherss);
                     break;
                 case 4:
                     RaiseComplaint();
