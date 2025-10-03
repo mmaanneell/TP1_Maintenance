@@ -60,12 +60,6 @@ public class Program
         Console.WriteLine("Payments completed.\n");
     }
 
-    private static async Task ShowPerformance()
-    {
-        double average = await Task.Run(() => Student.CalculateAverageGrade());
-        Console.WriteLine($"The student average performance is: {average}");
-    }
-
     private static void AddData()
     {
         Receptionist = new Receptionist("Receptionist", "address", 123);
@@ -110,7 +104,7 @@ public class Program
                     Receptionist.HandleComplaint();
                     break;
                 case 5:
-                    await ShowPerformance();
+                    Student.DisplayAveragePerformance();
                     break;
                 default:
                     flag = false;
