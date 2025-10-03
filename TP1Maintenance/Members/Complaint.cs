@@ -7,6 +7,16 @@ namespace Members
         public DateTime ComplaintTime { get; set; }
         public string ComplaintRaised { get; set; }
 
+        public Complaint()
+        {
+            ComplaintTime = DateTime.Now;
+            ComplaintRaised = "";
+        }
+        public Complaint(DateTime complaintTime, string complaintText)
+        {
+            ComplaintTime = complaintTime;
+            ComplaintRaised = complaintText;
+        }
 
         public void DisplayConfirmation()
         {
