@@ -69,7 +69,7 @@ public class Program
     private static void AddData()
     {
         Receptionist = new Receptionist("Receptionist", "address", 123);
-        Receptionist.ComplaintRaised += ComplaintManager.HandleComplaintRaised;
+        Receptionist.ComplaintRaised += (sender, complaint) => complaint.DisplayConfirmation();
 
         Principal = new Principal("Principal", "address", 123);
 
@@ -107,7 +107,7 @@ public class Program
                     Pay();
                     break;
                 case 4:
-                    ComplaintManager.RaiseComplaint(Receptionist);
+                    Receptionist.HandleComplaint();
                     break;
                 case 5:
                     await ShowPerformance();
