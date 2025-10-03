@@ -40,5 +40,11 @@ namespace Members
             }
             return averageSum / students.Count;
         }
+
+        public static void DisplayAveragePerformance()
+        {
+            double averagePerformance = CalculateAverageGrade(Students);
+            Console.WriteLine($"The student average performance is: {averagePerformance}");
+        }
     }
 }
