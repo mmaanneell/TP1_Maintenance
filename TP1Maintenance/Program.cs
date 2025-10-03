@@ -60,18 +60,6 @@ public class Program
         Console.WriteLine("Payments completed.\n");
     }
 
-    public static void RaiseComplaint()
-    {
-        Receptionist.HandleComplaint();
-    }
-
-    private static void HandleComplaintRaised(object sender, Complaint complaint)
-    {
-        Console.WriteLine("\nThis is a confirmation that we received your complaint. The details are as follows:");
-        Console.WriteLine($"---------\nComplaint Time: {complaint.ComplaintTime.ToLongDateString()}, {complaint.ComplaintTime.ToLongTimeString()}");
-        Console.WriteLine($"Complaint Raised: {complaint.ComplaintRaised}\n---------");
-    }
-
     private static async Task ShowPerformance()
     {
         double average = await Task.Run(() => Student.CalculateAverageGrade(Studentss));
@@ -81,7 +69,7 @@ public class Program
     private static void AddData()
     {
         Receptionist = new Receptionist("Receptionist", "address", 123);
-        Receptionist.ComplaintRaised += HandleComplaintRaised;
+        Receptionist.ComplaintRaised += (sender, complaint) => complaint.DisplayConfirmation();
 
         Principal = new Principal("Principal", "address", 123);
 
@@ -119,7 +107,7 @@ public class Program
                     Pay();
                     break;
                 case 4:
-                    RaiseComplaint();
+                    Receptionist.HandleComplaint();
                     break;
                 case 5:
                     await ShowPerformance();
