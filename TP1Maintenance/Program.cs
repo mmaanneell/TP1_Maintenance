@@ -62,7 +62,7 @@ public class Program
 
     private static async Task ShowPerformance()
     {
-        double average = await Task.Run(() => Student.CalculateAverageGrade(Studentss));
+        double average = await Task.Run(() => Student.CalculateAverageGrade());
         Console.WriteLine($"The student average performance is: {average}");
     }
 

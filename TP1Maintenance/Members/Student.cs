@@ -31,19 +31,19 @@ namespace Members
             }
         }
 
-        public static double CalculateAverageGrade(List<Student> students)
+        public static double CalculateAverageGrade()
         {
             double averageSum = 0;
-            foreach (Student student in students)
+            foreach (Student student in Students)
             {
                 averageSum += student.Grade;
             }
-            return averageSum / students.Count;
+            return averageSum / Students.Count;
         }
 
         public static void DisplayAveragePerformance()
         {
-            double averagePerformance = CalculateAverageGrade(Students);
+            double averagePerformance = CalculateAverageGrade();
             Console.WriteLine($"The student average performance is: {averagePerformance}");
         }
     }
