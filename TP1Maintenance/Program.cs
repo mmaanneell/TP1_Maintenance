@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Members;
 using Helper;
+using Managers;
 
 public class Program
 {
@@ -11,15 +12,6 @@ public class Program
     static public Principal Principal = new Principal(name: "", address: "", phoneNumber: 0);  // temporaire avant de regler les autres problemes
     static public Receptionist Receptionist = new Receptionist(name: "", address: "", phoneNumber: 0);  // temporaire avant de regler les autres problemes
 
-    public static SchoolMember AcceptAttributes(string name, string address, int phoneNumber)
-    {
-        SchoolMember member = new SchoolMember(name, address, phoneNumber);
-        member.Name = ConsoleHelper.AskInfoInput("Enter name: ");
-        member.Address = ConsoleHelper.AskInfoInput("Enter address: ");
-        member.PhoneNumber = ConsoleHelper.AskNumberInput("Enter phone number: ");
-
-        return member;
-    }
 
     private static int AcceptChoices()
     {
@@ -30,51 +22,6 @@ public class Program
     {
         int x = ConsoleHelper.AskNumberInput("\n0. Principal\n1. Teacher\n2. Student\n3. Receptionist\nPlease enter the member type: ");
         return Enum.IsDefined(typeof(SchoolMemberType), x) ? x : -1;
-    }
-
-    public static void AddPrincpal(string name, string address, int phoneNumber)
-    {
-        SchoolMember member = AcceptAttributes(name, address, phoneNumber);
-        Principal.Name = member.Name;
-        Principal.Address = member.Address;
-        Principal.PhoneNumber = member.PhoneNumber;
-    }
-
-    private static void AddStudent(string name, string address, int phoneNumber)
-    {
-        SchoolMember member = AcceptAttributes(name, address, phoneNumber);
-        Student newStudent = new Student(member.Name, member.Address, member.PhoneNumber);
-        newStudent.Grade = ConsoleHelper.AskNumberInput("Enter grade: ");
-
-        Students.Add(newStudent);
-    }
-
-    private static void AddTeacher(string name, string address, int phoneNumber)
-    {
-        SchoolMember member = AcceptAttributes(name, address, phoneNumber);
-        Teacher newTeacher = new Teacher(member.Name, member.Address, member.PhoneNumber);
-        newTeacher.Subject = ConsoleHelper.AskInfoInput("Enter subject: ");
-
-        Teachers.Add(newTeacher);
-    }
-
-    public static void Add(string name, string address, int phoneNumber)
-    {
-        Console.WriteLine("\nPlease note that the Principal/Receptionist details cannot be added or modified now.");
-        int memberType = AcceptMemberType();
-
-        switch ((SchoolMemberType)memberType)
-        {
-            case SchoolMemberType.Teacher:
-                AddTeacher(name, address, phoneNumber);
-                break;
-            case SchoolMemberType.Student:
-                AddStudent(name, address, phoneNumber);
-                break;
-            default:
-                Console.WriteLine("Invalid input. Terminating operation.");
-                break;
-        }
     }
 
     private static void Display()
@@ -175,6 +122,13 @@ public class Program
         }
     }
 
+    // This method should collect additional attributes for a member, adjust as needed for your logic.
+    private static Dictionary<string, object> AcceptAttributes()
+    {
+        // Example: return an empty dictionary or prompt for additional attributes as needed.
+        return new Dictionary<string, object>();
+    }
+
     public static async Task Main(string[] args)
     {
         // Just for manual testing purposes.
@@ -193,7 +147,7 @@ public class Program
             switch (choice)
             {
                 case 1:
-                    Add(name: "name", address: "address", phoneNumber: 123456); // temporaire avant de regler les autres problemes
+                    SchoolMemberManager.Add(Students, Teachers, name: "name", address: "address", phoneNumber: 123456, AcceptMemberType); // temporaire avant de regler les autres problemes
                     break;
                 case 2:
                     Display();
