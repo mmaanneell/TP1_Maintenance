@@ -60,16 +60,9 @@ public class Program
         Console.WriteLine("Payments completed.\n");
     }
 
-    public static void RaiseComplaint()
-    {
-        Receptionist.HandleComplaint();
-    }
-
     private static void HandleComplaintRaised(object sender, Complaint complaint)
     {
-        Console.WriteLine("\nThis is a confirmation that we received your complaint. The details are as follows:");
-        Console.WriteLine($"---------\nComplaint Time: {complaint.ComplaintTime.ToLongDateString()}, {complaint.ComplaintTime.ToLongTimeString()}");
-        Console.WriteLine($"Complaint Raised: {complaint.ComplaintRaised}\n---------");
+        ComplaintManager.HandleComplaintRaised(sender, complaint);
     }
 
     private static async Task ShowPerformance()
@@ -119,7 +112,7 @@ public class Program
                     Pay();
                     break;
                 case 4:
-                    RaiseComplaint();
+                    ComplaintManager.RaiseComplaint(Receptionist);
                     break;
                 case 5:
                     await ShowPerformance();
