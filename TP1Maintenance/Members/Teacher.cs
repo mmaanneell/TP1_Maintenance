@@ -33,13 +33,22 @@ namespace Members
 
         public override void Pay()
         {
+            Balance = NetworkDelay.PayEntity("Teacher", Name, Balance, Income);
+        }
+
+        public static void PayAll()
+        {
             Console.WriteLine("\nPayment in progress for teachers...");
 
+            List<Task> payments = new List<Task>();
             foreach (Teacher teacher in Teachers)
             {
-                teacher.Balance = NetworkDelay.PayEntity("Teacher", teacher.Name, teacher.Balance, teacher.Income);
+                Task payment = new Task(teacher.Pay);
+                payments.Add(payment);
+                payment.Start();
             }
-
+            Task.WaitAll(payments.ToArray());
+            
         }
     }
 }

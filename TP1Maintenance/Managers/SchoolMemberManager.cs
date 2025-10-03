@@ -75,16 +75,7 @@ namespace Managers
                     Program.Principal.Pay();
                     break;
                 case SchoolMemberType.Teacher:          
-                    List<Task> payments = new List<Task>();
-
-                    foreach (Teacher teacher in Teacher.Teachers)
-                    {
-                        Task payment = new Task(teacher.Pay);
-                        payments.Add(payment);
-                        payment.Start();
-                    }
-
-                    Task.WaitAll(payments.ToArray());
+                    Teacher.PayAll();
                     break;
                 case SchoolMemberType.Receptionist:
                     Program.Receptionist.Pay();
