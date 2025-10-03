@@ -6,8 +6,8 @@ using Helper;
 
 public class Program
 {
-    static public List<Student> Students = new List<Student>();
-    static public List<Teacher> Teachers = new List<Teacher>();
+    static public List<Student> Studentss = new List<Student>(); // nom temporaire pour éviter les conflits avec la liste dans Student.cs
+    static public List<Teacher> Teacherss = new List<Teacher>(); // nom temporaire pour éviter les conflits avec la liste dans Teacher.cs
     static public Principal Principal = new Principal(name: "", address: "", phoneNumber: 0);  // temporaire avant de regler les autres problemes
     static public Receptionist Receptionist = new Receptionist(name: "", address: "", phoneNumber: 0);  // temporaire avant de regler les autres problemes
 
@@ -54,7 +54,7 @@ public class Program
         Student newStudent = new Student(member.Name, member.Address, member.PhoneNumber);
         newStudent.Grade = ConsoleHelper.AskNumberInput("Enter grade: ");
 
-        Students.Add(newStudent);
+        Studentss.Add(newStudent);
     }
 
     private static void AddTeacher(string name, string address, int phoneNumber)
@@ -63,7 +63,7 @@ public class Program
         Teacher newTeacher = new Teacher(member.Name, member.Address, member.PhoneNumber);
         newTeacher.Subject = ConsoleHelper.AskInfoInput("Enter subject: ");
 
-        Teachers.Add(newTeacher);
+        Teacherss.Add(newTeacher);
     }
 
     public static void Add(string name, string address, int phoneNumber)
@@ -78,36 +78,6 @@ public class Program
                 break;
             case 3:
                 AddStudent(name, address, phoneNumber);
-                break;
-            default:
-                Console.WriteLine("Invalid input. Terminating operation.");
-                break;
-        }
-    }
-
-    private static void Display()
-    {
-        int memberType = AcceptMemberType();
-
-        switch (memberType)
-        {
-            case 1:
-                Console.WriteLine("\nThe Principal's details are:");
-                Principal.Display();
-                break;
-            case 2:
-                Console.WriteLine("\nThe teachers are:");
-                foreach (Teacher teacher in Teachers)
-                    teacher.Display();
-                break;
-            case 3:
-                Console.WriteLine("\nThe students are:");
-                foreach (Student student in Students)
-                    student.Display();
-                break;
-            case 4:
-                Console.WriteLine("\nThe Receptionist's details are:");
-                Receptionist.Display();
                 break;
             default:
                 Console.WriteLine("Invalid input. Terminating operation.");
@@ -130,7 +100,7 @@ public class Program
             case 2:
                 List<Task> payments = new List<Task>();
 
-                foreach (Teacher teacher in Teachers)
+                foreach (Teacher teacher in Teacherss)
                 {
                     Task payment = new Task(teacher.Pay);
                     payments.Add(payment);
@@ -165,7 +135,7 @@ public class Program
 
     private static async Task ShowPerformance()
     {
-        double average = await Task.Run(() => Student.CalculateAverageGrade(Students));
+        double average = await Task.Run(() => Student.CalculateAverageGrade(Studentss));
         Console.WriteLine($"The student average performance is: {average}");
     }
 
@@ -178,8 +148,8 @@ public class Program
 
         for (int i = 0; i < 10; i++)
         {
-            Students.Add(new Student(i.ToString(), i.ToString(), i, i));
-            Teachers.Add(new Teacher(i.ToString(), i.ToString(), i));
+            Studentss.Add(new Student(i.ToString(), i.ToString(), i, i));
+            Teacherss.Add(new Teacher(i.ToString(), i.ToString(), i));
         }
     }
 
@@ -204,7 +174,7 @@ public class Program
                     Add(name: "name", address: "address", phoneNumber: 123456); // temporaire avant de regler les autres problemes
                     break;
                 case 2:
-                    Display();
+                    //Display();
                     break;
                 case 3:
                     Pay();
