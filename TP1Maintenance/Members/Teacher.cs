@@ -10,7 +10,15 @@ namespace Members
         public Teacher(string name, string address, int phoneNumber, int income = DefaultIncome, string subject = "")
         : base(name, address, phoneNumber, income)
         {
-            Subject = subject;
+            if (string.IsNullOrWhiteSpace(subject))
+            {
+                Console.WriteLine("Sujet vide, sujet par défaut utilisé.");
+                Subject = "Sujet par defaut";
+            }
+            else
+            {
+                Subject = subject.Trim();
+            }
             Teachers.Add(this);
         }
         
