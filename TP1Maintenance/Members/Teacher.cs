@@ -41,7 +41,8 @@ namespace Members
 
         public override void Pay()
         {
-            Balance = NetworkDelay.PayEntity("Teacher", Name, Balance, Income);
+            Balance += Income;
+            Console.WriteLine($"Paid Teacher: {Name}. Total balance: {Balance}");
         }
 
         public static void PayAll()
