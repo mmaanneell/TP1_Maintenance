@@ -18,47 +18,12 @@ public class Program
         return ConsoleHelper.AskNumberInput("\n1. Add\n2. Display\n3. Pay\n4. Raise Complaint\n5. Student Performance\nPlease enter the member type: ");
     }
 
-    private static int AcceptMemberType()
+    public static int AcceptMemberType()
     {
         int x = ConsoleHelper.AskNumberInput("\n0. Principal\n1. Teacher\n2. Student\n3. Receptionist\nPlease enter the member type: ");
         return Enum.IsDefined(typeof(SchoolMemberType), x) ? x : -1;
     }
 
-    public static void Pay()
-    {
-        Console.WriteLine("\nPlease note that the students cannot be paid.");
-        int memberType = AcceptMemberType();
-
-        Console.WriteLine("\nPayments in progress...");
-
-        switch ((SchoolMemberType)memberType)
-        {
-            case SchoolMemberType.Principal:
-                Principal.Pay();
-                break;
-            case SchoolMemberType.Teacher:
-                List<Task> payments = new List<Task>();
-
-                foreach (Teacher teacher in Teacherss)
-                {
-                    Task payment = new Task(teacher.Pay);
-                    payments.Add(payment);
-                    payment.Start();
-                }
-
-                Task.WaitAll(payments.ToArray());
-
-                break;
-            case SchoolMemberType.Receptionist:
-                Receptionist.Pay();
-                break;
-            default:
-                Console.WriteLine("Invalid input. Terminating operation.");
-                break;
-        }
-
-        Console.WriteLine("Payments completed.\n");
-    }
 
     private static void AddData()
     {
@@ -98,7 +63,7 @@ public class Program
                     //Display();
                     break;
                 case 3:
-                    Pay();
+                    Managers.PayrollManager.PayMembers(Principal, Receptionist, Teacherss);
                     break;
                 case 4:
                     Receptionist.HandleComplaint();

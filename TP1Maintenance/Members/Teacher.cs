@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Helper;
 
 namespace Members 
 {
@@ -21,7 +23,7 @@ namespace Members
             }
             Teachers.Add(this);
         }
-        
+
         public override void Display()
         {
             Console.WriteLine("\nThe teachers are:");
@@ -35,6 +37,26 @@ namespace Members
         public void DisplayOneTeacher()
         {
             Console.WriteLine($"Name: {Name}, Address: {Address}, PhoneNumber: {PhoneNumber}, Subject: {Subject}");
+        }
+
+        public override void Pay()
+        {
+            Balance = NetworkDelay.PayEntity("Teacher", Name, Balance, Income);
+        }
+
+        public static void PayAll()
+        {
+            Console.WriteLine("\nPayment in progress for teachers...");
+
+            List<Task> payments = new List<Task>();
+            foreach (Teacher teacher in Teachers)
+            {
+                Task payment = new Task(teacher.Pay);
+                payments.Add(payment);
+                payment.Start();
+            }
+            Task.WaitAll(payments.ToArray());
+            
         }
     }
 }
