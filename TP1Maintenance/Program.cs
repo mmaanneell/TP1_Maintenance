@@ -13,18 +13,6 @@ public class Program
     static public Receptionist Receptionist = new Receptionist(name: "", address: "", phoneNumber: 0);  // temporaire avant de regler les autres problemes
 
 
-    private static int AcceptChoices()
-    {
-        return ConsoleHelper.AskNumberInput("\n1. Add\n2. Display\n3. Pay\n4. Raise Complaint\n5. Student Performance\nPlease enter the member type: ");
-    }
-
-    public static int AcceptMemberType()
-    {
-        int x = ConsoleHelper.AskNumberInput("\n0. Principal\n1. Teacher\n2. Student\n3. Receptionist\nPlease enter the member type: ");
-        return Enum.IsDefined(typeof(SchoolMemberType), x) ? x : -1;
-    }
-
-
     private static void AddData()
     {
         Receptionist = new Receptionist("Receptionist", "address", 123);
@@ -53,11 +41,11 @@ public class Program
         while (flag)
         {
 
-            int choice = AcceptChoices();
+            int choice = MenuHelper.AcceptChoices();
             switch (choice)
             {
                 case 1:
-                    SchoolMemberManager.Add(name: "name", address: "address", phoneNumber: 123456, AcceptMemberType); // temporaire avant de regler les autres problemes
+                    SchoolMemberManager.Add(name: "name", address: "address", phoneNumber: 123456); // temporaire avant de regler les autres problemes
                     break;
                 case 2:
                     //Display();

@@ -33,10 +33,10 @@ namespace Managers
             Teacher.Teachers.Add(newTeacher);
         }
 
-        public static void Add(string name, string address, int phoneNumber, Func<int> acceptMemberTypeFunc)
+        public static void Add(string name, string address, int phoneNumber)
         {
             Console.WriteLine("\nPlease note that the Principal/Receptionist details cannot be added or modified now.");
-            int memberType = acceptMemberTypeFunc();
+            int memberType = Helper.MenuHelper.AcceptMemberType();
 
             switch ((SchoolMemberType)memberType)
             {
