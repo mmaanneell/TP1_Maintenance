@@ -34,8 +34,7 @@ public class Program
 
         Console.WriteLine("-------------- Welcome ---------------\n");
 
-        //Console.WriteLine("Please enter the Princpals information.");
-        //AddPrincpal();
+
 
         bool flag = true;
         while (flag)
