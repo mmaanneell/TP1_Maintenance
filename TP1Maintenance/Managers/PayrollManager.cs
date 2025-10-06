@@ -11,7 +11,7 @@ namespace Managers
         public static void PayMembers(Principal principal, Receptionist receptionist)
         {
             Console.WriteLine("\nPlease note that the students cannot be paid.");
-            int memberType = Program.AcceptMemberType();
+            int memberType = Helper.MenuHelper.AcceptMemberType();
             Console.WriteLine("\nPayments in progress...");
 
             switch ((SchoolMemberType)memberType)
