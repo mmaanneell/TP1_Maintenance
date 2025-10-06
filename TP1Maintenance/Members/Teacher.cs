@@ -14,8 +14,8 @@ namespace Members
         {
             if (string.IsNullOrWhiteSpace(subject))
             {
-                Console.WriteLine("Sujet vide, sujet par défaut utilisé.");
-                Subject = "Sujet par defaut";
+                Console.WriteLine("Subject is empty, using default subject.");
+                Subject = "DefaultSubject";
             }
             else
             {

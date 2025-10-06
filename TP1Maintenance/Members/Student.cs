@@ -17,7 +17,7 @@ namespace Members
             if (grade < MinGrade || grade > MaxGrade)
             {
                 Console.WriteLine("Grade must be between 0 and 100. Defaulting to 0.");
-                grade = 0;
+                Grade = 0;
             }
             else
             {
