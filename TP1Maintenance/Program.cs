@@ -13,42 +13,6 @@ public class Program
     static public Receptionist Receptionist = new Receptionist(name: "", address: "", phoneNumber: 0);  // temporaire avant de regler les autres problemes
 
 
-    public static void Pay()
-    {
-    Console.WriteLine("\nPlease note that the students cannot be paid.");
-    int memberType = MenuHelper.AcceptMemberType();
-
-        Console.WriteLine("\nPayments in progress...");
-
-        switch ((SchoolMemberType)memberType)
-        {
-            case SchoolMemberType.Principal:
-                Principal.Pay();
-                break;
-            case SchoolMemberType.Teacher:
-                List<Task> payments = new List<Task>();
-
-                foreach (Teacher teacher in Teacherss)
-                {
-                    Task payment = new Task(teacher.Pay);
-                    payments.Add(payment);
-                    payment.Start();
-                }
-
-                Task.WaitAll(payments.ToArray());
-
-                break;
-            case SchoolMemberType.Receptionist:
-                Receptionist.Pay();
-                break;
-            default:
-                Console.WriteLine("Invalid input. Terminating operation.");
-                break;
-        }
-
-        Console.WriteLine("Payments completed.\n");
-    }
-
     private static async Task ShowPerformance()
     {
         double average = await Task.Run(() => Student.CalculateAverageGrade(Studentss));
@@ -94,13 +58,13 @@ public class Program
                     //Display();
                     break;
                 case 3:
-                    Pay();
+                    Managers.PayrollManager.PayMembers(Principal, Receptionist);
                     break;
                 case 4:
                     Receptionist.HandleComplaint();
                     break;
                 case 5:
-                    await ShowPerformance();
+                    Student.DisplayAveragePerformance();
                     break;
                 default:
                     flag = false;
