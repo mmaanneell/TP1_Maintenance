@@ -63,7 +63,7 @@ public class Program
                     //Display();
                     break;
                 case 3:
-                    Managers.PayrollManager.PayMembers(Principal, Receptionist, Teacherss);
+                    Managers.PayrollManager.PayMembers(Principal, Receptionist);
                     break;
                 case 4:
                     Receptionist.HandleComplaint();
