@@ -45,7 +45,7 @@ public class Program
             switch (choice)
             {
                 case 1:
-                    SchoolMemberManager.Add(name: "name", address: "address", phoneNumber: 123456); // temporaire avant de regler les autres problemes
+                    SchoolMemberManager.Add(Principal, "name", "address", 123456); // temporaire avant de regler les autres problemes
                     break;
                 case 2:
                     //Display();
