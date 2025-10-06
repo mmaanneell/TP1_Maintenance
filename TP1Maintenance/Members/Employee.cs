@@ -14,7 +14,7 @@ namespace Members
         {
             if (income < 0)
             {
-                Console.WriteLine("Income doit etre positif.");
+                Console.WriteLine("Income must be positive.");
                 Income = 0;
             }
             else
