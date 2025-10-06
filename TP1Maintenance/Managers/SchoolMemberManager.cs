@@ -22,6 +22,7 @@ namespace Managers
             newStudent.Grade = ConsoleHelper.AskNumberInput("Enter grade: ");
 
             Student.Students.Add(newStudent);
+
         }
 
         public static void AddTeacher(string name, string address, int phoneNumber)

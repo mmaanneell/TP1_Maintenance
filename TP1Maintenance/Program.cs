@@ -7,6 +7,7 @@ using Managers;
 
 public class Program
 {
+    static public UndoManager Undo = new UndoManager();
     static public List<Student> Studentss = new List<Student>(); // nom temporaire pour éviter les conflits avec la liste dans Student.cs
     static public List<Teacher> Teacherss = new List<Teacher>(); // nom temporaire pour éviter les conflits avec la liste dans Teacher.cs
     static public Principal Principal = new Principal(name: "Principal Initial", address: "Address Initial", phoneNumber: 123456789);  // valeurs valides
