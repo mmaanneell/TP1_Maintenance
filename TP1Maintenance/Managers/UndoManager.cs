@@ -1,22 +1,26 @@
-public class UndoManager
+namespace Managers
 {
-    private readonly Stack<UndoEntry> _history = new();
 
-    public void Push(string description, Action undo)
+    public class UndoManager
     {
-        _history.Push(new UndoEntry(description, undo));
-    }
+        private readonly Stack<UndoEntry> _history = new();
 
-    public string Undo()
-    {
-        UndoEntry entry = _history.Pop();
-        entry.Undo();
-        return entry.Description;
-    }
+        public void Push(string description, Action undo)
+        {
+            _history.Push(new UndoEntry(description, undo));
+        }
 
-    private static void UndoLast()
-    {
-        Console.WriteLine(Undo.Undo());
-    }
+        public string Undo()
+        {
+            UndoEntry entry = _history.Pop();
+            entry.Undo();
+            return entry.Description;
+        }
 
+        private static void UndoLast()
+        {
+            Console.WriteLine(Undo.Undo());
+        }
+
+    }
 }
