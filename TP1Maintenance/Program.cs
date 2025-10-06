@@ -13,12 +13,6 @@ public class Program
     static public Receptionist Receptionist = new Receptionist(name: "", address: "", phoneNumber: 0);  // temporaire avant de regler les autres problemes
 
 
-    private static async Task ShowPerformance()
-    {
-        double average = await Task.Run(() => Student.CalculateAverageGrade(Studentss));
-        Console.WriteLine($"The student average performance is: {average}");
-    }
-
     private static void AddData()
     {
         Receptionist = new Receptionist("Receptionist", "address", 123);
