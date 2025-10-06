@@ -3,7 +3,7 @@ using Helper;
 
 namespace Members
 {
-    public class Employee : SchoolMember, IPayroll
+    public class Employee : SchoolMember
     {
         public int Income {get; set;}
         
