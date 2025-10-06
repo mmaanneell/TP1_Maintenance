@@ -12,7 +12,15 @@ namespace Members
         public Employee(string name, string address, int phoneNumber, int income)
         : base(name, address, phoneNumber)
         {
-            Income = income;
+            if (income < 0)
+            {
+                Console.WriteLine("Income doit etre positif.");
+                Income = 0;
+            }
+            else
+            {
+                Income = income;
+            }
             Balance = 0;
         }
 
