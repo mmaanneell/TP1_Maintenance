@@ -10,17 +10,14 @@ namespace Managers
             _history.Push(new UndoEntry(description, undo));
         }
 
-        public string Undo()
+        public string UndoLast()
         {
             UndoEntry entry = _history.Pop();
             entry.Undo();
             return entry.Description;
         }
 
-        private static void UndoLast()
-        {
-            Console.WriteLine(Undo.Undo());
-        }
+        
 
     }
 }

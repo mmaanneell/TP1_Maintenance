@@ -12,24 +12,6 @@ namespace Managers
             Undo = undo;
         }
 
-        public virtual void PushUndoAdd(SchoolMemberType type, SchoolMember name)
-        {
-            Undo.Push(
-            description: $"Undo: add {type} '{newStudent.Name}'",
-            undo: () => Students.Remove(newStudent)
-            );
-        }
-
-        public virtual void PushUndoDisplay()
-        {}
-
-        public virtual void PushUndoPayment()
-        {
-            Undo.Push(
-            description: $"Undo: add student '{newStudent.Name}'",
-            undo: () => Students.Remove(newStudent)
-            );
-        }
 
     }
  }

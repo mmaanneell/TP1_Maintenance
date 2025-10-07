@@ -60,6 +60,9 @@ public class Program
                 case 5:
                     Student.DisplayAveragePerformance();
                     break;
+                case 6:
+                    UndoLast();
+                    break;
                 default:
                     flag = false;
                     break;
@@ -67,6 +70,20 @@ public class Program
         }
 
         Console.WriteLine("\n-------------- Bye --------------");
+    }
+
+    // Safe helper to invoke the Undo manager and report the undone action.
+    public static void UndoLast()
+    {
+        try
+        {
+            string description = Undo.UndoLast();
+            Console.WriteLine($"Undone: {description}");
+        }
+        catch (InvalidOperationException)
+        {
+            Console.WriteLine("Nothing to undo.");
+        }
     }
 }
 

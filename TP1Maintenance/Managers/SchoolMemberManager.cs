@@ -13,6 +13,17 @@ namespace Managers
             principal.Name = member.Name;
             principal.Address = member.Address;
             principal.PhoneNumber = member.PhoneNumber;
+
+            // push undo action to the global Undo manager on Program
+            Program.Undo.Push(
+                description: $"Undo: modify principal '{principal.Name}'",
+                undo: () =>
+                {
+                    principal.Name = "Aucun";
+                    principal.Address = "Aucune";
+                    principal.PhoneNumber = 0;
+                }
+            );
         }
 
         public static void AddStudent(string name, string address, int phoneNumber)
@@ -23,6 +34,11 @@ namespace Managers
 
             Student.Students.Add(newStudent);
 
+            Program.Undo.Push(
+                description: $"Undo: add student '{newStudent.Name}'",
+                undo: () => Student.Students.Remove(newStudent)
+            );
+
         }
 
         public static void AddTeacher(string name, string address, int phoneNumber)
@@ -32,6 +48,11 @@ namespace Managers
             newTeacher.Subject = ConsoleHelper.AskInfoInput("Enter subject: ");
 
             Teacher.Teachers.Add(newTeacher);
+
+            Program.Undo.Push(
+                description: $"Undo: add teacher '{newTeacher.Name}'",
+                undo: () => Teacher.Teachers.Remove(newTeacher)
+            );
         }
 
         public static void Add(string name, string address, int phoneNumber)
