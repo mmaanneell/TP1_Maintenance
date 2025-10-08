@@ -34,8 +34,7 @@ public class Program
 
         Console.WriteLine("-------------- Welcome ---------------\n");
 
-        //Console.WriteLine("Please enter the Princpals information.");
-        //AddPrincpal();
+
 
         bool flag = true;
         while (flag)
@@ -45,7 +44,7 @@ public class Program
             switch (choice)
             {
                 case 1:
-                    SchoolMemberManager.Add(name: "name", address: "address", phoneNumber: 123456); // temporaire avant de regler les autres problemes
+                    SchoolMemberManager.Add(Principal, "name", "address", 123456); // temporaire avant de regler les autres problemes
                     break;
                 case 2:
                     //Display();
