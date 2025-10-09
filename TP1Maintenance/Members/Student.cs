@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Helper;
+using Managers;
 
 namespace Members  
 {
@@ -50,7 +52,7 @@ namespace Members
             }
 
             double averageSum = 0;
-            
+
             foreach (Student student in Students)
             {
                 averageSum += student.Grade;
@@ -62,6 +64,14 @@ namespace Members
         {
             double averagePerformance = CalculateAverageGrade();
             Console.WriteLine($"The student average performance is: {averagePerformance}");
+        }
+
+        public static Student StudentAttributes()
+        {
+            SchoolMember member = SchoolMemberManager.BaseMemberAttributes();
+            int grade = ConsoleHelper.AskNumberInput("Enter grade: ");
+            
+            return new Student(member.Name, member.Address, member.PhoneNumber, grade);
         }
     }
 }

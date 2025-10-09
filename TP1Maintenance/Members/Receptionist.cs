@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Helper;
+using Managers;
 
-namespace Members  
+namespace Members
 {
     public class Receptionist : Employee
     {
@@ -29,6 +30,12 @@ namespace Members
             complaint.ComplaintRaised = ConsoleHelper.AskInfoInput("Please enter your Complaint: ");
 
             ComplaintRaised?.Invoke(this, complaint);
+        }
+
+        public static Receptionist ReceptionistAttributes()
+        {
+            SchoolMember member = SchoolMemberManager.BaseMemberAttributes();
+            return new Receptionist(member.Name, member.Address, member.PhoneNumber);
         }
     }
 }

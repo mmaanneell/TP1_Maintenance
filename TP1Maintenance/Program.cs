@@ -46,7 +46,7 @@ public class Program
             switch (choice)
             {
                 case 1:
-                    SchoolMemberManager.Add(Principal, name: "name", address: "address", phoneNumber: 123456); // temporaire avant de regler les autres problemes
+                    SchoolMemberManager.AddMember();
                     break;
                 case 2:
                     //Display();
@@ -71,10 +71,10 @@ public class Program
 
         Console.WriteLine("\n-------------- Bye --------------");
     }
-    
 
 
-    
+
+
 
 
 
