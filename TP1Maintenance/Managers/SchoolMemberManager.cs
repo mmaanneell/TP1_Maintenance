@@ -59,6 +59,17 @@ namespace Managers
             Receptionist newReceptionist = new Receptionist(member.Name, member.Address, member.PhoneNumber);
 
             Console.WriteLine("New receptionist created successfully.");
+
+               Program.Undo.Push(
+                description: $"Undo: modify receptionist '{member.Name}'",
+                undo: () =>
+                {
+                    member.Name = "Aucun";
+                    member.Address = "Aucune";
+                    member.PhoneNumber = 0;
+                    newReceptionist = new Receptionist(member.Name, member.Address, member.PhoneNumber);
+                }
+            );
         }
 
         public static void Add(Principal principal, string name, string address, int phoneNumber)
