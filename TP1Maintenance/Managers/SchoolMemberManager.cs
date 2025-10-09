@@ -13,6 +13,7 @@ namespace Managers
             principal.Name = member.Name;
             principal.Address = member.Address;
             principal.PhoneNumber = member.PhoneNumber;
+            Console.WriteLine("New principal created successfully.");
 
             Program.Undo.Push(
                 description: $"Undo: modify principal '{principal.Name}'",
