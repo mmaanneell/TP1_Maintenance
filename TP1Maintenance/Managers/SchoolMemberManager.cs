@@ -54,11 +54,17 @@ namespace Managers
                 undo: () => Teacher.Teachers.Remove(newTeacher)
             );
         }
-
-        public static void Add(string name, string address, int phoneNumber)
+        private static void AddReceptionist(string name, string address, int phoneNumber)
         {
-            Console.WriteLine("\nPlease note that the Principal/Receptionist details cannot be added or modified now.");
-            int memberType = Helper.MenuHelper.AcceptMemberType();
+            SchoolMember member = AcceptAttributes(name, address, phoneNumber);
+            Receptionist newReceptionist = new Receptionist(member.Name, member.Address, member.PhoneNumber);
+
+            Console.WriteLine("New receptionist created successfully.");
+        }
+
+        public static void Add(Principal principal, string name, string address, int phoneNumber)
+        {
+            int memberType = MenuHelper.AcceptMemberType();
 
             switch ((SchoolMemberType)memberType)
             {
@@ -68,11 +74,19 @@ namespace Managers
                 case SchoolMemberType.Student:
                     AddStudent(name, address, phoneNumber);
                     break;
+                case SchoolMemberType.Receptionist:
+                    AddReceptionist(name, address, phoneNumber);
+                    break;
+                case SchoolMemberType.Principal:
+                    AddPrincipal(principal, name, address, phoneNumber);
+                    break;
                 default:
                     Console.WriteLine("Invalid input. Terminating operation.");
                     break;
             }
         }
+
+        
 
         private static SchoolMember AcceptAttributes(string name, string address, int phoneNumber)
         {

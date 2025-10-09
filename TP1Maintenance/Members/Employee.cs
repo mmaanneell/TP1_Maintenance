@@ -3,10 +3,10 @@ using Helper;
 
 namespace Members
 {
-    public class Employee : SchoolMember, IPayroll
+    public class Employee : SchoolMember
     {
-        public int Income {get; set;}
-        
+        public int Income { get; set; }
+
         public int Balance { get; set; }
 
         public Employee(string name, string address, int phoneNumber, int income)
@@ -14,7 +14,7 @@ namespace Members
         {
             if (income < 0)
             {
-                Console.WriteLine("Income doit etre positif.");
+                Console.WriteLine("Income must be positive.");
                 Income = 0;
             }
             else
@@ -31,7 +31,9 @@ namespace Members
 
         public virtual void Pay()
         {
-            Balance = Helper.NetworkDelay.PayEntity("Employee", Name, Balance, Income);
+            Balance += Income;
+            Console.WriteLine($"Paid Employee: {Name}. Total balance: {Balance}");
         }
+
     }
 }
