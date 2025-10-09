@@ -14,6 +14,16 @@ namespace Managers
             principal.Address = member.Address;
             principal.PhoneNumber = member.PhoneNumber;
             Console.WriteLine("New principal created successfully.");
+
+            Program.Undo.Push(
+                description: $"Undo: modify principal '{principal.Name}'",
+                undo: () =>
+                {
+                    principal.Name = "None";
+                    principal.Address = "None";
+                    principal.PhoneNumber = 0;
+                }
+            );
         }
 
         public static void AddStudent(string name, string address, int phoneNumber)
@@ -23,6 +33,12 @@ namespace Managers
             newStudent.Grade = ConsoleHelper.AskNumberInput("Enter grade: ");
 
             Student.Students.Add(newStudent);
+
+            Program.Undo.Push(
+                description: $"Undo: add student '{newStudent.Name}'",
+                undo: () => Student.Students.Remove(newStudent)
+            );
+
         }
 
         public static void AddTeacher(string name, string address, int phoneNumber)
@@ -32,6 +48,11 @@ namespace Managers
             newTeacher.Subject = ConsoleHelper.AskInfoInput("Enter subject: ");
 
             Teacher.Teachers.Add(newTeacher);
+
+            Program.Undo.Push(
+                description: $"Undo: add teacher '{newTeacher.Name}'",
+                undo: () => Teacher.Teachers.Remove(newTeacher)
+            );
         }
         private static void AddReceptionist(string name, string address, int phoneNumber)
         {
@@ -39,6 +60,17 @@ namespace Managers
             Receptionist newReceptionist = new Receptionist(member.Name, member.Address, member.PhoneNumber);
 
             Console.WriteLine("New receptionist created successfully.");
+
+               Program.Undo.Push(
+                description: $"Undo: modify receptionist '{member.Name}'",
+                undo: () =>
+                {
+                    member.Name = "None";
+                    member.Address = "None";
+                    member.PhoneNumber = 0;
+                    newReceptionist = new Receptionist(member.Name, member.Address, member.PhoneNumber);
+                }
+            );
         }
 
         public static void Add(Principal principal, string name, string address, int phoneNumber)
