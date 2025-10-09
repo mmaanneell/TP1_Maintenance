@@ -12,8 +12,8 @@ namespace Members
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                Console.WriteLine("Nom vide, nom par defaut utilise");
-                Name = "NomParDefaut";
+                Console.WriteLine("Name is empty, using default name");
+                Name = "DefaultName";
             }
             else
             {
@@ -21,8 +21,8 @@ namespace Members
             }
             if (string.IsNullOrWhiteSpace(address))
             {
-                Console.WriteLine("Adresse vide, adresse par defaut utilise");
-                Address = "AdresseParDefaut";
+                Console.WriteLine("Address is empty, using default address");
+                Address = "DefaultAddress";
             }
             else
             {
@@ -30,7 +30,7 @@ namespace Members
             }
             if (phoneNumber <= 0)
             {
-                Console.WriteLine("Numéro de téléphone invalide, numéro par défaut utilise");
+                Console.WriteLine("Invalid phone number, using default number");
                 PhoneNumber = 123456789; 
             }
             else
