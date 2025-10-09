@@ -1,10 +1,10 @@
 using Members;
 
-public class ActionComplaint : IAction
+public class ActionComplaint : IActions
 {
     public void Choice()
     {
-        Receptionist.HandleComplaint();
+        Program.Receptionist.HandleComplaint();
     }
 
 }

@@ -1,8 +1,10 @@
+using Helper;
+
 public class ActionDisplay : IActions
 {
     public void Choice()
     {
-            int memberType = Program.AcceptMemberType();
+            int memberType = MenuHelper.AcceptMemberType();
 
         switch (memberType)
         {
