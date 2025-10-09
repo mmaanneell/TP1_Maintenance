@@ -28,7 +28,7 @@ namespace Members
                 description: $"Undo: Raise Complaint at '{ComplaintTime.ToLongDateString()}, {ComplaintTime.ToLongTimeString()}'\n Complaint Raised: {ComplaintRaised}",
                 undo: () =>
                 {
-                    ComplaintTime = DateTime(2000, 1, 1);
+                    ComplaintTime = new DateTime(2000, 1, 1);
                     ComplaintRaised = "None";
                     ComplaintRaised = "None";
                 }
