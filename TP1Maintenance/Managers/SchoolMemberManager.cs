@@ -18,8 +18,8 @@ namespace Managers
                 description: $"Undo: modify principal '{principal.Name}'",
                 undo: () =>
                 {
-                    principal.Name = "Aucun";
-                    principal.Address = "Aucune";
+                    principal.Name = "None";
+                    principal.Address = "None";
                     principal.PhoneNumber = 0;
                 }
             );
@@ -64,8 +64,8 @@ namespace Managers
                 description: $"Undo: modify receptionist '{member.Name}'",
                 undo: () =>
                 {
-                    member.Name = "Aucun";
-                    member.Address = "Aucune";
+                    member.Name = "None";
+                    member.Address = "None";
                     member.PhoneNumber = 0;
                     newReceptionist = new Receptionist(member.Name, member.Address, member.PhoneNumber);
                 }
