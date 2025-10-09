@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Helper;
+using Managers;
 
 namespace Members 
 {
@@ -9,7 +10,7 @@ namespace Members
         static public List<Teacher> Teachers = new List<Teacher>();
         public string Subject { get; set; }
         private const int DefaultIncome = 25000;
-        public Teacher(string name, string address, int phoneNumber, int income = DefaultIncome, string subject = "")
+        public Teacher(string name, string address, int phoneNumber, string subject = "", int income = DefaultIncome)
         : base(name, address, phoneNumber, income)
         {
             if (string.IsNullOrWhiteSpace(subject))
@@ -58,7 +59,15 @@ namespace Members
                 Program.Undo.Push($"Undo: Pay {teacher.Name}", () => teacher.Balance -= teacher.Income);
             }
             Task.WaitAll(payments.ToArray());
+
+        }
+
+        public static Teacher TeacherAttributes()
+        {
+            SchoolMember member = SchoolMemberManager.BaseMemberAttributes();
+            string subject = ConsoleHelper.AskInfoInput("Enter subject: ");
             
+            return new Teacher(member.Name, member.Address, member.PhoneNumber, subject);
         }
     }
 }

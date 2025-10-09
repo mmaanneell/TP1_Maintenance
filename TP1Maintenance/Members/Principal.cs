@@ -1,6 +1,7 @@
 ﻿using System;
+using Managers;
 
-namespace Members 
+namespace Members
 {
     public class Principal : Employee
     {
@@ -13,6 +14,11 @@ namespace Members
         public override void Display()
         {
             Console.WriteLine($"\nThe Principal's details are : \nName: {Name}, Address: {Address}, PhoneNumber: {PhoneNumber}");
+        }
+        public static Principal PrincipalAttributes()
+        {
+            SchoolMember member = SchoolMemberManager.BaseMemberAttributes();
+            return new Principal(member.Name, member.Address, member.PhoneNumber);
         }
     }
 }

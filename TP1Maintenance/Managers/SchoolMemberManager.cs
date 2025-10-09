@@ -7,108 +7,79 @@ namespace Managers
 {
     public static class SchoolMemberManager
     {
-        public static void AddPrincipal(Principal principal, string name, string address, int phoneNumber)
-        {
-            SchoolMember member = AcceptAttributes(name, address, phoneNumber);
-            principal.Name = member.Name;
-            principal.Address = member.Address;
-            principal.PhoneNumber = member.PhoneNumber;
-            Console.WriteLine("New principal created successfully.");
-
-            Program.Undo.Push(
-                description: $"Undo: modify principal '{principal.Name}'",
-                undo: () =>
-                {
-                    principal.Name = "None";
-                    principal.Address = "None";
-                    principal.PhoneNumber = 0;
-                }
-            );
-        }
-
-        public static void AddStudent(string name, string address, int phoneNumber)
-        {
-            SchoolMember member = AcceptAttributes(name, address, phoneNumber);
-            Student newStudent = new Student(member.Name, member.Address, member.PhoneNumber);
-            newStudent.Grade = ConsoleHelper.AskNumberInput("Enter grade: ");
-
-            Student.Students.Add(newStudent);
-
-            Program.Undo.Push(
-                description: $"Undo: add student '{newStudent.Name}'",
-                undo: () => Student.Students.Remove(newStudent)
-            );
-
-        }
-
-        public static void AddTeacher(string name, string address, int phoneNumber)
-        {
-            SchoolMember member = AcceptAttributes(name, address, phoneNumber);
-            Teacher newTeacher = new Teacher(member.Name, member.Address, member.PhoneNumber);
-            newTeacher.Subject = ConsoleHelper.AskInfoInput("Enter subject: ");
-
-            Teacher.Teachers.Add(newTeacher);
-
-            Program.Undo.Push(
-                description: $"Undo: add teacher '{newTeacher.Name}'",
-                undo: () => Teacher.Teachers.Remove(newTeacher)
-            );
-        }
-        private static void AddReceptionist(string name, string address, int phoneNumber)
-        {
-            SchoolMember member = AcceptAttributes(name, address, phoneNumber);
-            Receptionist newReceptionist = new Receptionist(member.Name, member.Address, member.PhoneNumber);
-
-            Console.WriteLine("New receptionist created successfully.");
-
-               Program.Undo.Push(
-                description: $"Undo: modify receptionist '{member.Name}'",
-                undo: () =>
-                {
-                    member.Name = "None";
-                    member.Address = "None";
-                    member.PhoneNumber = 0;
-                    newReceptionist = new Receptionist(member.Name, member.Address, member.PhoneNumber);
-                }
-            );
-        }
-
-        public static void Add(Principal principal, string name, string address, int phoneNumber)
+        public static void AddMember()
         {
             int memberType = MenuHelper.AcceptMemberType();
 
             switch ((SchoolMemberType)memberType)
             {
-                case SchoolMemberType.Teacher:
-                    AddTeacher(name, address, phoneNumber);
-                    break;
                 case SchoolMemberType.Student:
-                    AddStudent(name, address, phoneNumber);
+
+                    SchoolMember newStudent = Student.StudentAttributes();
+
+                    Program.Undo.Push(
+                        description: $"Undo: add student '{newStudent.Name}'",
+                        undo: () => Student.Students.Remove(newStudent as Student)
+                    );
+
                     break;
-                case SchoolMemberType.Receptionist:
-                    AddReceptionist(name, address, phoneNumber);
+
+                case SchoolMemberType.Teacher:
+                    SchoolMember newTeacher = Teacher.TeacherAttributes();
+
+                    Program.Undo.Push(
+                        description: $"Undo: add teacher '{newTeacher.Name}'",
+                        undo: () => Teacher.Teachers.Remove(newTeacher as Teacher)
+                    );
+
                     break;
+
                 case SchoolMemberType.Principal:
-                    AddPrincipal(principal, name, address, phoneNumber);
+                    Program.Undo.Push(
+                        description: $"Undo: modify principal to '{Program.Principal.Name}'",
+                        undo: () =>
+                        {
+                            Program.Principal = new Principal(
+                                name: Program.Principal.Name,
+                                address: Program.Principal.Address,
+                                phoneNumber: Program.Principal.PhoneNumber
+                            );
+                        }
+                    );
+
+                    SchoolMember newPrincipal = Principal.PrincipalAttributes();
                     break;
+
+                case SchoolMemberType.Receptionist:
+                    Program.Undo.Push(
+                        description: $"Undo: modify receptionist to '{Program.Receptionist.Name}'",
+                        undo: () =>
+                        {
+                            Program.Receptionist = new Receptionist(
+                                name: Program.Receptionist.Name,
+                                address: Program.Receptionist.Address,
+                                phoneNumber: Program.Receptionist.PhoneNumber
+                            );
+                        }
+                    );
+
+                    SchoolMember newReceptionist = Receptionist.ReceptionistAttributes();
+                    break;
+
                 default:
-                    Console.WriteLine("Invalid input. Terminating operation.");
-                    break;
+                    Console.WriteLine("Invalid type selected.");
+                    return;
             }
         }
 
-        
-
-        private static SchoolMember AcceptAttributes(string name, string address, int phoneNumber)
+        public static SchoolMember BaseMemberAttributes()
         {
-            SchoolMember member = new SchoolMember(name, address, phoneNumber);
-            member.Name = ConsoleHelper.AskInfoInput("Enter name: ");
-            member.Address = ConsoleHelper.AskInfoInput("Enter address: ");
-            member.PhoneNumber = ConsoleHelper.AskNumberInput("Enter phone number: ");
+            string name = ConsoleHelper.AskInfoInput("Enter name: ");
+            string address = ConsoleHelper.AskInfoInput("Enter address: ");
+            int phoneNumber = ConsoleHelper.AskNumberInput("Enter phone number: ");
 
-            return member;
+            return new SchoolMember(name, address, phoneNumber);
         }
-
 
 
     }
