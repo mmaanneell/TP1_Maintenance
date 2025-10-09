@@ -11,16 +11,19 @@ namespace Managers
 
         public string Undo()
         {
+            String outPutString = "";
+
             if (_history.Count == 0)
             {
-                throw new InvalidOperationException("No undo available");
+                outPutString = "No undo available";
             }
-            else
+            else 
             {
                 UndoEntry entry = _history.Pop();
                 entry.Undo();
-                return entry.Description;
+                outPutString = entry.Description;
             }
+            return outPutString;
         }
         
 
