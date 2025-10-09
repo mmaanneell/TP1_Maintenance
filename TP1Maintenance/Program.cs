@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Members;
 using Helper;
 using Managers;
+using System.Xml.Serialization;
 
 public class Program
 {
@@ -30,7 +31,7 @@ public class Program
 
     public static async Task Main(string[] args)
     {
-        // Just for manual testing purposes.
+        
         AddData();
 
         Console.WriteLine("-------------- Welcome ---------------\n");
@@ -41,49 +42,24 @@ public class Program
         bool flag = true;
         while (flag)
         {
-
             int choice = MenuHelper.AcceptChoices();
-            switch (choice)
+            
+
+            if (choice > 1 || choice < Enum.GetNames(typeof(TypeChoice)).Length)
             {
-                case 1:
-                    SchoolMemberManager.Add(Principal, name: "name", address: "address", phoneNumber: 123456); // temporaire avant de regler les autres problemes
-                    break;
-                case 2:
-                    //Display();
-                    break;
-                case 3:
-                    Managers.PayrollManager.PayMembers(Principal, Receptionist);
-                    break;
-                case 4:
-                    Receptionist.HandleComplaint();
-                    break;
-                case 5:
-                    Student.DisplayAveragePerformance();
-                    break;
-                case 6:
-                    UndoManager.UndoLast();
-                    break;
-                default:
-                    flag = false;
-                    break;
+                TypeChoice myChoice = (TypeChoice)choice;
+
+                ActionService.SelectAction(myChoice);
             }
+            else
+            {
+                Console.WriteLine("Invalid input. Terminating operation.");
+                break;
+            }
+            
         }
 
         Console.WriteLine("\n-------------- Bye --------------");
-    }
-    
-
-
-    
-
-
-
-
-
-
-
-
-
-
+        }
 
 }

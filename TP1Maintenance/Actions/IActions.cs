@@ -1,0 +1,4 @@
+    interface IActions
+    {
+    void Choice();
+    }
