@@ -33,6 +33,7 @@ namespace Members
         {
             Balance += Income;
             Console.WriteLine($"Paid Employee: {Name}. Total balance: {Balance}");
+            Program.Undo.Push($"Undo: Pay {Name}", () => Balance -= Income);
         }
 
     }

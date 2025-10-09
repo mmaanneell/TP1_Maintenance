@@ -8,7 +8,7 @@ namespace Helper
     {
         public static int AcceptChoices()
         {
-            return ConsoleHelper.AskNumberInput("\n1. Add\n2. Display\n3. Pay\n4. Raise Complaint\n5. Student Performance\nPlease enter the member type: ");
+            return ConsoleHelper.AskNumberInput("\n1. Add\n2. Display\n3. Pay\n4. Raise Complaint\n5. Student Performance\n6. Undo Last Action\nPlease enter action type: ");
         }
 
         public static int AcceptMemberType()
