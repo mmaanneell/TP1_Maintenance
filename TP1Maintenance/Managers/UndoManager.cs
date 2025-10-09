@@ -1,6 +1,5 @@
 namespace Managers
 {
-
     public class UndoManager
     {
         private readonly Stack<UndoEntry> _history = new();
@@ -10,14 +9,26 @@ namespace Managers
             _history.Push(new UndoEntry(description, undo));
         }
 
-        public string UndoLast()
+        public string Undo()
         {
-            UndoEntry entry = _history.Pop();
-            entry.Undo();
-            return entry.Description;
+            if (_history.Count == 0)
+            {
+                throw new InvalidOperationException("No undo available");
+            }
+            else
+            {
+                UndoEntry entry = _history.Pop();
+                entry.Undo();
+                return entry.Description;
+            }
         }
-
         
+
+        public static void UndoLast()
+        {
+            Console.WriteLine(Program.Undo.Undo());
+        }
 
     }
 }
+

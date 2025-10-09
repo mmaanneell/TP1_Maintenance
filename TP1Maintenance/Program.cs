@@ -21,7 +21,7 @@ public class Program
 
         Principal = new Principal("Principal", "address", 123456789);
 
-        for (int i = 1; i <= 10; i++) 
+        for (int i = 1; i <= 10; i++)
         {
             Studentss.Add(new Student($"Student{i}", $"Address{i}", 123456000 + i, i + 60)); // Grade réaliste
             Teacherss.Add(new Teacher($"Teacher{i}", $"Address{i}", 123457000 + i, subject: $"Subject{i}"));
@@ -35,7 +35,8 @@ public class Program
 
         Console.WriteLine("-------------- Welcome ---------------\n");
 
-
+        //Console.WriteLine("Please enter the Princpals information.");
+        //AddPrincpal();
 
         bool flag = true;
         while (flag)
@@ -45,7 +46,7 @@ public class Program
             switch (choice)
             {
                 case 1:
-                    SchoolMemberManager.Add(Principal, "name", "address", 123456); // temporaire avant de regler les autres problemes
+                    SchoolMemberManager.Add(Principal, name: "name", address: "address", phoneNumber: 123456); // temporaire avant de regler les autres problemes
                     break;
                 case 2:
                     //Display();
@@ -60,7 +61,7 @@ public class Program
                     Student.DisplayAveragePerformance();
                     break;
                 case 6:
-                    UndoLast();
+                    UndoManager.UndoLast();
                     break;
                 default:
                     flag = false;
@@ -70,19 +71,19 @@ public class Program
 
         Console.WriteLine("\n-------------- Bye --------------");
     }
+    
 
-    // Safe helper to invoke the Undo manager and report the undone action.
-    public static void UndoLast()
-    {
-        try
-        {
-            string description = Undo.UndoLast();
-            Console.WriteLine($"Undone: {description}");
-        }
-        catch (InvalidOperationException)
-        {
-            Console.WriteLine("Nothing to undo.");
-        }
-    }
+
+    
+
+
+
+
+
+
+
+
+
+
+
 }
-
