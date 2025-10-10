@@ -26,7 +26,7 @@ public class StudentTests
     public void Constructor_ShouldAddStudentToList()
     {
 
-        Student.Students.Clear(); // Nettoyer la liste avant test
+        Student.Students.Clear(); 
         int initialCount = Student.Students.Count;
 
         Student student = new Student("Sam", "Repentigny", 5550000, 90);
