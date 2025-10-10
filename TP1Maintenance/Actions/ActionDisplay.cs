@@ -1,4 +1,5 @@
 using Helper;
+using Members;
 
 public class ActionDisplay : IActions
 {
@@ -10,21 +11,21 @@ public class ActionDisplay : IActions
         {
             case 1:
                 Console.WriteLine("\nThe Principal's details are:");
-                Principal.Display();
+                Principal.principal.Display();
                 break;
             case 2:
                 Console.WriteLine("\nThe teachers are:");
-                foreach (Teacher teacher in Teachers)
+                foreach (Teacher teacher in Teacher.Teachers)
                     teacher.Display();
                 break;
             case 3:
                 Console.WriteLine("\nThe students are:");
-                foreach (Student student in Students)
+                foreach (Student student in Student.Students)
                     student.Display();
                 break;
             case 4:
                 Console.WriteLine("\nThe Receptionist's details are:");
-                Receptionist.Display();
+                Receptionist.receptionist.Display();
                 break;
             default:
                 Console.WriteLine("Invalid input. Terminating operation.");

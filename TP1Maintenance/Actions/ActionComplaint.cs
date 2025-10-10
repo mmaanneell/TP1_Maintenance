@@ -4,7 +4,14 @@ public class ActionComplaint : IActions
 {
     public void Choice()
     {
-        Program.Receptionist.HandleComplaint();
+        if (Receptionist.receptionist is not null)
+        {
+            Receptionist.receptionist.HandleComplaint();
+        }
+        else
+        {
+            Console.WriteLine("Receptionist is not initialized.");
+        }
     }
 
 }

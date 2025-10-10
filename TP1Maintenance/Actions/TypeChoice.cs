@@ -1,9 +1,10 @@
 public enum TypeChoice
 {
     Add = 1,
-    Display ,
+    Display,
     Pay,
-    RaiseComplaint ,
-    ShowPerformances
-    
+    RaiseComplaint,
+    ShowPerformances,
+    UndoLastAction
+
 }

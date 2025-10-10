@@ -10,6 +10,8 @@ namespace Members
 {
     public class Receptionist : Employee
     {
+        static public Receptionist receptionist = new Receptionist(name: "Receptionist Initial", address: "Address Initial", phoneNumber: 123456789);  
+
         public event EventHandler<Complaint>? ComplaintRaised;
 
         public Receptionist(string name, string address, int phoneNumber, int income = 10000)
@@ -34,7 +36,7 @@ namespace Members
 
         public static Receptionist ReceptionistAttributes()
         {
-            SchoolMember member = SchoolMemberManager.BaseMemberAttributes();
+            SchoolMember member = ActionAdd.BaseMemberAttributes();
             return new Receptionist(member.Name, member.Address, member.PhoneNumber);
         }
     }
