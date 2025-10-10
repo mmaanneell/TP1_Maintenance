@@ -1,4 +1,5 @@
 ﻿using System;
+using Helper;
 
 namespace Members
 {
@@ -31,7 +32,7 @@ namespace Members
             if (phoneNumber <= 0)
             {
                 Console.WriteLine("Invalid phone number, using default number");
-                PhoneNumber = 123456789; 
+                PhoneNumber = 123456789;
             }
             else
             {
@@ -42,6 +43,6 @@ namespace Members
         public virtual void Display()
         {
             Console.WriteLine($"Name: {Name}, Address: {Address}, PhoneNumber: {PhoneNumber}");
-        }
+        }        
     }
 }
