@@ -47,4 +47,31 @@ public class StudentTests
 
         Assert.Equal(0, student.Grade);
     }
+
+    [Fact]
+    public void CalculateAverageGrade_WhenNoStudents()
+    {
+
+        Student.Students.Clear();
+
+        double result = Student.CalculateAverageGrade();
+
+        Assert.Equal(0, result);
+    }
+
+    [Fact]
+    public void CalculateAverageGrade_WithStudents()
+    {
+        Student.Students.Clear();
+        new Student("Nadine", "MTL", 111, 80);
+        new Student("Manel", "Laval", 222, 90);
+        new Student("Samentha", "Longueuil", 333, 70);
+
+        //(80 + 90 + 70) / 3 = 80
+        double expectedAverage = 80;
+
+        double result = Student.CalculateAverageGrade();
+
+        Assert.Equal(expectedAverage, result, precision: 2);
+    }
 }
