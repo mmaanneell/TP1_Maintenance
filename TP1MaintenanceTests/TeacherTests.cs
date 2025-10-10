@@ -77,7 +77,7 @@ public class TeacherTests
     public void PayAll_IncreaseBalanceOfAllTeachers()
     {
 
-        Teacher.Teachers.Clear(); // nettoyer la liste avant test
+        Teacher.Teachers.Clear(); 
         Teacher teacher1 = new Teacher("Nadine", "Montreal", 5551234, 1500, "Math");
         Teacher teacher2 = new Teacher("Manel", "Laval", 5555678, 2500, "Science");
         Teacher teacher3 = new Teacher("Samentha", "Repentigny", 5559999, 3000, "English");
