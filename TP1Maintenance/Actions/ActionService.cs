@@ -6,7 +6,8 @@ public static class ActionService
         [TypeChoice.Display] = new ActionDisplay(),
         [TypeChoice.Pay] = new ActionPay(),
         [TypeChoice.RaiseComplaint] = new ActionComplaint(),
-        [TypeChoice.ShowPerformances] = new ActionPerformances()
+        [TypeChoice.ShowPerformances] = new ActionPerformances(),
+        [TypeChoice.UndoLastAction] = new ActionUndo()
     };
 
     public static void SelectAction(TypeChoice selection)
