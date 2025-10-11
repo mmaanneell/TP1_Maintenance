@@ -40,7 +40,7 @@ Nous avons retiré tous les commentaires complètement inutiles dans le fichier.
 
 
 
------------------------------------------------------
+____________________________________________________________
 
 
 
@@ -100,3 +100,24 @@ Ex. : Name, Address, PhoneNumber et l’action Display().
 Employee utilise le polymorphisme pour définir les traits que les employés d’une école (directeur, réceptionniste, professeur) peuvent avoir.
 Ex. : Income, Balance et l’action Pay().
 Ainsi, les classes Receptionist, Student, Teacher et Principal héritent de ces deux autres classes et de leurs méthodes afin d’éviter la duplication des mêmes attributs.
+
+
+_____________________________________________________
+
+
+
+Directive Helper
+NetworkDelay.cs
+NetworkDelay a complètement été éradiqué de notre code puisqu’il ne nous servait à rien d’autre que de simuler des délais. Nous ne voyons pas son utilité.
+
+ConsoleHelper.cs
+Validation – Null check & FailSafe / FailSoft
+Validation de la méthode AskInfoInput()
+•	S’assurer que l’entrée n’est pas nulle ou un espace.
+Validation de la méthode AskNumberInput()
+•	S’assurer que le chiffre est plus grand que 0.
+•	S’assurer que l’entrée n’est pas nulle ou un espace.
+
+Refactor – Conventions de C#
+•	Changer les méthodes pour qu’elles commencent par des verbes.
+•	Changer le nom des méthodes pour qu’elles soient plus représentatives de leur fonction.
