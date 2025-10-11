@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Helper;
 using Managers;
 
-namespace Members 
+namespace Members
 {
     public class Teacher : Employee
     {
@@ -65,8 +64,8 @@ namespace Members
         public static Teacher TeacherAttributes()
         {
             SchoolMember member = SchoolMemberManager.BaseMemberAttributes();
-            string subject = ConsoleHelper.AskInfoInput("Enter subject: ");
-            
+            string subject = MenuHelper.AskInfoInput("Enter subject: ");
+
             return new Teacher(member.Name, member.Address, member.PhoneNumber, subject);
         }
     }

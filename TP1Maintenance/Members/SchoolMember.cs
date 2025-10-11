@@ -1,5 +1,4 @@
 ﻿using System;
-using Helper;
 
 namespace Members
 {
@@ -43,6 +42,6 @@ namespace Members
         public virtual void Display()
         {
             Console.WriteLine($"Name: {Name}, Address: {Address}, PhoneNumber: {PhoneNumber}");
-        }        
+        }
     }
 }

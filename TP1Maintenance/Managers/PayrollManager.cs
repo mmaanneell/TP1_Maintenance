@@ -1,17 +1,16 @@
 using System;
 using System.Collections.Generic;
 using Members;
-using Helper;
 
 namespace Managers
 {
     public static class PayrollManager
     {
-        
+
         public static void PayMembers(Principal principal, Receptionist receptionist)
         {
             Console.WriteLine("\nPlease note that the students cannot be paid.");
-            int memberType = Helper.MenuHelper.AcceptMemberType();
+            int memberType = MenuHelper.AcceptMemberType();
             Console.WriteLine("\nPayments in progress...");
 
             switch ((SchoolMemberType)memberType)

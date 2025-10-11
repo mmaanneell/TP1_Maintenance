@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Members;
-using Helper;
 
 namespace Managers
 {
@@ -74,9 +73,9 @@ namespace Managers
 
         public static SchoolMember BaseMemberAttributes()
         {
-            string name = ConsoleHelper.AskInfoInput("Enter name: ");
-            string address = ConsoleHelper.AskInfoInput("Enter address: ");
-            int phoneNumber = ConsoleHelper.AskNumberInput("Enter phone number: ");
+            string name = MenuHelper.AskInfoInput("Enter name: ");
+            string address = MenuHelper.AskInfoInput("Enter address: ");
+            int phoneNumber = MenuHelper.AskNumberInput("Enter phone number: ");
 
             return new SchoolMember(name, address, phoneNumber);
         }
