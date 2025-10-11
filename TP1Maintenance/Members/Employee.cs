@@ -1,6 +1,4 @@
 using System;
-using Helper;
-
 namespace Members
 {
     public class Employee : SchoolMember
