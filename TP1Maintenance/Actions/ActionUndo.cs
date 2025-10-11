@@ -1,10 +1,9 @@
-using Managers;
+using Managers;     
 public class ActionUndo : IActions
 {
     public void Choice()
     {
-        UndoManager.UndoLast();
-
+        Console.WriteLine(UndoManager.UndoHistory.Undo());
     }
 
 }

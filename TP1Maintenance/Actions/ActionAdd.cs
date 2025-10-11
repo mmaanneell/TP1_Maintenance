@@ -1,5 +1,6 @@
 using Helper;
 using Members;
+using Managers;
 
 public class ActionAdd : IActions
 {
@@ -13,7 +14,7 @@ public class ActionAdd : IActions
 
                 SchoolMember newStudent = Student.StudentAttributes();
                 
-                Program.Undo.Push(
+                UndoManager.UndoHistory.Push(
                     description: $"Undo: add student '{newStudent.Name}'",
                     undo: () => Student.Students.Remove(newStudent as Student)
                 );
@@ -23,7 +24,7 @@ public class ActionAdd : IActions
             case SchoolMemberType.Teacher:
                 SchoolMember newTeacher = Teacher.TeacherAttributes();
 
-                Program.Undo.Push(
+                UndoManager.UndoHistory.Push(
                     description: $"Undo: add teacher '{newTeacher.Name}'",
                     undo: () => Teacher.Teachers.Remove(newTeacher as Teacher)
                 );
@@ -31,7 +32,7 @@ public class ActionAdd : IActions
                 break;
 
             case SchoolMemberType.Principal:
-                Program.Undo.Push(
+                UndoManager.UndoHistory.Push(
                     description: $"Undo: modify principal to '{Principal.principal.Name}'",
                     undo: () =>
                     {
@@ -47,7 +48,7 @@ public class ActionAdd : IActions
                 break;
 
             case SchoolMemberType.Receptionist:
-                Program.Undo.Push(
+                UndoManager.UndoHistory.Push(
                     description: $"Undo: modify receptionist to '{Receptionist.receptionist.Name}'",
                     undo: () =>
                     {

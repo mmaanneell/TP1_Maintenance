@@ -5,7 +5,6 @@ using Managers;
 
 public class Program
 {
-    static public UndoManager Undo = new UndoManager();
 
 
 

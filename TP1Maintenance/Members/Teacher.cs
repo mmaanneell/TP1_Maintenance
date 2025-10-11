@@ -56,7 +56,7 @@ namespace Members
                 Task payment = new Task(teacher.Pay);
                 payments.Add(payment);
                 payment.Start();
-                Program.Undo.Push($"Undo: Pay {teacher.Name}", () => teacher.Balance -= teacher.Income);
+                UndoManager.UndoHistory.Push($"Undo: Pay {teacher.Name}", () => teacher.Balance -= teacher.Income);
             }
             Task.WaitAll(payments.ToArray());
 
