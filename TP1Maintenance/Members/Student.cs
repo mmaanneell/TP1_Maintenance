@@ -32,16 +32,6 @@ namespace Members
         {
             Console.WriteLine($"Name: {Name}, Address: {Address}, PhoneNumber: {PhoneNumber}, Grade: {Grade}");
         }
-        /*
-                public void DisplayAll()
-                {
-                    Console.WriteLine("\nThe students are:");
-
-                    foreach (Student student in Students)
-                    {
-                        student.Display();
-                    }
-                }*/
 
         public static double CalculateAverageGrade()
         {
