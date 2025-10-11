@@ -2,6 +2,9 @@ namespace Managers
 {
     public class UndoManager
     {
+
+        static public UndoManager UndoHistory = new UndoManager();
+
         private readonly Stack<UndoEntry> _history = new();
 
         public void Push(string description, Action undo)
@@ -27,11 +30,7 @@ namespace Managers
         }
         
 
-        public static void UndoLast()
-        {
-            Console.WriteLine(Program.Undo.Undo());
-        }
-
+  
     }
 }
 

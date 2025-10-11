@@ -5,6 +5,8 @@ namespace Members
 {
     public class Principal : Employee
     {
+        static public Principal principal = new Principal(name: "Initial Principal", address: "Initial Address", phoneNumber: 123456789);
+
 
         public Principal(string name, string address, int phoneNumber, int income = 50000)
         : base(name, address, phoneNumber, income)
@@ -17,7 +19,7 @@ namespace Members
         }
         public static Principal PrincipalAttributes()
         {
-            SchoolMember member = SchoolMemberManager.BaseMemberAttributes();
+            SchoolMember member = ActionAdd.BaseMemberAttributes();
             return new Principal(member.Name, member.Address, member.PhoneNumber);
         }
     }

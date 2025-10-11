@@ -56,7 +56,7 @@ namespace Members
                 Task payment = new Task(teacher.Pay);
                 payments.Add(payment);
                 payment.Start();
-                Program.Undo.Push($"Undo: Pay {teacher.Name}", () => teacher.Balance -= teacher.Income);
+                UndoManager.UndoHistory.Push($"Undo: Pay {teacher.Name}", () => teacher.Balance -= teacher.Income);
             }
             Task.WaitAll(payments.ToArray());
 
@@ -64,7 +64,7 @@ namespace Members
 
         public static Teacher TeacherAttributes()
         {
-            SchoolMember member = SchoolMemberManager.BaseMemberAttributes();
+            SchoolMember member = ActionAdd.BaseMemberAttributes();
             string subject = ConsoleHelper.AskInfoInput("Enter subject: ");
             
             return new Teacher(member.Name, member.Address, member.PhoneNumber, subject);

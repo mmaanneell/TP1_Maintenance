@@ -1,5 +1,5 @@
 using System;
-
+using Managers;
 namespace Members
 {
     public class Complaint : EventArgs
@@ -24,7 +24,7 @@ namespace Members
             Console.WriteLine($"---------\nComplaint Time: {ComplaintTime.ToLongDateString()}, {ComplaintTime.ToLongTimeString()}");
             Console.WriteLine($"Complaint Raised: {ComplaintRaised}\n---------");
             
-             Program.Undo.Push(
+             UndoManager.UndoHistory.Push(
                 description: $"Undo: Raise Complaint at '{ComplaintTime.ToLongDateString()}, {ComplaintTime.ToLongTimeString()}'\n Complaint Raised: {ComplaintRaised}",
                 undo: () =>
                 {
