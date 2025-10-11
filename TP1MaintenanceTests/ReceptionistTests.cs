@@ -39,5 +39,19 @@ public class ReceptionistTests
         Assert.Equal(phoneNumber, receptionist.PhoneNumber);
     }
 
+    [Fact]
+    public void HandleComplaint_TriggerComplaintRaised()
+    {
+        Receptionist receptionist = new Receptionist("Nadine", "Montreal", 5551234, 12000);
+        bool eventTriggered = false;
 
+        receptionist.ComplaintRaised += (sender, complaint) =>
+        {
+            eventTriggered = true;
+        };
+
+        receptionist.HandleComplaint();
+
+        Assert.True(eventTriggered);
+    }
 }
