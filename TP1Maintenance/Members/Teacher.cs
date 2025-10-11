@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Helper;
 using Managers;
 
-namespace Members 
+namespace Members
 {
     public class Teacher : Employee
     {
@@ -27,16 +27,6 @@ namespace Members
 
         public override void Display()
         {
-            Console.WriteLine("\nThe teachers are:");
-
-            foreach (Teacher teacher in Teachers)
-            {
-                teacher.DisplayOneTeacher();
-            }
-        }
-
-        public void DisplayOneTeacher()
-        {
             Console.WriteLine($"Name: {Name}, Address: {Address}, PhoneNumber: {PhoneNumber}, Subject: {Subject}");
         }
 
@@ -46,27 +36,11 @@ namespace Members
             Console.WriteLine($"Paid Teacher: {Name}. Total balance: {Balance}");
         }
 
-        public static void PayAll()
-        {
-            Console.WriteLine("\nPayment in progress for teachers...");
-
-            List<Task> payments = new List<Task>();
-            foreach (Teacher teacher in Teachers)
-            {
-                Task payment = new Task(teacher.Pay);
-                payments.Add(payment);
-                payment.Start();
-                UndoManager.UndoHistory.Push($"Undo: Pay {teacher.Name}", () => teacher.Balance -= teacher.Income);
-            }
-            Task.WaitAll(payments.ToArray());
-
-        }
-
         public static Teacher TeacherAttributes()
         {
             SchoolMember member = ActionAdd.BaseMemberAttributes();
             string subject = ConsoleHelper.AskInfoInput("Enter subject: ");
-            
+
             return new Teacher(member.Name, member.Address, member.PhoneNumber, subject);
         }
     }

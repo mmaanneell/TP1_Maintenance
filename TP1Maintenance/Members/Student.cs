@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Helper;
 using Managers;
 
-namespace Members  
+namespace Members
 {
     public class Student : SchoolMember
     {
@@ -32,16 +32,16 @@ namespace Members
         {
             Console.WriteLine($"Name: {Name}, Address: {Address}, PhoneNumber: {PhoneNumber}, Grade: {Grade}");
         }
+        /*
+                public void DisplayAll()
+                {
+                    Console.WriteLine("\nThe students are:");
 
-        public void DisplayAll()
-        {
-            Console.WriteLine("\nThe students are:");
-
-            foreach (Student student in Students)
-            {
-                student.Display();
-            }
-        }
+                    foreach (Student student in Students)
+                    {
+                        student.Display();
+                    }
+                }*/
 
         public static double CalculateAverageGrade()
         {
@@ -70,7 +70,7 @@ namespace Members
         {
             SchoolMember member = ActionAdd.BaseMemberAttributes();
             int grade = ConsoleHelper.AskNumberInput("Enter grade: ");
-            
+
             return new Student(member.Name, member.Address, member.PhoneNumber, grade);
         }
     }
