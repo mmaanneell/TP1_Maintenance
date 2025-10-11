@@ -4,7 +4,7 @@ using Managers;
 
 public class ActionAdd : IActions
 {
-    public void Choice()
+    public void MakeChoice()
     {
         int memberType = MenuHelper.AcceptMemberType();
 

@@ -2,7 +2,7 @@ using Members;
 
 public class ActionPay : IActions
 {
-    public void Choice()
+    public void MakeChoice()
     {
         Console.WriteLine("\nPlease note that the students cannot be paid.");
         int memberType = Helper.MenuHelper.AcceptMemberType();

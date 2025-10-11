@@ -14,7 +14,7 @@ public static class ActionService
     { 
         if (Strategies.TryGetValue(selection, out var strategie))
         {
-            strategie.Choice();
+            strategie.MakeChoice();
         }
     }
 

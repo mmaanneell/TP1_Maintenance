@@ -2,7 +2,7 @@ using Members;
 
 public class ActionComplaint : IActions
 {
-    public void Choice()
+    public void MakeChoice()
     {
         if (Receptionist.receptionist is not null)
         {

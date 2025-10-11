@@ -3,27 +3,27 @@ using Members;
 
 public class ActionDisplay : IActions
 {
-    public void Choice()
+    public void MakeChoice()
     {
             int memberType = MenuHelper.AcceptMemberType();
 
         switch (memberType)
         {
-            case 1:
+            case 0:
                 Console.WriteLine("\nThe Principal's details are:");
                 Principal.principal.Display();
                 break;
-            case 2:
+            case 1:
                 Console.WriteLine("\nThe teachers are:");
                 foreach (Teacher teacher in Teacher.Teachers)
                     teacher.Display();
                 break;
-            case 3:
+            case 2:
                 Console.WriteLine("\nThe students are:");
                 foreach (Student student in Student.Students)
                     student.Display();
                 break;
-            case 4:
+            case 3:
                 Console.WriteLine("\nThe Receptionist's details are:");
                 Receptionist.receptionist.Display();
                 break;

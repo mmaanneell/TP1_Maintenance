@@ -1,7 +1,7 @@
 using Managers;     
 public class ActionUndo : IActions
 {
-    public void Choice()
+    public void MakeChoice()
     {
         Console.WriteLine(UndoManager.UndoHistory.Undo());
     }

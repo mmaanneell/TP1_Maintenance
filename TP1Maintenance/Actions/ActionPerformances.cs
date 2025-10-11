@@ -2,7 +2,7 @@ using Members;
 
 public class ActionPerformances : IActions
 {
-    public void Choice()
+    public void MakeChoice()
     {
         Student.DisplayAveragePerformance();
     }
