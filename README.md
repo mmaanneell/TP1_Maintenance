@@ -3,8 +3,8 @@
 ReadMe - CodeSmells
 
 Program.cs
-Conventions de C# – Une classe par fichier
-Program.cs contient la majorité des classes dans un seul fichier. La classe Program, qui contient le Main, ne doit pas être bombardée par des classes qui ne lui appartiennent pas. Cette méthode de travail la rend lourde, illisible et ne respecte pas une logique ni une cohérence. Ainsi, les classes suivantes ont été déplacées dans de nouveaux fichiers :
+Conventions de C# – Une classe par fichier & God Class
+Program.cs contient la majorité des classes dans un seul fichier. La classe Program, qui contient le Main, ne doit pas être bombardée par des classes qui ne lui appartiennent pas et elle exerce trop de responsabilités. Cette méthode de travail la rend lourde, illisible et ne respecte pas une logique ni une cohérence. Ainsi, les classes suivantes ont été déplacées dans de nouveaux fichiers :
 •	Enum SchoolMemberType → SchoolMemberType.cs
 •	AcceptAttributes → ActionAdd.cs
 •	acceptChoices → MenuHelper.cs
@@ -37,3 +37,66 @@ Nous avons retiré tous les commentaires complètement inutiles dans le fichier.
 // Just for manual testing purposes.
 // Console.WriteLine("Please enter the Principal's information.");
 // AddPrincipal();
+
+
+
+-----------------------------------------------------
+
+
+
+Teacher.cs
+Refactor – Conventions de C#
+•	Appliquer PascalCase / camelCase aux bons endroits
+•	Ajouter des propriétés / champs privés
+•	Les accolades doivent être sur des lignes séparées
+•	Enlever les « var » et les remplacer par le bon type
+•	Enlever les nombres magiques (les remplacer par des constantes)
+•	S’assurer que les méthodes commencent par des verbes
+•	Enlever les commentaires inutiles
+•	Renommer toutes les méthodes fautives de manière convenable
+
+Student.cs
+Refactor – Conventions de C#
+•	Appliquer PascalCase / camelCase aux bons endroits
+•	Ajouter des propriétés / champs privés
+•	Les accolades doivent être sur des lignes séparées
+•	Enlever les « var » et les remplacer par le bon type
+•	Enlever les nombres magiques (les remplacer par des constantes)
+•	S’assurer que les méthodes commencent par des verbes
+•	Enlever les commentaires inutiles
+•	Renommer toutes les méthodes fautives de manière convenable
+
+Receptionist.cs
+Refactor – Conventions de C#
+•	Appliquer PascalCase / camelCase aux bons endroits
+•	Ajouter des propriétés / champs privés
+•	Les accolades doivent être sur des lignes séparées
+•	Enlever les « var » et les remplacer par le bon type
+•	Enlever les nombres magiques (les remplacer par des constantes)
+•	S’assurer que les méthodes commencent par des verbes
+•	Enlever les commentaires inutiles
+•	Renommer toutes les méthodes fautives de manière convenable
+
+Code Smell – Une classe par fichier
+Il se trouvait une classe inline nommée Complaint : EventArgs à l’intérieur du fichier de la classe Receptionist. Cette classe a été déplacée dans son propre fichier → Complaint.cs avec toutes ses méthodes.
+La seule méthode liée aux plaintes qui reste dans Receptionist est HandleComplaint(), car cette méthode lui est propre et fait partie de son travail.
+
+Principal.cs
+Refactor – Conventions de C#
+•	Appliquer PascalCase / camelCase aux bons endroits
+•	Ajouter des propriétés / champs privés
+•	Les accolades doivent être sur des lignes séparées
+•	Enlever les « var » et les remplacer par le bon type
+•	Enlever les nombres magiques (les remplacer par des constantes)
+•	S’assurer que les méthodes commencent par des verbes
+•	Enlever les commentaires inutiles
+•	Renommer toutes les méthodes fautives de manière convenable
+
+Directive Members
+Code Smells – Chirurgie au fusil
+Nous avons créé deux nouveaux fichiers dans la directive Members pour corriger la « chirurgie au fusil » dans les quatre membres : SchoolMember.cs et Employee.cs.
+SchoolMember utilise le polymorphisme pour définir les traits de base que tous les membres devraient avoir.
+Ex. : Name, Address, PhoneNumber et l’action Display().
+Employee utilise le polymorphisme pour définir les traits que les employés d’une école (directeur, réceptionniste, professeur) peuvent avoir.
+Ex. : Income, Balance et l’action Pay().
+Ainsi, les classes Receptionist, Student, Teacher et Principal héritent de ces deux autres classes et de leurs méthodes afin d’éviter la duplication des mêmes attributs.
