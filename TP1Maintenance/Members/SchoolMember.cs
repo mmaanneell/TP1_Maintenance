@@ -43,6 +43,6 @@ namespace Members
         public virtual void Display()
         {
             Console.WriteLine($"Name: {Name}, Address: {Address}, PhoneNumber: {PhoneNumber}");
-        }        
+        }
     }
 }

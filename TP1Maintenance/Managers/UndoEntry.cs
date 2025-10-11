@@ -11,8 +11,5 @@ namespace Managers
             Description = description ?? "Undo last action";
             Undo = undo;
         }
-
-
-
     }
- }
+}

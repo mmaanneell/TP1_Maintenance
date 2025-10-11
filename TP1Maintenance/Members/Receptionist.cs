@@ -10,7 +10,7 @@ namespace Members
 {
     public class Receptionist : Employee
     {
-        static public Receptionist receptionist = new Receptionist(name: "Receptionist Initial", address: "Address Initial", phoneNumber: 123456789);  
+        static public Receptionist receptionist = new Receptionist(name: "Receptionist Initial", address: "Address Initial", phoneNumber: 123456789);
 
         public event EventHandler<Complaint>? ComplaintRaised;
 
