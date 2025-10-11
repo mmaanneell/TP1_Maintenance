@@ -2,9 +2,9 @@ namespace Members
 {
     public enum SchoolMemberType
     {
-        Principal,      
-        Teacher,       
-        Student,        
-        Receptionist    
+        Principal,
+        Teacher,
+        Student,
+        Receptionist
     }
 }

@@ -11,13 +11,11 @@ public static class ActionService
     };
 
     public static void SelectAction(TypeChoice selection)
-    { 
+    {
         if (Strategies.TryGetValue(selection, out var strategie))
         {
             strategie.MakeChoice();
         }
     }
 
-
-   
 }

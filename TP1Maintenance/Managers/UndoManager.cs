@@ -20,7 +20,7 @@ namespace Managers
             {
                 outPutString = "No undo available";
             }
-            else 
+            else
             {
                 UndoEntry entry = _history.Pop();
                 entry.Undo();
@@ -28,9 +28,7 @@ namespace Managers
             }
             return outPutString;
         }
-        
 
-  
     }
 }
 

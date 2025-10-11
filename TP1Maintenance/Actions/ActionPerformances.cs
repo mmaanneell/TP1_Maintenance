@@ -6,5 +6,5 @@ public class ActionPerformances : IActions
     {
         Student.DisplayAveragePerformance();
     }
-    
+
 }

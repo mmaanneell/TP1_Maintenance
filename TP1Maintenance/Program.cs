@@ -5,9 +5,6 @@ using Managers;
 
 public class Program
 {
-
-
-
     private static void AddData()
     {
         Receptionist.receptionist.ComplaintRaised += (sender, complaint) => complaint.DisplayConfirmation();
@@ -21,19 +18,15 @@ public class Program
 
     public static async Task Main(string[] args)
     {
-        
         AddData();
 
         Console.WriteLine("-------------- Welcome ---------------\n");
-
-        //Console.WriteLine("Please enter the Princpals information.");
-        //AddPrincpal();
 
         bool flag = true;
         while (flag)
         {
             int choice = MenuHelper.AcceptChoices();
-            
+
 
             if (choice > 1 || choice < Enum.GetNames(typeof(TypeChoice)).Length)
             {
@@ -46,10 +39,10 @@ public class Program
                 Console.WriteLine("Invalid input. Terminating operation.");
                 break;
             }
-            
+
         }
 
         Console.WriteLine("\n-------------- Bye --------------");
-        }
+    }
 
 }

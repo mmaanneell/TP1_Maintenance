@@ -1,4 +1,4 @@
-    interface IActions
-    {
+interface IActions
+{
     void MakeChoice();
-    }
+}
