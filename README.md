@@ -101,6 +101,12 @@ Employee utilise le polymorphisme pour définir les traits que les employés d�
 Ex. : Income, Balance et l’action Pay().
 Ainsi, les classes Receptionist, Student, Teacher et Principal héritent de ces deux autres classes et de leurs méthodes afin d’éviter la duplication des mêmes attributs.
 
+Validation – Null check
+Faire la validation du constructeur SchoolMember et Employee
+•	S’assurer que toutes les l’entrés ne sont pas nulle ou un espace. 
+•	S’assurer que Income ne peut pas être un nombre négatif.
+
+
 
 _____________________________________________________
 
@@ -121,3 +127,31 @@ Validation de la méthode AskNumberInput()
 Refactor – Conventions de C#
 •	Changer les méthodes pour qu’elles commencent par des verbes.
 •	Changer le nom des méthodes pour qu’elles soient plus représentatives de leur fonction.
+
+
+Creation de MenuHelper.cs pour contenir les méthodes AcceptChoices() et AcceptMembertype()
+
+
+______________________________________________________________
+
+Directive Root
+La directive root a été renommé pour avoir un nom plus représentatif : Managers.
+
+Payroll n’existe plus après la l’utilisation du polymorphisme dans employees. Payroll n’est donc plus nécessaire.
+
+SchoolMember.cs à été déplacé à l’intérieur de la directive Members.
+
+
+UndoEntry & UndoManager sont deux nouvelles classes dans la directive, ajoutées pour intégrer la fonctionnalité Undo.
+
+
+
+
+
+
+MISC
+
+-	Toutes les classes ayant des noms divergents ont été renommé pour avoir le mem nom que leur fichier.
+-	Tous les noms des NameSpaces partage le même nom que leur directive.
+
+
