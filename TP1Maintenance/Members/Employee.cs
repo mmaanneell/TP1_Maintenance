@@ -1,5 +1,6 @@
 using System;
 using Helper;
+using Managers;
 
 namespace Members
 {
@@ -33,7 +34,7 @@ namespace Members
         {
             Balance += Income;
             Console.WriteLine($"Paid Employee: {Name}. Total balance: {Balance}");
-            Program.Undo.Push($"Undo: Pay {Name}", () => Balance -= Income);
+            UndoManager.UndoHistory.Push($"Undo: Pay {Name}", () => Balance -= Income);
         }
     }
 }

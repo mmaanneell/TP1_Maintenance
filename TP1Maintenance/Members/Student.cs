@@ -68,7 +68,7 @@ namespace Members
 
         public static Student StudentAttributes()
         {
-            SchoolMember member = SchoolMemberManager.BaseMemberAttributes();
+            SchoolMember member = ActionAdd.BaseMemberAttributes();
             int grade = ConsoleHelper.AskNumberInput("Enter grade: ");
             
             return new Student(member.Name, member.Address, member.PhoneNumber, grade);
