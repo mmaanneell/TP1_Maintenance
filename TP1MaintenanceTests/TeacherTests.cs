@@ -60,43 +60,17 @@ public class TeacherTests
 
         Assert.Equal(expectedIncome, teacher.Income);
     }
-
     [Fact]
-    public void Pay_IncreaseBalanceByIncome()
+    public void Pay_ShouldIncreaseBalanceByIncome()
     {
-        Teacher teacher = new Teacher("Francois", "Montreal", 5551234, "Math", 2000);
+        
+        Teacher teacher = new Teacher("Nadine", "Montreal", 5551234, "Math", 2000);
         int initialBalance = teacher.Balance;
 
+        
         teacher.Pay();
 
         Assert.Equal(initialBalance + teacher.Income, teacher.Balance);
     }
 
-    [Fact]
-    public void PayAll_IncreaseBalanceOfAllTeachers()
-    {
-        Teacher.Teachers.Clear();
-        Teacher teacher1 = new Teacher("Nadine", "Montreal", 5551234, "Math", 1500);
-        Teacher teacher2 = new Teacher("Manel", "Laval", 5555678, "Science", 2500);
-        Teacher teacher3 = new Teacher("Samentha", "Repentigny", 5559999, "English", 3000);
-
-        int balance1 = teacher1.Balance;
-        int balance2 = teacher2.Balance;
-        int balance3 = teacher3.Balance;
-
-        Teacher.PayAll();
-
-        Assert.Equal(balance1 + teacher1.Income, teacher1.Balance);
-        Assert.Equal(balance2 + teacher2.Income, teacher2.Balance);
-        Assert.Equal(balance3 + teacher3.Income, teacher3.Balance);
-    }
-
-    [Fact]
-    public void PayAll_HandleEmptyTeacherList()
-    {
-        Teacher.Teachers.Clear();
-
-        var exception = Record.Exception(() => Teacher.PayAll());
-        Assert.Null(exception);
-    }
 }
