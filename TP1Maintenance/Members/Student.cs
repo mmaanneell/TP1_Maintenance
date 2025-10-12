@@ -7,23 +7,24 @@ namespace Members
     public class Student : SchoolMember
     {
         static public List<Student> Students = new List<Student>();
-
-        private const int MinGrade = 0;
-        private const int MaxGrade = 100;
         public int Grade { get; set; }
 
         public Student(string name, string address, int phoneNumber, int grade = 0)
         : base(name, address, phoneNumber)
         {
-            if (grade < MinGrade || grade > MaxGrade)
+            int minGrade = JSONConfigurationManager.GradeSettings.MinGrade;
+            int maxGrade = JSONConfigurationManager.GradeSettings.MaxGrade;
+
+            if (grade < minGrade || grade > maxGrade)
             {
-                Console.WriteLine("Grade must be between 0 and 100. Defaulting to 0.");
-                Grade = 0;
+                Console.WriteLine($"Grade must be between {minGrade} and {maxGrade}. Defaulting to {minGrade}.");
+                Grade = minGrade;
             }
             else
             {
                 Grade = grade;
             }
+
             Students.Add(this);
         }
 

@@ -8,8 +8,8 @@ namespace Members
         static public Principal principal = new Principal(name: "Initial Principal", address: "Initial Address", phoneNumber: 123456789);
 
 
-        public Principal(string name, string address, int phoneNumber, int income = 50000)
-        : base(name, address, phoneNumber, income)
+        public Principal(string name, string address, int phoneNumber)
+        : base(name, address, phoneNumber, JSONConfigurationManager.SalarySettings.Principal)
         {
         }
 

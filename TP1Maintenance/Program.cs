@@ -1,5 +1,6 @@
 ﻿using Members;
 using Managers;
+using Microsoft.Extensions.Configuration;
 
 
 public class Program
@@ -17,6 +18,7 @@ public class Program
 
     public static async Task Main(string[] args)
     {
+        JSONConfigurationManager.Initialize();
         AddData();
 
         Console.WriteLine("-------------- Welcome ---------------\n");
