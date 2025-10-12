@@ -1,86 +1,58 @@
-using System;
-using System.Collections.Generic;
 using Members;
-using Helper;
+using System;
 
 namespace Managers
 {
     public static class SchoolMemberManager
     {
-        public static void AddMember()
+        public static List<SchoolMember> GetListOfMembersByType(SchoolMemberType memberType)
         {
-            int memberType = MenuHelper.AcceptMemberType();
-
-            switch ((SchoolMemberType)memberType)
+            return memberType switch
             {
-                case SchoolMemberType.Student:
+                SchoolMemberType.Principal => new List<SchoolMember> { Principal.principal },
+                SchoolMemberType.Teacher => Teacher.Teachers.Cast<SchoolMember>().ToList(),
+                SchoolMemberType.Student => Student.Students.Cast<SchoolMember>().ToList(),
+                SchoolMemberType.Receptionist => new List<SchoolMember> { Receptionist.receptionist },
+                _ => new List<SchoolMember>()
+            };
+        }
 
-                    SchoolMember newStudent = Student.StudentAttributes();
+        public static void DisplayAll(SchoolMemberType memberType)
+        {
+            List<SchoolMember> members = GetListOfMembersByType(memberType);
 
-                    Program.Undo.Push(
-                        description: $"Undo: add student '{newStudent.Name}'",
-                        undo: () => Student.Students.Remove(newStudent as Student)
-                    );
+            if (members.Count == 0)
+            {
+                Console.WriteLine("Invalid input.");
+                return;
+            }
 
-                    break;
-
-                case SchoolMemberType.Teacher:
-                    SchoolMember newTeacher = Teacher.TeacherAttributes();
-
-                    Program.Undo.Push(
-                        description: $"Undo: add teacher '{newTeacher.Name}'",
-                        undo: () => Teacher.Teachers.Remove(newTeacher as Teacher)
-                    );
-
-                    break;
-
-                case SchoolMemberType.Principal:
-                    Program.Undo.Push(
-                        description: $"Undo: modify principal to '{Program.Principal.Name}'",
-                        undo: () =>
-                        {
-                            Program.Principal = new Principal(
-                                name: Program.Principal.Name,
-                                address: Program.Principal.Address,
-                                phoneNumber: Program.Principal.PhoneNumber
-                            );
-                        }
-                    );
-
-                    SchoolMember newPrincipal = Principal.PrincipalAttributes();
-                    break;
-
-                case SchoolMemberType.Receptionist:
-                    Program.Undo.Push(
-                        description: $"Undo: modify receptionist to '{Program.Receptionist.Name}'",
-                        undo: () =>
-                        {
-                            Program.Receptionist = new Receptionist(
-                                name: Program.Receptionist.Name,
-                                address: Program.Receptionist.Address,
-                                phoneNumber: Program.Receptionist.PhoneNumber
-                            );
-                        }
-                    );
-
-                    SchoolMember newReceptionist = Receptionist.ReceptionistAttributes();
-                    break;
-
-                default:
-                    Console.WriteLine("Invalid type selected.");
-                    return;
+            Console.WriteLine($"\nThe {memberType}s are:");
+            foreach (SchoolMember member in members)
+            {
+                member.Display();
             }
         }
 
-        public static SchoolMember BaseMemberAttributes()
+        public static void PayAll(SchoolMemberType memberType)
         {
-            string name = ConsoleHelper.AskInfoInput("Enter name: ");
-            string address = ConsoleHelper.AskInfoInput("Enter address: ");
-            int phoneNumber = ConsoleHelper.AskNumberInput("Enter phone number: ");
+            List<Employee> employees = GetListOfMembersByType(memberType).OfType<Employee>().ToList();
 
-            return new SchoolMember(name, address, phoneNumber);
+            if (employees.Count == 0)
+            {
+                Console.WriteLine("This type of member cannot be paid.");
+                return;
+            }
+
+            Console.WriteLine($"\nPayments in progress for {memberType}s...");
+
+            foreach (Employee employe in employees)
+            {
+                employe.Pay();
+            }
+
+            Console.WriteLine("Payments completed.");
         }
-
 
     }
 }

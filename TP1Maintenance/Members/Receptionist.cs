@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Helper;
 using Managers;
 
 namespace Members
 {
     public class Receptionist : Employee
     {
+        static public Receptionist receptionist = new Receptionist(name: "Receptionist Initial", address: "Address Initial", phoneNumber: 123456789);
+
         public event EventHandler<Complaint>? ComplaintRaised;
 
         public Receptionist(string name, string address, int phoneNumber, int income = 10000)
@@ -27,14 +28,14 @@ namespace Members
         {
             Complaint complaint = new Complaint();
             complaint.ComplaintTime = DateTime.Now;
-            complaint.ComplaintRaised = ConsoleHelper.AskInfoInput("Please enter your Complaint: ");
+            complaint.ComplaintRaised = MenuHelper.AskInfoInput("Please enter your Complaint: ");
 
             ComplaintRaised?.Invoke(this, complaint);
         }
 
         public static Receptionist ReceptionistAttributes()
         {
-            SchoolMember member = SchoolMemberManager.BaseMemberAttributes();
+            SchoolMember member = ActionAdd.BaseMemberAttributes();
             return new Receptionist(member.Name, member.Address, member.PhoneNumber);
         }
     }
