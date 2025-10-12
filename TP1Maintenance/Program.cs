@@ -11,12 +11,14 @@ public class Program
 
         for (int i = 1; i <= 10; i++)
         {
-            Student.Students.Add(new Student($"Student{i}", $"Address{i}", 123456000 + i, i + 60)); // Grade réaliste
+            // Génération d'une liste d'étudiants et de professeurs pour ne pas avoir une liste vide au lancement du programme
+            int minGrade = JSONConfigurationManager.GradeSettings?.MinGrade ?? 0;
+            Student.Students.Add(new Student($"Student{i}", $"Address{i}", 123456000 + i, i + minGrade)); 
             Teacher.Teachers.Add(new Teacher($"Teacher{i}", $"Address{i}", 123457000 + i, subject: $"Subject{i}"));
         }
     }
 
-    public static async Task Main(string[] args)
+    public static void Main(string[] args)
     {
         JSONConfigurationManager.Initialize();
         AddData();
@@ -29,10 +31,10 @@ public class Program
             int choice = MenuHelper.AcceptChoices();
 
 
-            if (choice > 1 || choice < Enum.GetNames(typeof(TypeChoice)).Length)
+            int maxChoice = Enum.GetNames(typeof(TypeChoice)).Length;
+            if (choice >= 1 && choice <= maxChoice)
             {
                 TypeChoice myChoice = (TypeChoice)choice;
-
                 ActionService.SelectAction(myChoice);
             }
             else
