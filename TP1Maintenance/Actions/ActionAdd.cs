@@ -1,4 +1,3 @@
-using Helper;
 using Members;
 using Managers;
 
@@ -13,7 +12,7 @@ public class ActionAdd : IActions
             case SchoolMemberType.Student:
 
                 SchoolMember newStudent = Student.StudentAttributes();
-                
+
                 UndoManager.UndoHistory.Push(
                     description: $"Undo: add student '{newStudent.Name}'",
                     undo: () => Student.Students.Remove(newStudent as Student)
@@ -68,18 +67,18 @@ public class ActionAdd : IActions
                 return;
         }
     }
-    
 
 
 
-            public static SchoolMember BaseMemberAttributes()
-        {
-            string name = ConsoleHelper.AskInfoInput("Enter name: ");
-            string address = ConsoleHelper.AskInfoInput("Enter address: ");
-            int phoneNumber = ConsoleHelper.AskNumberInput("Enter phone number: ");
 
-            return new SchoolMember(name, address, phoneNumber);
-        }
+    public static SchoolMember BaseMemberAttributes()
+    {
+        string name = MenuHelper.AskInfoInput("Enter name: ");
+        string address = MenuHelper.AskInfoInput("Enter address: ");
+        int phoneNumber = MenuHelper.AskNumberInput("Enter phone number: ");
+
+        return new SchoolMember(name, address, phoneNumber);
+    }
 
 
 }

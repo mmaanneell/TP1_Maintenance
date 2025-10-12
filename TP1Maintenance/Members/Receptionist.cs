@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Helper;
 using Managers;
 
 namespace Members
@@ -29,7 +28,7 @@ namespace Members
         {
             Complaint complaint = new Complaint();
             complaint.ComplaintTime = DateTime.Now;
-            complaint.ComplaintRaised = ConsoleHelper.AskInfoInput("Please enter your Complaint: ");
+            complaint.ComplaintRaised = MenuHelper.AskInfoInput("Please enter your Complaint: ");
 
             ComplaintRaised?.Invoke(this, complaint);
         }
