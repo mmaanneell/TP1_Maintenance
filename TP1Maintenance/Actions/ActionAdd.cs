@@ -6,6 +6,9 @@ public class ActionAdd : IActions
     public void MakeChoice()
     {
         int memberType = MenuHelper.AcceptMemberType();
+        string oldName;
+        string oldAddress; 
+        int oldPhoneNumber;
 
         switch ((SchoolMemberType)memberType)
         {
@@ -32,11 +35,16 @@ public class ActionAdd : IActions
 
             case SchoolMemberType.Principal:
 
+                oldName = Principal.principal.Name;
+                oldAddress = Principal.principal.Address;
+                oldPhoneNumber = Principal.principal.PhoneNumber;
+                
+
                 Principal.principal = Principal.PrincipalAttributes();
 
 
                 UndoManager.UndoHistory.Push(
-                    description: $"Undo: remove principal '{Principal.principal.Name}' to previous principal",
+                    description: $"Undo: Revert principal '{Principal.principal.Name}' to previous '{oldName}'",
                     undo: () =>
                     {
                         Principal.principal = new Principal(
@@ -50,19 +58,29 @@ public class ActionAdd : IActions
                 break;
 
             case SchoolMemberType.Receptionist:
+
+                oldName = Receptionist.receptionist.Name;
+                oldAddress = Receptionist.receptionist.Address;
+                oldPhoneNumber = Receptionist.receptionist.PhoneNumber;
+
+
+                Receptionist.receptionist = Receptionist.ReceptionistAttributes();
+
                 UndoManager.UndoHistory.Push(
-                    description: $"Undo: modify receptionist to '{Receptionist.receptionist.Name}'",
+                    description: $"Undo: Revert receptionist '{Receptionist.receptionist.Name}' to  '{oldName}'",
                     undo: () =>
                     {
                         Receptionist.receptionist = new Receptionist(
-                            name: Receptionist.receptionist.Name,
-                            address: Receptionist.receptionist.Address,
-                            phoneNumber: Receptionist.receptionist.PhoneNumber
+                            name: oldName,
+                            address: oldAddress,
+                            phoneNumber: oldPhoneNumber
                         );
                     }
                 );
 
-                SchoolMember newReceptionist = Receptionist.ReceptionistAttributes();
+
+
+
                 break;
 
             default:
