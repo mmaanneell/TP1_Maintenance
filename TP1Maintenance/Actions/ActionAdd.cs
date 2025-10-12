@@ -7,7 +7,7 @@ public class ActionAdd : IActions
     {
         int memberType = MenuHelper.AcceptMemberType();
         string oldName;
-        string oldAddress; 
+        string oldAddress;
         int oldPhoneNumber;
 
         switch ((SchoolMemberType)memberType)
@@ -38,7 +38,7 @@ public class ActionAdd : IActions
                 oldName = Principal.principal.Name;
                 oldAddress = Principal.principal.Address;
                 oldPhoneNumber = Principal.principal.PhoneNumber;
-                
+
 
                 Principal.principal = Principal.PrincipalAttributes();
 
@@ -54,7 +54,7 @@ public class ActionAdd : IActions
                         );
                     }
                 );
-                
+
                 break;
 
             case SchoolMemberType.Receptionist:
@@ -112,10 +112,10 @@ public class ActionAdd : IActions
             int minGrade = JSONConfigurationManager.GradeSettings?.MinGrade ?? 0;
             int maxGrade = JSONConfigurationManager.GradeSettings?.MaxGrade ?? 100;
             Random randomRange = new Random();
-            
+
             new Student($"Student{i}", $"Address{i}", 123456000 + i, randomRange.Next(minGrade, maxGrade + 1));
             new Teacher($"Teacher{i}", $"Address{i}", 123457000 + i, subject: $"Subject{i}");
-            
+
         }
     }
 
