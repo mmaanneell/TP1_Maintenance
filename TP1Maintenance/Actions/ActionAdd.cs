@@ -11,21 +11,21 @@ public class ActionAdd : IActions
         {
             case SchoolMemberType.Student:
 
-                SchoolMember newStudent = Student.StudentAttributes();
+                Student newStudent = Student.StudentAttributes();
 
                 UndoManager.UndoHistory.Push(
                     description: $"Undo: add student '{newStudent.Name}'",
-                    undo: () => Student.Students.Remove(newStudent as Student)
+                    undo: () => Student.Students.Remove(newStudent)
                 );
 
                 break;
 
             case SchoolMemberType.Teacher:
-                SchoolMember newTeacher = Teacher.TeacherAttributes();
+                Teacher newTeacher = Teacher.TeacherAttributes();
 
                 UndoManager.UndoHistory.Push(
                     description: $"Undo: add teacher '{newTeacher.Name}'",
-                    undo: () => Teacher.Teachers.Remove(newTeacher as Teacher)
+                    undo: () => Teacher.Teachers.Remove(newTeacher)
                 );
 
                 break;
