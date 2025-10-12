@@ -8,9 +8,9 @@ namespace Members
     {
         static public List<Teacher> Teachers = new List<Teacher>();
         public string Subject { get; set; }
-        private const int DefaultIncome = 25000;
-        public Teacher(string name, string address, int phoneNumber, string subject = "", int income = DefaultIncome)
-        : base(name, address, phoneNumber, income)
+
+        public Teacher(string name, string address, int phoneNumber, string subject = "")
+        : base(name, address, phoneNumber, JSONConfigurationManager.SalarySettings.Teacher)
         {
             if (string.IsNullOrWhiteSpace(subject))
             {

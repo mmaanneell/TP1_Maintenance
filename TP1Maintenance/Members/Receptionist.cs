@@ -13,8 +13,8 @@ namespace Members
 
         public event EventHandler<Complaint>? ComplaintRaised;
 
-        public Receptionist(string name, string address, int phoneNumber, int income = 10000)
-        : base(name, address, phoneNumber, income)
+        public Receptionist(string name, string address, int phoneNumber)
+        : base(name, address, phoneNumber, JSONConfigurationManager.SalarySettings.Receptionist)
         {
 
         }
