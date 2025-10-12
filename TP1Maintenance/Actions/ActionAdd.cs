@@ -48,9 +48,9 @@ public class ActionAdd : IActions
                     undo: () =>
                     {
                         Principal.principal = new Principal(
-                            name: Principal.principal.Name,
-                            address: Principal.principal.Address,
-                            phoneNumber: Principal.principal.PhoneNumber
+                            name: oldName,
+                            address: oldAddress,
+                            phoneNumber: oldPhoneNumber
                         );
                     }
                 );
