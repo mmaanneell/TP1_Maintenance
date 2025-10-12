@@ -4,8 +4,8 @@ namespace Managers
 {
     public static class JSONConfigurationManager
     {
-        public static GradeSettings GradeSettings { get; private set; }
-        public static SalarySettings SalarySettings { get; private set; }
+        public static GradeSettings GradeSettings { get; private set; } = new GradeSettings();
+        public static SalarySettings SalarySettings { get; private set; } = new SalarySettings();
 
         public static void Initialize()
         {
