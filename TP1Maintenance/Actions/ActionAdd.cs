@@ -31,8 +31,12 @@ public class ActionAdd : IActions
                 break;
 
             case SchoolMemberType.Principal:
+
+                Principal.principal = Principal.PrincipalAttributes();
+
+
                 UndoManager.UndoHistory.Push(
-                    description: $"Undo: modify principal to '{Principal.principal.Name}'",
+                    description: $"Undo: remove principal '{Principal.principal.Name}' to previous principal",
                     undo: () =>
                     {
                         Principal.principal = new Principal(
@@ -42,8 +46,7 @@ public class ActionAdd : IActions
                         );
                     }
                 );
-
-                SchoolMember newPrincipal = Principal.PrincipalAttributes();
+                
                 break;
 
             case SchoolMemberType.Receptionist:
