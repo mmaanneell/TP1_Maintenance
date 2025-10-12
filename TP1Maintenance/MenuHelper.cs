@@ -42,7 +42,7 @@ public static class MenuHelper
             Console.WriteLine("AskInfoInput requires a non-null question string.\nPlease provide a valid question then restart the program.");
             Environment.Exit(1);
         }
-        return AskInfoInput(question);
+        return question;
     }
 
 }
