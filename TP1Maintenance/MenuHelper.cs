@@ -5,7 +5,7 @@ public static class MenuHelper
 {
     public static int AcceptChoices()
     {
-        string question = VerifyQuestion("\n1. Add\n2. Display\n3. Pay\n4. Raise Complaint\n5. Student Performance\n6. Undo Last Action\nPlease enter action type: ");
+        string question = VerifyQuestion("\n[1] Add\n[2] Display\n[3] Pay\n[4] Raise Complaint\n[5] Student Performance\n[6] Undo Last Action\n\nPlease enter action type : ");
         return AskNumberInput(question);
     }
 
