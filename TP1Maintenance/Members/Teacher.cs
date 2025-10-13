@@ -38,7 +38,7 @@ namespace Members
         public static Teacher TeacherAttributes()
         {
             SchoolMember member = ActionAdd.BaseMemberAttributes();
-            string subject = MenuHelper.AskInfoInput("Enter subject: ");
+            string subject = MenuHelper.AskInfoInput("\n-> Enter subject: ");
 
             return new Teacher(member.Name, member.Address, member.PhoneNumber, subject);
         }

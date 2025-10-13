@@ -84,7 +84,7 @@ public class ActionAdd : IActions
                 break;
 
             default:
-                Console.WriteLine("Invalid type selected.");
+                Console.WriteLine("\n ----- Invalid type selected.");
                 return;
         }
     }
@@ -94,9 +94,9 @@ public class ActionAdd : IActions
 
     public static SchoolMember BaseMemberAttributes()
     {
-        string name = MenuHelper.AskInfoInput("Enter name: ");
-        string address = MenuHelper.AskInfoInput("Enter address: ");
-        int phoneNumber = MenuHelper.AskNumberInput("Enter phone number: ");
+        string name = MenuHelper.AskInfoInput("\n-> Enter name: ");
+        string address = MenuHelper.AskInfoInput("\n->Enter address: ");
+        int phoneNumber = MenuHelper.AskNumberInput("\n->Enter phone number: ");
 
         return new SchoolMember(name, address, phoneNumber);
     }

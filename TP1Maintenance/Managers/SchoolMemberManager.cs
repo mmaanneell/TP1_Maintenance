@@ -23,15 +23,19 @@ namespace Managers
 
             if (members.Count == 0)
             {
-                Console.WriteLine("Invalid input.");
+                Console.WriteLine("\n ----- Invalid input.");
                 return;
             }
 
+            Console.WriteLine("\n___________________________________________");
             Console.WriteLine($"\nThe {memberType}s are:");
+            Console.WriteLine("────────────────────────────────────────────");
+
             foreach (SchoolMember member in members)
             {
                 member.Display();
             }
+            Console.WriteLine("\n────────────────────────────────────────────");
         }
 
         public static void PayAll(SchoolMemberType memberType)

@@ -11,7 +11,7 @@ public static class MenuHelper
 
     public static int AcceptMemberType()
     {
-        string question = VerifyQuestion("\n0. Principal\n1. Teacher\n2. Student\n3. Receptionist\nPlease enter the member type: ");
+        string question = VerifyQuestion("\n0. Principal\n1. Teacher\n2. Student\n3. Receptionist\n\nPlease enter the member type : ");
         int x = AskNumberInput(question);
         return Enum.IsDefined(typeof(SchoolMemberType), x) ? x : -1;
     }
@@ -28,7 +28,7 @@ public static class MenuHelper
         bool state = int.TryParse(Console.ReadLine(), out int result);
         while (!state)
         {
-            Console.WriteLine("Invalid input. Please try again: ");
+            Console.WriteLine("\n ----- Invalid input. Please try again: ");
             state = int.TryParse(Console.ReadLine(), out result);
         }
 

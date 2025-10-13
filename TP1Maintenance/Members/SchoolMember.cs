@@ -30,7 +30,7 @@ namespace Members
             }
             if (phoneNumber <= 0)
             {
-                Console.WriteLine("Invalid phone number, using default number");
+                Console.WriteLine("\n ----- Invalid phone number, using default number");
                 PhoneNumber = 123456789;
             }
             else

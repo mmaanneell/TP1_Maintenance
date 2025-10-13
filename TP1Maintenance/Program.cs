@@ -10,7 +10,7 @@ public class Program
         JSONConfigurationManager.Initialize();
         ActionAdd.AddData();
 
-        Console.WriteLine("-------------- Welcome ---------------\n");
+        Console.WriteLine("\n-------------- Welcome ---------------\n");
 
         bool flag = true;
         while (flag)
@@ -32,7 +32,7 @@ public class Program
 
         }
 
-        Console.WriteLine("\n-------------- Bye --------------");
+        Console.WriteLine("\n-------------- Bye --------------\n\n");
     }
 
 }
