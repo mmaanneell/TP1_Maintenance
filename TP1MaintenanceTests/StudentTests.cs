@@ -1,10 +1,17 @@
 using Xunit;
 using Members;
+using Managers;
 
 namespace TP1MaintenanceTests;
 
 public class StudentTests
 {
+    static StudentTests()
+    {
+        JSONConfigurationManager.Initialize();
+    }
+
+
     [Fact]
     public void Constructor_WithValidGrade()
     {
@@ -26,7 +33,7 @@ public class StudentTests
     public void Constructor_ShouldAddStudentToList()
     {
 
-        Student.Students.Clear(); 
+        Student.Students.Clear();
         int initialCount = Student.Students.Count;
 
         Student student = new Student("Sam", "Repentigny", 5550000, 90);

@@ -1,39 +1,44 @@
 using Xunit;
 using Members;
+using Managers;
 
 namespace TP1MaintenanceTests;
 
 public class PrincipalTests
 {
+    static PrincipalTests()
+    {
+        JSONConfigurationManager.Initialize();
+    }
+
     [Fact]
     public void Constructor_WithValidParameters()
     {
         string name = "Nadine";
         string address = "Montreal";
         int phoneNumber = 5551234;
-        int income = 60000;
 
-        Principal principal = new Principal(name, address, phoneNumber, income);
+        Principal principal = new Principal(name, address, phoneNumber);
 
         Assert.Equal(name, principal.Name);
         Assert.Equal(address, principal.Address);
         Assert.Equal(phoneNumber, principal.PhoneNumber);
-        Assert.Equal(income, principal.Income);
+        Assert.Equal(JSONConfigurationManager.SalarySettings.Principal, principal.Income);
         Assert.Equal(0, principal.Balance);
     }
-        
-        [Fact]
-        public void Constructor_WithDefaultIncome_()
-        {
 
-            string name = "Manel";
-            string address = "Laval";
-            int phoneNumber = 9999999;
-            int defaultIncome = 50000;
+    [Fact]
+    public void Constructor_WithDefaultIncome_()
+    {
 
-            Principal principal = new Principal(name, address, phoneNumber);
+        string name = "Manel";
+        string address = "Laval";
+        int phoneNumber = 9999999;
 
-            Assert.Equal(defaultIncome, principal.Income);
-            Assert.Equal(0, principal.Balance);
-        }
+        Principal principal = new Principal(name, address, phoneNumber);
+
+        Assert.Equal(JSONConfigurationManager.SalarySettings.Principal, principal.Income);
+        Assert.Equal(0, principal.Balance);
+    }
+
 }

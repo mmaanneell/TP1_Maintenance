@@ -1,10 +1,16 @@
 ﻿using Xunit;
 using Members;
+using Managers;
 
 namespace TP1MaintenanceTests;
 
 public class EmployeeTests
 {
+    static EmployeeTests()
+    {
+        JSONConfigurationManager.Initialize();
+    }
+
     [Fact]
     public void Constructor_WhenValidParameters()
     {
