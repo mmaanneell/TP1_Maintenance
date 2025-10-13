@@ -18,7 +18,7 @@ namespace Managers
 
             if (_history.Count == 0)
             {
-                outPutString = "No undo available";
+                outPutString = "\n ----- No undo available";
             }
             else
             {

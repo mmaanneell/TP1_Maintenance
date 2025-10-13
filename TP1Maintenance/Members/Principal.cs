@@ -15,7 +15,7 @@ namespace Members
 
         public override void Display()
         {
-            Console.WriteLine($"\nThe Principal's details are : \nName: {Name}, Address: {Address}, PhoneNumber: {PhoneNumber}");
+            Console.WriteLine($"\nName: {Name}, \nAddress: {Address}, \nPhoneNumber: {PhoneNumber}");
         }
         public static Principal PrincipalAttributes()
         {

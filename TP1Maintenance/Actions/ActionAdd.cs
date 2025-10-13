@@ -6,64 +6,85 @@ public class ActionAdd : IActions
     public void MakeChoice()
     {
         int memberType = MenuHelper.AcceptMemberType();
+        string oldName;
+        string oldAddress;
+        int oldPhoneNumber;
 
         switch ((SchoolMemberType)memberType)
         {
             case SchoolMemberType.Student:
 
-                SchoolMember newStudent = Student.StudentAttributes();
+                Student newStudent = Student.StudentAttributes();
 
                 UndoManager.UndoHistory.Push(
                     description: $"Undo: add student '{newStudent.Name}'",
-                    undo: () => Student.Students.Remove(newStudent as Student)
+                    undo: () => Student.Students.Remove(newStudent)
                 );
 
                 break;
 
             case SchoolMemberType.Teacher:
-                SchoolMember newTeacher = Teacher.TeacherAttributes();
+                Teacher newTeacher = Teacher.TeacherAttributes();
 
                 UndoManager.UndoHistory.Push(
                     description: $"Undo: add teacher '{newTeacher.Name}'",
-                    undo: () => Teacher.Teachers.Remove(newTeacher as Teacher)
+                    undo: () => Teacher.Teachers.Remove(newTeacher)
                 );
 
                 break;
 
             case SchoolMemberType.Principal:
+
+                oldName = Principal.principal.Name;
+                oldAddress = Principal.principal.Address;
+                oldPhoneNumber = Principal.principal.PhoneNumber;
+
+
+                Principal.principal = Principal.PrincipalAttributes();
+
+
                 UndoManager.UndoHistory.Push(
-                    description: $"Undo: modify principal to '{Principal.principal.Name}'",
+                    description: $"Undo: Revert principal '{Principal.principal.Name}' to previous '{oldName}'",
                     undo: () =>
                     {
                         Principal.principal = new Principal(
-                            name: Principal.principal.Name,
-                            address: Principal.principal.Address,
-                            phoneNumber: Principal.principal.PhoneNumber
+                            name: oldName,
+                            address: oldAddress,
+                            phoneNumber: oldPhoneNumber
                         );
                     }
                 );
 
-                SchoolMember newPrincipal = Principal.PrincipalAttributes();
                 break;
 
             case SchoolMemberType.Receptionist:
+
+                oldName = Receptionist.receptionist.Name;
+                oldAddress = Receptionist.receptionist.Address;
+                oldPhoneNumber = Receptionist.receptionist.PhoneNumber;
+
+
+                Receptionist.receptionist = Receptionist.ReceptionistAttributes();
+
                 UndoManager.UndoHistory.Push(
-                    description: $"Undo: modify receptionist to '{Receptionist.receptionist.Name}'",
+                    description: $"Undo: Revert receptionist '{Receptionist.receptionist.Name}' to  '{oldName}'",
                     undo: () =>
                     {
                         Receptionist.receptionist = new Receptionist(
-                            name: Receptionist.receptionist.Name,
-                            address: Receptionist.receptionist.Address,
-                            phoneNumber: Receptionist.receptionist.PhoneNumber
+                            name: oldName,
+                            address: oldAddress,
+                            phoneNumber: oldPhoneNumber
                         );
                     }
                 );
 
-                SchoolMember newReceptionist = Receptionist.ReceptionistAttributes();
+
+
+
                 break;
 
             default:
-                Console.WriteLine("Invalid type selected.");
+                Console.WriteLine("\n ----- Invalid type selected.");
                 return;
         }
     }
@@ -73,11 +94,29 @@ public class ActionAdd : IActions
 
     public static SchoolMember BaseMemberAttributes()
     {
-        string name = MenuHelper.AskInfoInput("Enter name: ");
-        string address = MenuHelper.AskInfoInput("Enter address: ");
-        int phoneNumber = MenuHelper.AskNumberInput("Enter phone number: ");
+        string name = MenuHelper.AskInfoInput("\n-> Enter name: ");
+        string address = MenuHelper.AskInfoInput("\n->Enter address: ");
+        int phoneNumber = MenuHelper.AskNumberInput("\n->Enter phone number: ");
 
         return new SchoolMember(name, address, phoneNumber);
+    }
+
+
+    public static void AddData()
+    {
+        Receptionist.receptionist.ComplaintRaised += (sender, complaint) => complaint.DisplayConfirmation();
+
+        for (int i = 1; i <= 10; i++)
+        {
+            // Génération d'une liste d'étudiants et de professeurs pour ne pas avoir une liste vide au lancement du programme
+            int minGrade = JSONConfigurationManager.GradeSettings?.MinGrade ?? 0;
+            int maxGrade = JSONConfigurationManager.GradeSettings?.MaxGrade ?? 100;
+            Random randomRange = new Random();
+
+            new Student($"Student{i}", $"Address{i}", 123456000 + i, randomRange.Next(minGrade, maxGrade + 1));
+            new Teacher($"Teacher{i}", $"Address{i}", 123457000 + i, subject: $"Subject{i}");
+
+        }
     }
 
 

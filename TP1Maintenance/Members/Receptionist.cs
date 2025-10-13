@@ -21,14 +21,14 @@ namespace Members
 
         public override void Display()
         {
-            Console.WriteLine($"\nThe Receptionist's details are : \nName: {Name}, Address: {Address}, PhoneNumber: {PhoneNumber}");
+            Console.WriteLine($"\nName: {Name}, \nAddress: {Address}, \nPhoneNumber: {PhoneNumber}");
         }
 
         public void HandleComplaint()
         {
             Complaint complaint = new Complaint();
             complaint.ComplaintTime = DateTime.Now;
-            complaint.ComplaintRaised = MenuHelper.AskInfoInput("Please enter your Complaint: ");
+            complaint.ComplaintRaised = MenuHelper.AskInfoInput("\n-> Please enter your Complaint: ");
 
             ComplaintRaised?.Invoke(this, complaint);
         }
