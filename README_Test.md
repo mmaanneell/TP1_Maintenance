@@ -29,17 +29,18 @@ dotnet test
 
 
 #### Exécuter un test spécifique
-
+ 
+dotnet test --filter "NOM_DU_TEST"             
+ 
 exemple:
 dotnet test --filter "Constructor_WithValidParameters"
-
-
+ 
+ 
 #### Exécuter tous les tests d'une classe
-
+ 
+dotnet test --filter "NOM_DE_LA_CLASSE"     
+ 
+exemple :                                                        
 dotnet test --filter "EmployeeTests"
-
-
-
-
 
 
