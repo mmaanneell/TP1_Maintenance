@@ -6,7 +6,7 @@ Program.cs
 Conventions de C# – Une classe par fichier & God Class
 Program.cs contient la majorité des classes dans un seul fichier. La classe Program, qui contient le Main, ne doit pas être bombardée par des classes qui ne lui appartiennent pas, et elle exerce trop de responsabilités.
 Cette méthode de travail la rend lourde, illisible et ne respecte pas une logique ni une cohérence.
-Ainsi, les classes suivantes ont été déplacées dans de nouveaux fichiers accordant leur utilité dans le programme :
+Ainsi, les classes et les méthodes suivantes ont été déplacées dans de nouveaux fichiers accordant leur utilité dans le programme :
 •	Enum SchoolMemberType → SchoolMemberType.cs
 •	AcceptAttributes → ActionAdd.cs
 •	acceptChoices → MenuHelper.cs
@@ -37,9 +37,14 @@ Refactor – Conventions générales
 Code Smells – Contrôle de flux : Switch Statement
 Il se trouvait un switch case imposant à l’intérieur du Main qui contrôlait l’entièreté de l’interaction que l’utilisateur a avec le programme.
 Ce Code Smell est l’un des seuls qui peuvent être justifiables.
+
 Mais, dans notre programme, nous avons tout de même décidé de créer une interface Choice(), qui se trouve dans une directive nommée Actions, et qui contrôle la manière dont l’utilisateur peut interagir avec notre programme.
+
 La raison de cette modification est que notre équipe trouvait que le switch case encombrait visuellement le Main.
+
 De plus, nous voulions éliminer le plus de Code Smells possible.
+
+
 Code Smells – Gestion des erreurs et lisibilité : Commentaires
 Nous avons retiré tous les commentaires complètement inutiles dans le fichier. Voici les commentaires qui ont été supprimés :
 // Just for manual testing purposes.
