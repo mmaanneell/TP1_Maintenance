@@ -6,6 +6,11 @@ namespace TP1MaintenanceTests;
 
 public class PrincipalTests
 {
+    static PrincipalTests()
+    {
+        JSONConfigurationManager.Initialize();
+    }
+
     [Fact]
     public void Constructor_WithValidParameters()
     {

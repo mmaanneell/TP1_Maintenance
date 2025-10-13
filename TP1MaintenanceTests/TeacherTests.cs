@@ -1,25 +1,30 @@
 using Xunit;
 using Members;
+using Managers;
 
 namespace TP1MaintenanceTests;
 
 public class TeacherTests
 {
+    static TeacherTests()
+    {
+        JSONConfigurationManager.Initialize();
+    }
+
     [Fact]
     public void Constructor_WithValidSubject()
     {
         string name = "Mathieu";
         string address = "Montreal";
         int phoneNumber = 5551234;
-        int income = 30000;
         string subject = "IT";
 
-        Teacher teacher = new Teacher(name, address, phoneNumber, subject, income);
+        Teacher teacher = new Teacher(name, address, phoneNumber, subject);
 
         Assert.Equal(name, teacher.Name);
         Assert.Equal(address, teacher.Address);
         Assert.Equal(phoneNumber, teacher.PhoneNumber);
-        Assert.Equal(income, teacher.Income);
+        Assert.Equal(JSONConfigurationManager.SalarySettings.Teacher, teacher.Income);
         Assert.Equal(subject, teacher.Subject);
         Assert.Equal(0, teacher.Balance);
     }
@@ -30,10 +35,9 @@ public class TeacherTests
         string name = "Manel";
         string address = "Laval";
         int phoneNumber = 9999999;
-        int income = 27000;
         string subject = "";
 
-        Teacher teacher = new Teacher(name, address, phoneNumber, subject, income);
+        Teacher teacher = new Teacher(name, address, phoneNumber, subject);
 
         Assert.Equal("DefaultSubject", teacher.Subject);
     }
@@ -44,7 +48,7 @@ public class TeacherTests
         Teacher.Teachers.Clear();
         int initialCount = Teacher.Teachers.Count;
 
-        Teacher teacher = new Teacher("Sam", "Repentigny", 5550000, "History", 28000);
+        Teacher teacher = new Teacher("Sam", "Repentigny", 5550000, "History");
 
         Assert.Contains(teacher, Teacher.Teachers);
         Assert.Equal(initialCount + 1, Teacher.Teachers.Count);
@@ -63,11 +67,11 @@ public class TeacherTests
     [Fact]
     public void Pay_ShouldIncreaseBalanceByIncome()
     {
-        
-        Teacher teacher = new Teacher("Nadine", "Montreal", 5551234, "Math", 2000);
+
+        Teacher teacher = new Teacher("Nadine", "Montreal", 5551234, "Math");
         int initialBalance = teacher.Balance;
 
-        
+
         teacher.Pay();
 
         Assert.Equal(initialBalance + teacher.Income, teacher.Balance);

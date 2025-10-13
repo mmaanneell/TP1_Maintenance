@@ -6,6 +6,11 @@ namespace TP1MaintenanceTests;
 
 public class ReceptionistTests
 {
+    static ReceptionistTests()
+    {
+        JSONConfigurationManager.Initialize();
+    }
+
     [Fact]
     public void Constructor_WithValidParameters()
     {
