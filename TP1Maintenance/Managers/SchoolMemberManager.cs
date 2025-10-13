@@ -44,18 +44,21 @@ namespace Managers
 
             if (employees.Count == 0)
             {
-                Console.WriteLine("This type of member cannot be paid.");
+                Console.WriteLine(" ----- This type of member cannot be paid.");
                 return;
             }
 
+            Console.WriteLine($"=========================================");
             Console.WriteLine($"\nPayments in progress for {memberType}s...");
+            Console.WriteLine($"=========================================\n");
 
             foreach (Employee employe in employees)
             {
                 employe.Pay();
             }
 
-            Console.WriteLine("Payments completed.");
+            Console.WriteLine("\nPayments completed successfully !");
+            Console.WriteLine($"=========================================");
         }
 
     }
